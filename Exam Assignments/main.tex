@@ -1,0 +1,56 @@
+\documentclass{article}
+
+\usepackage{subfiles}
+\usepackage{graphicx}
+\usepackage{amsmath}  % For better mathematical typesetting
+\usepackage{amsthm}   % For proof environments and theorems
+\usepackage{amssymb}  % For additional mathematical symbols
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue]{hyperref}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{enumitem}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+
+
+\widowpenalties 1 10000
+
+\title{Algorithm Engineering}
+\author{Jonas Peters}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\newpage
+\subfile{Chapters/01/01.tex}
+
+\newpage
+\subfile{Chapters/02/02.tex}
+
+\newpage
+\subfile{Chapters/03/03.tex}
+
+\end{document}
