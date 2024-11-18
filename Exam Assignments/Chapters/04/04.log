@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.16)  10 NOV 2024 15:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.16)  18 NOV 2024 10:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -528,7 +528,7 @@ Package hyperref Info: Link coloring ON on input line 5.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<./running_times.png, id=39, 722.7pt x 433.62pt>
+<./running_times.png, id=51, 722.7pt x 433.62pt>
 File: ./running_times.png Graphic file (type png)
 <use ./running_times.png>
 Package pdftex.def Info: ./running_times.png  used on input line 23.
@@ -538,7 +538,7 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 23--24
 [][] 
  []
 
-<./speedup.png, id=41, 722.7pt x 433.62pt>
+<./speedup.png, id=53, 722.7pt x 433.62pt>
 File: ./speedup.png Graphic file (type png)
 <use ./speedup.png>
 Package pdftex.def Info: ./speedup.png  used on input line 28.
@@ -549,7 +549,7 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 28--29
  []
 
 [2 <Chapters/04/./running_times.png> <Chapters/04/./speedup.png>]
-<./running_times_array.png, id=48, 2022.8373pt x 836.1639pt>
+<./running_times_array.png, id=60, 2022.8373pt x 836.1639pt>
 File: ./running_times_array.png Graphic file (type png)
 <use ./running_times_array.png>
 Package pdftex.def Info: ./running_times_array.png  used on input line 35.
@@ -559,7 +559,7 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 35--36
 [][] 
  []
 
-<./speedup_array.png, id=49, 722.7pt x 433.62pt>
+<./speedup_array.png, id=61, 722.7pt x 433.62pt>
 File: ./speedup_array.png Graphic file (type png)
 <use ./speedup_array.png>
 Package pdftex.def Info: ./speedup_array.png  used on input line 40.
@@ -581,27 +581,32 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 47.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [3 <Chapters/04/./running_times_array.png> <Chapters/04/./speedup_array.png>] [4] (Chapters/04/04.aux)
+) [3 <Chapters/04/./running_times_array.png> <Chapters/04/./speedup_array.png>] [4]
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
+
+ []
+
+[5] (Chapters/04/04.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `04.out' has not changed.
-(rerunfilecheck)             Checksum: 12C83E21DF0FD45A03E75A8F6E9931B7;1493.
+(rerunfilecheck)             Checksum: 5055838162B2F888EA67708106D39DB7;2833.
  ) 
 Here is how much of TeX's memory you used:
- 21932 strings out of 476106
- 400689 string characters out of 5793932
- 1928975 words of memory out of 5000000
- 43579 multiletter control sequences out of 15000+600000
- 561286 words of font info for 49 fonts, out of 8000000 for 9000
+ 21946 strings out of 476106
+ 400962 string characters out of 5793932
+ 1933975 words of memory out of 5000000
+ 43588 multiletter control sequences out of 15000+600000
+ 561632 words of font info for 50 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 104i,6n,110p,637b,442s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on Chapters/04/04.pdf (4 pages, 320638 bytes).
+ 104i,12n,110p,715b,442s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on Chapters/04/04.pdf (5 pages, 330873 bytes).
 PDF statistics:
- 109 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
- 11 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 126 PDF objects out of 1000 (max. 8388607)
+ 92 compressed objects within 1 object stream
+ 15 named destinations out of 1000 (max. 500000)
+ 105 words of extra memory for PDF output out of 10000 (max. 10000000)
 
