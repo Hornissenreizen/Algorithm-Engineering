@@ -1,0 +1,2 @@
+/usr/bin/ar qc libquantize.a CMakeFiles/quantize.dir/blur.c.o CMakeFiles/quantize.dir/kmeans.c.o CMakeFiles/quantize.dir/libimagequant.c.o CMakeFiles/quantize.dir/mediancut.c.o CMakeFiles/quantize.dir/mempool.c.o CMakeFiles/quantize.dir/nearest.c.o CMakeFiles/quantize.dir/pam.c.o
+/usr/bin/ranlib libquantize.a

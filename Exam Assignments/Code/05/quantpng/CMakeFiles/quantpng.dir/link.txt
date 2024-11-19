@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/quantpng.dir/main.cpp.o -o quantpng  lodepng/liblodepng.a quantize/libquantize.a 

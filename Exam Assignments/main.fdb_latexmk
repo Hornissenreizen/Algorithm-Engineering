@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1731233786.36529 "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/main.tex" "main.pdf" "main" 1731233787.06032 0
+["pdflatex"] 1731922138.54637 "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/main.tex" "main.pdf" "main" 1731922139.54313 0
   "/etc/texmf/web2c/texmf.cnf" 1728747158.50116 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/main.tex" 1731233786.19176 1163 765b4b8da2394463c92236cb73a712cd ""
+  "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/main.tex" 1731922137.35969 1202 53b0c2f54aba9e8ea5f21486eeffc8bc ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -176,10 +176,15 @@
   "Chapters/02/02.tex" 1730629059.52149 7988 67920aa47c65b88784528b07b8c06024 ""
   "Chapters/02/more_room_at_the_top.png" 1730624120.97039 239458 b8baa53397039a70772ebc9f84a4b371 ""
   "Chapters/03/03.tex" 1731229210.33487 4646 fbec16f498cc95f67195fc00c674b6f9 ""
-  "main.aux" 1731233786.99976 2957 97b486f8d1eb709d5ec77dfb868e0bac "pdflatex"
-  "main.out" 1731233787.00076 3718 cee934d204faab7e72efad96fdab6e01 "pdflatex"
-  "main.tex" 1731233786.19176 1163 765b4b8da2394463c92236cb73a712cd ""
-  "main.toc" 1731233787.00076 1751 5643e11dbc4d4006015cc66aee43885b "pdflatex"
+  "Chapters/04/./running_times.png" 1731244958.51599 54285 30b58b129036b251e72cf1d2fa58138e ""
+  "Chapters/04/./running_times_array.png" 1731244662.81459 88447 cf1e191f237c24a6b648f91208d4f97c ""
+  "Chapters/04/./speedup.png" 1731247495.89718 47564 5eb67af53492d2460359b2c87d8f1c42 ""
+  "Chapters/04/./speedup_array.png" 1731247603.87257 48712 92ae7d7cba4daad35290060e26c135fb ""
+  "Chapters/04/04.tex" 1731921927.00541 7521 de352bfc6230b703f72c43b64921d5c7 ""
+  "main.aux" 1731922139.48467 4402 b74bd2c5cb7772571a1f13fc002c324f "pdflatex"
+  "main.out" 1731922139.48567 6560 4fb6f8f5933f9f41b8fd53a34985ca7f "pdflatex"
+  "main.tex" 1731922137.35969 1202 53b0c2f54aba9e8ea5f21486eeffc8bc ""
+  "main.toc" 1731922139.48567 2827 f5ec68360b99c11a32bcc28ea8565b05 "pdflatex"
   (generated)
   "main.aux"
   "main.log"

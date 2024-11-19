@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.16)  10 NOV 2024 11:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.16)  18 NOV 2024 10:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -536,7 +536,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Chapters/01/01.tex
-<Chapters/01/page_15.png, id=109, 1510.64375pt x 1137.24875pt>
+<Chapters/01/page_15.png, id=155, 1510.64375pt x 1137.24875pt>
 File: Chapters/01/page_15.png Graphic file (type png)
 <use Chapters/01/page_15.png>
 Package pdftex.def Info: Chapters/01/page_15.png  used on input line 10.
@@ -570,7 +570,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 140.
 
 ) [6] (./Chapters/02/02.tex [7]
-<Chapters/02/more_room_at_the_top.png, id=190, 1522.68875pt x 1088.065pt>
+<Chapters/02/more_room_at_the_top.png, id=236, 1522.68875pt x 1088.065pt>
 File: Chapters/02/more_room_at_the_top.png Graphic file (type png)
 <use Chapters/02/more_room_at_the_top.png>
 Package pdftex.def Info: Chapters/02/more_room_at_the_top.png  used on input line 58.
@@ -595,27 +595,79 @@ Underfull \hbox (badness 10000) in paragraph at lines 67--68
 
  []
 
-[13]) [14] (./main.aux)
+[13]) (./Chapters/04/04.tex [14] [15]
+<Chapters/04/./running_times.png, id=368, 722.7pt x 433.62pt>
+File: Chapters/04/./running_times.png Graphic file (type png)
+<use Chapters/04/./running_times.png>
+Package pdftex.def Info: Chapters/04/./running_times.png  used on input line 23.
+(pdftex.def)             Requested size: 345.0pt x 206.9972pt.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 23--24
+[][] 
+ []
+
+<Chapters/04/./speedup.png, id=369, 722.7pt x 433.62pt>
+File: Chapters/04/./speedup.png Graphic file (type png)
+<use Chapters/04/./speedup.png>
+Package pdftex.def Info: Chapters/04/./speedup.png  used on input line 28.
+(pdftex.def)             Requested size: 345.0pt x 206.9972pt.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 28--29
+[][] 
+ []
+
+[16 <./Chapters/04/./running_times.png> <./Chapters/04/./speedup.png>]
+<Chapters/04/./running_times_array.png, id=376, 2022.8373pt x 836.1639pt>
+File: Chapters/04/./running_times_array.png Graphic file (type png)
+<use Chapters/04/./running_times_array.png>
+Package pdftex.def Info: Chapters/04/./running_times_array.png  used on input line 35.
+(pdftex.def)             Requested size: 345.0pt x 142.60529pt.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 35--36
+[][] 
+ []
+
+<Chapters/04/./speedup_array.png, id=377, 722.7pt x 433.62pt>
+File: Chapters/04/./speedup_array.png Graphic file (type png)
+<use Chapters/04/./speedup_array.png>
+Package pdftex.def Info: Chapters/04/./speedup_array.png  used on input line 40.
+(pdftex.def)             Requested size: 345.0pt x 206.9972pt.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 40--41
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 43--44
+
+ []
+
+[17 <./Chapters/04/./running_times_array.png> <./Chapters/04/./speedup_array.png>] [18]
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
+
+ []
+
+) [19] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: CEE934D204FAAB7E72EFAD96FDAB6E01;3718.
+(rerunfilecheck)             Checksum: 4FB6F8F5933F9F41B8FD53A34985CA7F;6560.
  ) 
 Here is how much of TeX's memory you used:
- 22598 strings out of 476106
- 408477 string characters out of 5793932
+ 22680 strings out of 476106
+ 410605 string characters out of 5793932
  2041975 words of memory out of 5000000
- 44060 multiletter control sequences out of 15000+600000
+ 44117 multiletter control sequences out of 15000+600000
  566744 words of font info for 70 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 84i,10n,93p,782b,1336s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,12n,93p,782b,1336s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (14 pages, 471860 bytes).
+Output written on main.pdf (19 pages, 697158 bytes).
 PDF statistics:
- 423 PDF objects out of 1000 (max. 8388607)
- 367 compressed objects within 4 object streams
- 171 named destinations out of 1000 (max. 500000)
- 167 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 502 PDF objects out of 1000 (max. 8388607)
+ 432 compressed objects within 5 object streams
+ 185 named destinations out of 1000 (max. 500000)
+ 259 words of extra memory for PDF output out of 10000 (max. 10000000)
 

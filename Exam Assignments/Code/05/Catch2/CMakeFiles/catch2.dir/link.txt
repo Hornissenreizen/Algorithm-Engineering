@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/catch2.dir/catch_main.cpp.o CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.o -o catch2  fizzbuzz/libfizzbuzz.a 
