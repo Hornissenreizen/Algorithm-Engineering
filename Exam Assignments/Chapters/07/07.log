@@ -1,13 +1,18 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.16)  27 NOV 2024 13:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.16)  27 NOV 2024 13:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/main.tex"
-(/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/main.tex
+**"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Chapters/07/07.tex"
+(/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Chapters/07/07.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+(/usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls
+Document Class: subfiles 2020/11/14 v2.2 Multi-file projects (class)
+Preamble taken from file `../../main.tex'
+(/usr/share/texlive/texmf-dist/tex/latex/import/import.sty
+Package: import 2020/04/01  v 6.2
+) (Chapters/07/../../main.tex (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
@@ -25,9 +30,7 @@ File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 \bibindent=\dimen140
 ) (/usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.sty
 Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
- (/usr/share/texlive/texmf-dist/tex/latex/import/import.sty
-Package: import 2020/04/01  v 6.2
-)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
@@ -472,31 +475,31 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enitdp@description=\count315
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
-) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+))) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count316
 \l__pdf_internal_box=\box67
-) (./main.aux)
-\openout1 = `main.aux'.
+) (Chapters/07/07.aux)
+\openout1 = `07.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count317
@@ -516,154 +519,23 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 43.
- (./main.out) (./main.out)
+Package hyperref Info: Link coloring ON on input line 3.
+ (Chapters/07/07.out) (Chapters/07/07.out)
 \@outlinefile=\write4
-\openout4 = `main.out'.
+\openout4 = `07.out'.
 
 \c@lstlisting=\count323
-LaTeX Font Info:    Trying to load font information for U+msa on input line 45.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 14.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 45.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 14.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (./main.toc [1
+) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])
-\tf@toc=\write5
-\openout5 = `main.toc'.
-
- [2] (./Chapters/01/01.tex
-<Chapters/01/page_15.png, id=205, 1510.64375pt x 1137.24875pt>
-File: Chapters/01/page_15.png Graphic file (type png)
-<use Chapters/01/page_15.png>
-Package pdftex.def Info: Chapters/01/page_15.png  used on input line 10.
-(pdftex.def)             Requested size: 345.0pt x 259.72229pt.
- [3 <./Chapters/01/page_15.png>] [4]
-Underfull \hbox (badness 10000) in paragraph at lines 109--110
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 125--126
-
- []
-
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 138--139
-
- []
-
-[6]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 140.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\pi' on input line 140.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 140.
-
-) [7] (./Chapters/02/02.tex [8]
-<Chapters/02/more_room_at_the_top.png, id=285, 1522.68875pt x 1088.065pt>
-File: Chapters/02/more_room_at_the_top.png Graphic file (type png)
-<use Chapters/02/more_room_at_the_top.png>
-Package pdftex.def Info: Chapters/02/more_room_at_the_top.png  used on input line 58.
-(pdftex.def)             Requested size: 345.0pt x 246.51411pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 70--71
-
- []
-
-[9 <./Chapters/02/more_room_at_the_top.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 80--81
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 87--88
-
- []
-
-[10] [11]) [12] (./Chapters/03/03.tex [13]
-Underfull \hbox (badness 10000) in paragraph at lines 67--68
-
- []
-
-[14]) (./Chapters/04/04.tex [15] [16]
-<Chapters/04/./running_times.png, id=418, 722.7pt x 433.62pt>
-File: Chapters/04/./running_times.png Graphic file (type png)
-<use Chapters/04/./running_times.png>
-Package pdftex.def Info: Chapters/04/./running_times.png  used on input line 23.
-(pdftex.def)             Requested size: 345.0pt x 206.9972pt.
-
-Overfull \hbox (15.0pt too wide) in paragraph at lines 23--24
-[][] 
- []
-
-<Chapters/04/./speedup.png, id=419, 722.7pt x 433.62pt>
-File: Chapters/04/./speedup.png Graphic file (type png)
-<use Chapters/04/./speedup.png>
-Package pdftex.def Info: Chapters/04/./speedup.png  used on input line 28.
-(pdftex.def)             Requested size: 345.0pt x 206.9972pt.
-
-Overfull \hbox (15.0pt too wide) in paragraph at lines 28--29
-[][] 
- []
-
-[17 <./Chapters/04/./running_times.png> <./Chapters/04/./speedup.png>]
-<Chapters/04/./running_times_array.png, id=426, 2022.8373pt x 836.1639pt>
-File: Chapters/04/./running_times_array.png Graphic file (type png)
-<use Chapters/04/./running_times_array.png>
-Package pdftex.def Info: Chapters/04/./running_times_array.png  used on input line 35.
-(pdftex.def)             Requested size: 345.0pt x 142.60529pt.
-
-Overfull \hbox (15.0pt too wide) in paragraph at lines 35--36
-[][] 
- []
-
-<Chapters/04/./speedup_array.png, id=427, 722.7pt x 433.62pt>
-File: Chapters/04/./speedup_array.png Graphic file (type png)
-<use Chapters/04/./speedup_array.png>
-Package pdftex.def Info: Chapters/04/./speedup_array.png  used on input line 40.
-(pdftex.def)             Requested size: 345.0pt x 206.9972pt.
-
-Overfull \hbox (15.0pt too wide) in paragraph at lines 40--41
-[][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
-
- []
-
-[18 <./Chapters/04/./running_times_array.png> <./Chapters/04/./speedup_array.png>] [19]
-Underfull \hbox (badness 10000) in paragraph at lines 97--98
-
- []
-
-) [20] (./Chapters/06/06.tex
-Underfull \hbox (badness 10000) in paragraph at lines 8--9
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--10
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 10--11
-
- []
-
-) [21] [22] (./Chapters/07/07.tex [23]
-<Chapters/07/vectorizing_branches.png, id=468, 1586.92876pt x 1393.205pt>
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+<Chapters/07/vectorizing_branches.png, id=47, 1586.92876pt x 1393.205pt>
 File: Chapters/07/vectorizing_branches.png Graphic file (type png)
 <use Chapters/07/vectorizing_branches.png>
 Package pdftex.def Info: Chapters/07/vectorizing_branches.png  used on input line 77.
@@ -673,8 +545,8 @@ Overfull \hbox (25.00003pt too wide) in paragraph at lines 77--78
 [][] 
  []
 
-[24]
-<Chapters/07/unpack.png, id=478, 1364.09625pt x 419.5675pt>
+[2]
+<Chapters/07/unpack.png, id=59, 1364.09625pt x 419.5675pt>
 File: Chapters/07/unpack.png Graphic file (type png)
 <use Chapters/07/unpack.png>
 Package pdftex.def Info: Chapters/07/unpack.png  used on input line 89.
@@ -684,8 +556,8 @@ Overfull \hbox (25.00003pt too wide) in paragraph at lines 89--90
 [][] 
  []
 
-[25 <./Chapters/07/vectorizing_branches.png>]
-<Chapters/07/transpose.png, id=485, 1510.64375pt x 1034.86626pt>
+[3 <./Chapters/07/vectorizing_branches.png>]
+<Chapters/07/transpose.png, id=65, 1510.64375pt x 1034.86626pt>
 File: Chapters/07/transpose.png Graphic file (type png)
 <use Chapters/07/transpose.png>
 Package pdftex.def Info: Chapters/07/transpose.png  used on input line 101.
@@ -695,27 +567,27 @@ Overfull \hbox (25.00003pt too wide) in paragraph at lines 101--102
 [][] 
  []
 
-) [26 <./Chapters/07/unpack.png> <./Chapters/07/transpose.png>] (./main.aux)
+[4 <./Chapters/07/unpack.png> <./Chapters/07/transpose.png>] (Chapters/07/07.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 9AEBA1F2CF070CF53AB3F1DB7C7ECBF3;8561.
+Package rerunfilecheck Info: File `07.out' has not changed.
+(rerunfilecheck)             Checksum: 52F687A130581C6BEF981860D612029E;787.
  ) 
 Here is how much of TeX's memory you used:
- 23197 strings out of 476106
- 419587 string characters out of 5793932
- 2041975 words of memory out of 5000000
- 44587 multiletter control sequences out of 15000+600000
- 567248 words of font info for 73 fonts, out of 8000000 for 9000
+ 22755 strings out of 476106
+ 412176 string characters out of 5793932
+ 1986975 words of memory out of 5000000
+ 44383 multiletter control sequences out of 15000+600000
+ 562602 words of font info for 55 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 84i,14n,93p,782b,1336s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (26 pages, 1072295 bytes).
+ 104i,14n,110p,637b,1284s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on Chapters/07/07.pdf (4 pages, 467826 bytes).
 PDF statistics:
- 614 PDF objects out of 1000 (max. 8388607)
- 528 compressed objects within 6 object streams
- 217 named destinations out of 1000 (max. 500000)
- 346 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 119 PDF objects out of 1000 (max. 8388607)
+ 88 compressed objects within 1 object stream
+ 25 named destinations out of 1000 (max. 500000)
+ 60 words of extra memory for PDF output out of 10000 (max. 10000000)
 
