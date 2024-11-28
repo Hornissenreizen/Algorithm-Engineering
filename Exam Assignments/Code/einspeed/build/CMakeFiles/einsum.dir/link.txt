@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -shared  -o libeinsum.so CMakeFiles/einsum.dir/src/einsum.cpp.o 

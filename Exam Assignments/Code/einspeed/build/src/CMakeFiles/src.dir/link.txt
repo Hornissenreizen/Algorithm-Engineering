@@ -1,0 +1,2 @@
+/usr/bin/ar qc src.so CMakeFiles/src.dir/einsum.cpp.o
+/usr/bin/ranlib src.so

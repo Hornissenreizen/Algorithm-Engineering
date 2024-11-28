@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -fopenmp -shared  -o mymodule.so CMakeFiles/mymodule.dir/einsum.cpp.o  /usr/lib/x86_64-linux-gnu/libpython3.12.so 
