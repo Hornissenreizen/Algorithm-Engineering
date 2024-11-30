@@ -1,7 +1,7 @@
 #ifndef FUNC_H
 #define FUNC_H
 
-#include <cstdlib>
+#include <cstddef>
 
 template <typename FROM, typename TO>
 TO* cast_all(size_t _n, FROM *_a) {
