@@ -49,12 +49,12 @@ const int NUMPY_TYPES[] = {
     NPY_COMPLEX128
 };
 
-constexpr int SUPPORTED_NUMPY_TYPES[] = {
+constexpr const int SUPPORTED_NUMPY_TYPES[] = {
     NPY_INT64,
     NPY_FLOAT64,
     NPY_COMPLEX128
 };
 
-const size_t NO_SUPPORTED_NUMPY_TYPES = sizeof(SUPPORTED_NUMPY_TYPES) / sizeof(int);
+constexpr const size_t NO_SUPPORTED_NUMPY_TYPES = sizeof(SUPPORTED_NUMPY_TYPES) / sizeof(int);
 
 #endif
