@@ -5,6 +5,7 @@
 #include <numpy/arrayobject.h>
 // #include <cstddef>
 #include <vector>
+#include <algorithm>
 #include "numpy_types.h"
 // #include <stdexcept>
 #include <cstring> // For memcpy
@@ -14,22 +15,45 @@
 template <typename T>
 class Tensor {
 public:
-    size_t ndim;    // Number of dimensions
-    size_t* shape;  // Pointer to array defining the shape
-    T* data;        // Pointer to the actual data
+    size_t ndim = 0;    // Number of dimensions
+    size_t* shape = nullptr;  // Pointer to array defining the shape
+    T* data = nullptr;        // Pointer to the actual data
 
     Tensor(size_t ndim, size_t* shape, T* data)
         : ndim(ndim), shape(shape), data(data) {}
+    Tensor() {}
     
-    // Tensor(size_t ndim, size_t* shape, T* data)
-    //     : ndim(ndim), shape(new size_t[ndim]), data(new T[calculate_size(shape, ndim)]) {
-    //     std::copy(shape, shape + ndim, this->shape);
-    //     std::copy(data, data + calculate_size(shape, ndim), this->data);
-    // }
+    Tensor(Tensor<T> &&other)
+        : ndim(other.ndim), shape(other.shape), data(other.data) {
+        // Nullify the moved-from object to avoid double deletion
+        other.ndim = 0;
+        other.shape = nullptr;
+        other.data = nullptr;
+    }
+
+    Tensor<T>& operator=(Tensor<T> &&other) {
+        if (this != &other) {  // Prevent self-assignment
+            // Clean up any existing resources (if necessary)
+            delete[] shape;
+            // Don't delete data as it belongs to Python or is managed elsewhere.
+
+            // Move the resources
+            ndim = other.ndim;
+            shape = other.shape;
+            data = other.data;
+
+            // Nullify the moved-from object
+            other.ndim = 0;
+            other.shape = nullptr;
+            other.data = nullptr;
+        }
+        return *this;
+    }
+
 
     ~Tensor() {
-        delete[] shape; // It is okay to delete this, since when casting to PyObject, we will create a copy (which we will later also delete though)
-        // delete[] data; // Don't delete data as it belongs to Python
+        if (this->shape) delete[] this->shape; // It is okay to delete this, since when casting to PyObject, we will create a copy (which we will later also delete though)
+        // if (this->data) delete[] this->data; // Don't delete data as it belongs to Python
     }
 
     PyObject* to_PyObject() const {
@@ -120,31 +144,131 @@ public:
 
     // Reshape method
     Tensor<T>& reshape(const std::vector<size_t>& new_shape) {
-        size_t new_size = calculate_size(new_shape.data(), new_shape.size());
+        size_t new_size = calculate_size(new_shape);
         size_t old_size = calculate_size(shape, ndim);
 
         // Ensure the total number of elements matches
         if (new_size != old_size) {
-            std::invalid_argument("New shape of tensor must have the same size as old one.");
+            throw std::invalid_argument("New shape of tensor must have the same size as old one.");
         }
 
         // Update shape and dimensions
         delete[] this->shape; // Free old shape memory
-        ndim = new_shape.size();
+        this->ndim = new_shape.size();
         this->shape = new size_t[ndim];
-        std::copy(new_shape.begin(), new_shape.end(), shape);
+        std::copy(new_shape.begin(), new_shape.end(), this->shape);
 
         return *this;
     }
 
 
-private:
+    Tensor<T> reduce(const std::vector<size_t> &axes_to_reduce) const {
+        // Determine the new shape
+        return Tensor<T>();
+        std::vector<size_t> new_shape;
+        std::vector<size_t> reduce_axes_set(axes_to_reduce.begin(), axes_to_reduce.end());
+
+        for (size_t i = 0; i < ndim; i++) {
+            if (std::find(reduce_axes_set.begin(), reduce_axes_set.end(), i) == reduce_axes_set.end()) {
+                new_shape.push_back(shape[i]);
+            }
+        }
+
+        if (new_shape.empty()) {
+            new_shape.push_back(1); // Reduction to scalar
+        }
+
+        size_t new_size = calculate_size(new_shape.data(), new_shape.size());
+        size_t original_size = calculate_size(shape, ndim);
+
+        // Create new tensor
+        Tensor<T> result(new_shape.size(), new_shape.data(), nullptr);
+        std::fill(result.data, result.data + new_size, static_cast<T>(0));
+
+        // Perform reduction
+        for (size_t idx = 0; idx < original_size; idx++) {
+            // Compute the multi-dimensional index for the original tensor
+            size_t multi_idx[ndim];
+            size_t temp = idx;
+            for (size_t i = ndim; i-- > 0;) {
+                multi_idx[i] = temp % shape[i];
+                temp /= shape[i];
+            }
+
+            // Compute the corresponding index in the reduced tensor
+            size_t reduced_idx = 0;
+            size_t stride = 1;
+            for (size_t i = new_shape.size(); i-- > 0;) {
+                if (std::find(reduce_axes_set.begin(), reduce_axes_set.end(), i) == reduce_axes_set.end()) {
+                    reduced_idx += multi_idx[i] * stride;
+                    stride *= new_shape[i];
+                }
+            }
+
+            // Add value to the reduced tensor
+            result.data[reduced_idx] += data[idx];
+        }
+
+        return result;
+    }
+
+
+
+
+
+
+    // Utility Methods
+
     static size_t calculate_size(const size_t* shape, size_t ndim) {
         size_t size = 1;
         for (size_t i = 0; i < ndim; ++i) {
             size *= shape[i];
         }
         return size;
+    }
+
+    static inline size_t calculate_size(const std::vector<size_t> &shape) {
+        return Tensor<T>::calculate_size(shape.data(), shape.size());
+    }
+
+    void print() const {
+        std::cout << "Tensor(";
+        for (size_t i = 0; i < ndim; ++i) {
+            std::cout << shape[i];
+            if (i < ndim - 1) std::cout << ", ";
+        }
+        std::cout << "):" << std::endl;
+
+        // Print data in a formatted way
+        Tensor<T>::print_data_recursive(data, shape, ndim, 0);
+    }
+
+private:
+    static void print_data_recursive(const T* data, const size_t* shape, size_t ndim, size_t dim) {
+        if (dim == ndim - 1) {
+            // Base case: print the last dimension as a flat list
+            std::cout << "[ ";
+            for (size_t i = 0; i < shape[dim]; ++i) {
+                std::cout << data[i] << " ";
+            }
+            std::cout << "]" << std::endl;
+        } else {
+            // Recursive case: iterate over the current dimension
+            std::cout << "[" << std::endl;
+            size_t stride = calculate_stride(shape, ndim, dim);
+            for (size_t i = 0; i < shape[dim]; ++i) {
+                print_data_recursive(data + i * stride, shape, ndim, dim + 1);
+            }
+            std::cout << "]" << std::endl;
+        }
+    }
+
+    static size_t calculate_stride(const size_t* shape, size_t ndim, size_t dim) {
+        size_t stride = 1;
+        for (size_t i = dim + 1; i < ndim; ++i) {
+            stride *= shape[i];
+        }
+        return stride;
     }
 
     static std::vector<size_t> compute_strides(const size_t* shape, size_t ndim) {
