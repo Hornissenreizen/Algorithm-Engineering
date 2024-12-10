@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1731229210.49735 "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Chapters/03/03.tex" "Chapters/03/03.pdf" "03" 1731229210.86463 0
+["pdflatex"] 1733843614.25955 "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Chapters/03/03.tex" "Chapters/03/03.pdf" "03" 1733843614.6321 0
   "/etc/texmf/web2c/texmf.cnf" 1728747158.50116 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Chapters/03/03.tex" 1731229210.33487 4646 fbec16f498cc95f67195fc00c674b6f9 ""
+  "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Chapters/03/03.tex" 1733843614.08768 4644 8cb80da1d1dc13212c9fe37f208fbde7 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -107,6 +107,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty" 1705352648 3045 273c666a54e60b9f730964f431a56c1b ""
   "/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty" 1705352648 2462 6bc53756156dbd71c1ad550d30a3b93f ""
   "/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo" 1705352648 8448 dbc0dbf4156c0bb9ba01a1c685d3bad0 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty" 1561238569 51697 f8f08183cd2080d9d18a41432d651dfb ""
   "/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1579991033 13886 d1306dcf79a944f6988e688c1785f9ce ""
   "/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty" 1601931149 46845 3b58f70c6e861a13d927bff09d35ecbc ""
   "/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg" 1459978653 1213 620bba36b25224fa9b7e1ccb4ecb76fd ""
@@ -153,10 +154,10 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1729090939.38939 165063 5cfe6caa49b6c427d8ae5cff2e180595 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1729090944 6831118 7ae8919b0e2cd1589a6d79ac6514f820 ""
-  "Chapters/03/../../main.tex" 1731228919.46618 1141 beb707ba7bf585131fe35e9ceb580111 ""
-  "Chapters/03/03.aux" 1731229210.81487 949 dba37ef5daeae35bd03df4661609c81b "pdflatex"
-  "Chapters/03/03.out" 1731229210.81587 1036 f7c2011ee6d75b0061e17d998c2398f2 "pdflatex"
-  "Chapters/03/03.tex" 1731229210.33487 4646 fbec16f498cc95f67195fc00c674b6f9 ""
+  "Chapters/03/../../main.tex" 1733840471.22027 1380 a216467683a9f24dbdbf8fbbf630db72 ""
+  "Chapters/03/03.aux" 1733843614.58268 949 dba37ef5daeae35bd03df4661609c81b "pdflatex"
+  "Chapters/03/03.out" 1733843614.58268 1036 f7c2011ee6d75b0061e17d998c2398f2 "pdflatex"
+  "Chapters/03/03.tex" 1733843614.08768 4644 8cb80da1d1dc13212c9fe37f208fbde7 ""
   (generated)
   "Chapters/03/03.aux"
   "Chapters/03/03.log"

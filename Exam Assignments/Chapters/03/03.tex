@@ -60,7 +60,7 @@ This way, every thread has to compute \( \frac{size^2}{\text{omp\_get\_num\_thre
 
 ~\\
 The outer most loop cannot be parallelized, as their iterations are all strictly dependent on the previous one.
-This is why the implicit barrier in line 13 is neccessary.
+This is why the implicit barrier in line 13 is necessary.
 It also shouldn't be that big of a bottleneck, as the threads should reach it almost simultaneously.
 
 
@@ -73,7 +73,7 @@ It calculates a random number quite efficiently.
 Another benfit is that we do not need multiple instances of random number generators, and we also don't run the risk of misusing those by calling their methods in different threads.
 The code is shown in the \hyperref[fig:calculate_pi_v2]{figure} below.
 It runs very quickly and calculates $\pi$ very precisely.
-The running time on my particular machine was 0.0313137 s, in comparision to the previous version with a running time of 0.117771 s.
+The running time on my particular machine was 0.0313137 s, in comparison to the previous version with a running time of 0.117771 s.
 
 \newpage
 \begin{figure}

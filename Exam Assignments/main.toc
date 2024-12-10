@@ -38,3 +38,8 @@
 \contentsline {subsection}{\numberline {7.1}Analyzing slide 14}{27}{subsection.7.1}%
 \contentsline {subsubsection}{\numberline {7.1.1}Latency and Throughput}{29}{subsubsection.7.1.1}%
 \contentsline {subsubsection}{\numberline {7.1.2}Analyzing Vectorized Hash Tables Across CPU Architectures}{29}{subsubsection.7.1.2}%
+\contentsline {section}{\numberline {8}Cache and Main Memory}{31}{section.8}%
+\contentsline {subsection}{\numberline {8.1}How do bandwidth-bound computations differ from compute-bound computations?}{31}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Influence of temporal locality and spatial locality on program performance}{31}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Cache Associativity}{32}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}An Overview of Cache Optimization Techniques and Cache-Aware Numerical Algorithms}{33}{subsection.8.4}%

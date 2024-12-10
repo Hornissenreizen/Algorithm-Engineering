@@ -20,7 +20,7 @@ for (int i = 1; i < n; i++) {
     a[i] = a[i-1] * (i % 2) + b[i];
 }
     \end{lstlisting}
-    We have a data dependency, but only every second iteration: iteration $i$, where $i$ is odd, depends on $i-1$. Iteration $i$ and $i+1$ are completely independent, however. Hence, we can vectorize the loop wath a vector length of $2$. To specify this, we use the \texttt{safelen} clause like so:
+    We have a data dependency, but only every second iteration: iteration $i$, where $i$ is odd, depends on $i-1$. Iteration $i$ and $i+1$ are completely independent, however. Hence, we can vectorize the loop with a vector length of $2$. To specify this, we use the \texttt{safelen} clause like so:
     \begin{lstlisting}
 a[0] = b[0];
 #pragma omp simd safelen(2)
@@ -65,7 +65,7 @@ if A[i] = clear_color then
     \[
         \texttt{a[i] = expr\_1 if cond else expr\_2}
     \]
-    The idea is that we can vectorize this using vector istructions by:
+    The idea is that we can vectorize this using vector instructions by:
     \[
         \texttt{a[i] = (expr\_1 $\land$ cond) $\lor$ (expr\_2 $\land$ $\lnot$cond)}
     \]
@@ -84,7 +84,7 @@ if A[i] = clear_color then
     At the bottom of the graphic is a little assembly code section, emphasizing the fact that the operation can entirely be done with vector instructions.
 
     \bigskip
-    \item[Matrix Transposition] Vector instructions can be fully utilized if the data is stored sequentially in memory. Hence, accessing rows of matrices can vectorized. But I we want to work on the columns of the matrix, it might be beneficial to transpose the matrix. This transposing can be vectorized as well by employing the so called \em unpack \em operation, which interlieves two operands word-wise, as can be seen in the picture:
+    \item[Matrix Transposition] Vector instructions can be fully utilized if the data is stored sequentially in memory. Hence, accessing rows of matrices can vectorized. But I we want to work on the columns of the matrix, it might be beneficial to transpose the matrix. This transposing can be vectorized as well by employing the so called \em unpack \em operation, which interleaves two operands word-wise, as can be seen in the picture:
 
     \includegraphics[width=\textwidth]{Chapters/07/unpack.png}
 

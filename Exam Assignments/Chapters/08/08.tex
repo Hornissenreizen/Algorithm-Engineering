@@ -128,14 +128,14 @@ If one writes dependent code, i.e. the next line of code may only be executed af
 ~\\
 On the other hand, if we write independent code which also uses many repeated operations, throughput will be key, as it determines how many clock cycles we approximately need to finish all calculations.
 %  \\ ($no\_clock\_cycles \approx \frac{no\_operations}{throughput\_of\_operation}$ (Note that the number of operations does not directly correlate with the number of instructions in code, as certain code instructions need more cpu instructions)).
-In this case, the latency has a neglectable influence on the perfoncmance, especially if the number of operations grows bigger.
+In this case, the latency has a neglectable influence on the performance, especially if the number of operations grows bigger.
 
 \bigskip
 \subsubsection{Analyzing Vectorized Hash Tables Across CPU Architectures}
 In this paper the authors explained how to employ SIMD instructions to efficiently implement hash tables. Hash tables are quite diverse, as different implementation approaches can be used. One common implementation employs linear probing to search through the key array to find the specified key, so that the desired value can be returned for reading. Here is how we might implement this using vector instructions:
 
 \begin{description}
-    \item[Vectorized Linear Probing] The keys should be integer values, so that they can fit comfortably into the vector registers. Linear probing starts by checking the index specified by the hash value of the current key first, and then keeps going one step at a time until we found our key. The "key" idea is to simply load multiple conscutive keys into one vector register, and to compare them all against the search key. If one comparision is successful, we can calculate the index and return tha value at that index. Otherwise, we keep probing with the next set of keys.
+    \item[Vectorized Linear Probing] The keys should be integer values, so that they can fit comfortably into the vector registers. Linear probing starts by checking the index specified by the hash value of the current key first, and then keeps going one step at a time until we found our key. The "key" idea is to simply load multiple consecutive keys into one vector register, and to compare them all against the search key. If one comparison is successful, we can calculate the index and return tha value at that index. Otherwise, we keep probing with the next set of keys.
     
     The authors also mentioned that there are subtle challenges, as vector instructions require the data in memory to be correctly aligned (by their register size). When we start probing at the hash index, however, we are almost certainly not at an aligned address. Hence, we should ensure to "align ourselves", for example by loading the aligned memory region containing the first search index into a vector register.
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.16)  3 NOV 2024 11:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.16)  10 DEC 2024 16:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -465,12 +465,20 @@ File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
 File: tikzlibrarypositioning.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip57
+\enit@outerparindent=\dimen266
+\enit@toks=\toks42
+\enit@inbox=\box66
+\enit@count@id=\count314
+\enitdp@description=\count315
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 ))) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count314
-\l__pdf_internal_box=\box66
+\l__color_backend_stack_int=\count316
+\l__pdf_internal_box=\box67
 ) (Chapters/02/02.aux)
 \openout1 = `02.aux'.
 
@@ -494,17 +502,17 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 3.
 LaTeX Font Info:    ... okay on input line 3.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count315
-\scratchdimen=\dimen266
-\scratchbox=\box67
-\nofMPsegments=\count316
-\nofMParguments=\count317
-\everyMPshowfont=\toks42
-\MPscratchCnt=\count318
-\MPscratchDim=\dimen267
-\MPnumerator=\count319
-\makeMPintoPDFobject=\count320
-\everyMPtoPDFconversion=\toks43
+\scratchcounter=\count317
+\scratchdimen=\dimen267
+\scratchbox=\box68
+\nofMPsegments=\count318
+\nofMParguments=\count319
+\everyMPshowfont=\toks43
+\MPscratchCnt=\count320
+\MPscratchDim=\dimen268
+\MPnumerator=\count321
+\makeMPintoPDFobject=\count322
+\everyMPtoPDFconversion=\toks44
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -516,7 +524,7 @@ Package hyperref Info: Link coloring ON on input line 3.
 \@outlinefile=\write4
 \openout4 = `02.out'.
 
-\c@lstlisting=\count321
+\c@lstlisting=\count323
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
@@ -549,15 +557,15 @@ Package rerunfilecheck Info: File `02.out' has not changed.
 (rerunfilecheck)             Checksum: 028268D08C0AA32E4527B2EE50399A49;1323.
  ) 
 Here is how much of TeX's memory you used:
- 22013 strings out of 476106
- 399234 string characters out of 5793932
+ 22339 strings out of 476106
+ 404840 string characters out of 5793932
  1998975 words of memory out of 5000000
- 43647 multiletter control sequences out of 15000+600000
+ 43969 multiletter control sequences out of 15000+600000
  560399 words of font info for 44 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  104i,10n,110p,763b,1231s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on Chapters/02/02.pdf (5 pages, 249357 bytes).
+Output written on Chapters/02/02.pdf (5 pages, 249360 bytes).
 PDF statistics:
  124 PDF objects out of 1000 (max. 8388607)
  103 compressed objects within 2 object streams

@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.16)  10 DEC 2024 16:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.16)  10 DEC 2024 16:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Chapters/03/03.tex"
-(/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Chapters/03/03.tex
+**"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Chapters/09/09.tex"
+(/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Chapters/09/09.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.cls
@@ -12,7 +12,7 @@ Document Class: subfiles 2020/11/14 v2.2 Multi-file projects (class)
 Preamble taken from file `../../main.tex'
 (/usr/share/texlive/texmf-dist/tex/latex/import/import.sty
 Package: import 2020/04/01  v 6.2
-) (Chapters/03/../../main.tex (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+) (Chapters/09/../../main.tex (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
@@ -479,8 +479,8 @@ File: lstlang1.sty 2023/02/27 1.9 listings language file
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count316
 \l__pdf_internal_box=\box67
-) (Chapters/03/03.aux)
-\openout1 = `03.aux'.
+) (Chapters/09/09.aux)
+\openout1 = `09.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
 LaTeX Font Info:    ... okay on input line 3.
@@ -520,47 +520,64 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package hyperref Info: Link coloring ON on input line 3.
- (Chapters/03/03.out) (Chapters/03/03.out)
+ (Chapters/09/09.out) (Chapters/09/09.out)
 \@outlinefile=\write4
-\openout4 = `03.out'.
+\openout4 = `09.out'.
 
 \c@lstlisting=\count323
- [1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 57.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 19.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 57.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 19.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Underfull \hbox (badness 10000) in paragraph at lines 67--68
+) [1
 
- []
-
-[2] [3] (Chapters/03/03.aux)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+<Chapters/09/Set-Associative_Cache_Snehal_Img.png, id=37, 680.5425pt x 411.03563pt>
+File: Chapters/09/Set-Associative_Cache_Snehal_Img.png Graphic file (type png)
+<use Chapters/09/Set-Associative_Cache_Snehal_Img.png>
+Package pdftex.def Info: Chapters/09/Set-Associative_Cache_Snehal_Img.png  used on input line 38.
+(pdftex.def)             Requested size: 345.0pt x 208.37102pt.
+ [2 <./Chapters/09/Set-Associative_Cache_Snehal_Img.png>]
+<Chapters/09/loop_blocking.png, id=49, 1505.625pt x 537.00626pt>
+File: Chapters/09/loop_blocking.png Graphic file (type png)
+<use Chapters/09/loop_blocking.png>
+Package pdftex.def Info: Chapters/09/loop_blocking.png  used on input line 60.
+(pdftex.def)             Requested size: 319.99997pt x 114.13484pt.
+<Chapters/09/access_pattern.png, id=50, 2033.5975pt x 897.3525pt>
+File: Chapters/09/access_pattern.png Graphic file (type png)
+<use Chapters/09/access_pattern.png>
+Package pdftex.def Info: Chapters/09/access_pattern.png  used on input line 64.
+(pdftex.def)             Requested size: 319.99997pt x 141.19684pt.
+ [3 <./Chapters/09/loop_blocking.png>]
+<Chapters/09/array_padding.png, id=61, 1180.41pt x 358.33875pt>
+File: Chapters/09/array_padding.png Graphic file (type png)
+<use Chapters/09/array_padding.png>
+Package pdftex.def Info: Chapters/09/array_padding.png  used on input line 72.
+(pdftex.def)             Requested size: 319.99997pt x 97.14096pt.
+ [4 <./Chapters/09/access_pattern.png> <./Chapters/09/array_padding.png>] [5] (Chapters/09/09.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
-Package rerunfilecheck Info: File `03.out' has not changed.
-(rerunfilecheck)             Checksum: F7C2011EE6D75B0061E17D998C2398F2;1036.
+Package rerunfilecheck Info: File `09.out' has not changed.
+(rerunfilecheck)             Checksum: A3FC4012B4894AD93A80AD675A5B00EB;1708.
  ) 
 Here is how much of TeX's memory you used:
- 22329 strings out of 476106
- 403844 string characters out of 5793932
- 2041975 words of memory out of 5000000
- 43904 multiletter control sequences out of 15000+600000
- 562098 words of font info for 52 fonts, out of 8000000 for 9000
+ 21953 strings out of 476106
+ 401197 string characters out of 5793932
+ 1935975 words of memory out of 5000000
+ 43590 multiletter control sequences out of 15000+600000
+ 564732 words of font info for 62 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 104i,6n,110p,637b,1239s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on Chapters/03/03.pdf (3 pages, 119887 bytes).
+ 104i,7n,110p,791b,555s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on Chapters/09/09.pdf (5 pages, 445121 bytes).
 PDF statistics:
- 180 PDF objects out of 1000 (max. 8388607)
- 155 compressed objects within 2 object streams
- 80 named destinations out of 1000 (max. 500000)
- 53 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 120 PDF objects out of 1000 (max. 8388607)
+ 84 compressed objects within 1 object stream
+ 13 named destinations out of 1000 (max. 500000)
+ 73 words of extra memory for PDF output out of 10000 (max. 10000000)
 

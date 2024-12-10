@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1730629060.21037 "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Chapters/02/02.tex" "Chapters/02/02.pdf" "02" 1730629060.7392 0
+["pdflatex"] 1733843622.36554 "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Chapters/02/02.tex" "Chapters/02/02.pdf" "02" 1733843622.90556 0
   "/etc/texmf/web2c/texmf.cnf" 1728747158.50116 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Chapters/02/02.tex" 1730629059.52149 7988 67920aa47c65b88784528b07b8c06024 ""
+  "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Chapters/02/02.tex" 1733843622.19061 7989 82307dcd673581e3ad916eaa99ab7342 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -94,6 +94,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty" 1705352648 3045 273c666a54e60b9f730964f431a56c1b ""
   "/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty" 1705352648 2462 6bc53756156dbd71c1ad550d30a3b93f ""
   "/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo" 1705352648 8448 dbc0dbf4156c0bb9ba01a1c685d3bad0 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty" 1561238569 51697 f8f08183cd2080d9d18a41432d651dfb ""
   "/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1579991033 13886 d1306dcf79a944f6988e688c1785f9ce ""
   "/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty" 1601931149 46845 3b58f70c6e861a13d927bff09d35ecbc ""
   "/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg" 1459978653 1213 620bba36b25224fa9b7e1ccb4ecb76fd ""
@@ -140,10 +141,10 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1729090939.38939 165063 5cfe6caa49b6c427d8ae5cff2e180595 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1729090944 6831118 7ae8919b0e2cd1589a6d79ac6514f820 ""
-  "Chapters/02/../../main.tex" 1730629019.58681 1104 77001f34951a7824b7f048e2d87f7567 ""
-  "Chapters/02/02.aux" 1730629060.69547 1315 87d2a94c3d708142e9d731f12a153139 "pdflatex"
-  "Chapters/02/02.out" 1730629060.69547 1323 028268d08c0aa32e4527b2ee50399a49 "pdflatex"
-  "Chapters/02/02.tex" 1730629059.52149 7988 67920aa47c65b88784528b07b8c06024 ""
+  "Chapters/02/../../main.tex" 1733840471.22027 1380 a216467683a9f24dbdbf8fbbf630db72 ""
+  "Chapters/02/02.aux" 1733843622.8576 1315 87d2a94c3d708142e9d731f12a153139 "pdflatex"
+  "Chapters/02/02.out" 1733843622.8586 1323 028268d08c0aa32e4527b2ee50399a49 "pdflatex"
+  "Chapters/02/02.tex" 1733843622.19061 7989 82307dcd673581e3ad916eaa99ab7342 ""
   "Chapters/02/more_room_at_the_top.png" 1730624120.97039 239458 b8baa53397039a70772ebc9f84a4b371 ""
   (generated)
   "Chapters/02/02.aux"
