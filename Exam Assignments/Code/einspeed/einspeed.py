@@ -5,11 +5,13 @@ import numpy as np
 matrix = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]], dtype=np.float64)
 
 # matrix = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]], dtype=np.float32)
-result = einspeed.einsum("ij,kj->ik", matrix, matrix)
+result = einspeed.einsum("ai,jb->ij", matrix, matrix)
+
+print(np.einsum("ai,jb->ij", matrix, matrix))
 
 print("result:")
 print(result)
-print(result.shape)
-print("Updated matrix:")
-print(matrix)
-print(matrix.shape)
+# print(result.shape)
+# print("Updated matrix:")
+# print(matrix)
+# print(matrix.shape)

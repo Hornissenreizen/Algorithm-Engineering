@@ -205,6 +205,24 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Value Computed by CMake
+catch2_BINARY_DIR:STATIC=/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/src/tests
+
+//Value Computed by CMake
+catch2_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+catch2_SOURCE_DIR:STATIC=/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/src/tests
+
+//Value Computed by CMake
+catch_BINARY_DIR:STATIC=/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/src/tests/catch
+
+//Value Computed by CMake
+catch_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+catch_SOURCE_DIR:STATIC=/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/src/tests/catch
+
+//Value Computed by CMake
 einspeed_BINARY_DIR:STATIC=/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/src
 
 //Value Computed by CMake

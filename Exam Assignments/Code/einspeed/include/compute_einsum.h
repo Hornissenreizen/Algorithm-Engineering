@@ -1,27 +1,30 @@
 #ifndef COMPUTE_EINSUM_H
 #define COMPUTE_EINSUM_H
+#define DEBUG
 
 #include <string>
 #include <unordered_set>
 #include <stdexcept>
-#include "tensor.h"
+// #include "tensor.h"
+#include "blas.h"
 
 // ******************************************
 // The core functionality is implemented HERE
 // ******************************************
 
-template <typename T>
-PyObject* compute_einsum(const char * const s, const Tensor<T> &&lhs_tensor, const Tensor<T> &&rhs_tensor) {
-    if (!is_valid_einsum_expression(s, lhs_tensor, rhs_tensor)) Py_RETURN_NONE;
-    auto target_current_column_identifiers = transform_matrices(s, lhs_tensor, rhs_tensor);
+// template <typename T>
+// PyObject* _compute_einsum(const char * const s, const Tensor<T> &&lhs_tensor, const Tensor<T> &&rhs_tensor) {
+//     if (!is_valid_einsum_expression(s, lhs_tensor, rhs_tensor)) Py_RETURN_NONE;
+//     // auto target_current_column_identifiers = transform_matrices(s, lhs_tensor, rhs_tensor);
+//     return transform_matrices<T>(s, lhs_tensor, rhs_tensor).to_PyObject();
 
-    if constexpr (std::is_same_v<T, double>) {
-        lhs_tensor.data[0] = 42;
-    }
-    auto perm = std::vector<size_t>({1, 0});
-    auto shape = std::vector<size_t>({9});
-    return lhs_tensor.transpose(perm).reshape(shape).to_PyObject();
-}
+//     if constexpr (std::is_same_v<T, double>) {
+//         // lhs_tensor.data[0] = 42;
+//     }
+//     auto perm = std::vector<size_t>({1, 0});
+//     auto shape = std::vector<size_t>({9});
+//     return lhs_tensor.transpose(perm).reshape(shape).to_PyObject();
+// }
 
 
 std::vector<size_t> column_identifiers_like(const std::vector<size_t> &target_column_identifiers, const std::string &target_identifier_string, const std::string &origin_identifier_string) {
@@ -36,7 +39,7 @@ std::vector<size_t> column_identifiers_like(const std::vector<size_t> &target_co
 
 // TODO: reread the entire comments to check for errors (since I changed all occurences of target to target_string, conflicting maybe with target_tensor)
 template <typename T>
-std::vector<char> transform_matrices(const char * const s, const Tensor<T> &lhs_tensor, const Tensor<T> &rhs_tensor) {
+Tensor<T> compute_einsum(const char * const s, const Tensor<T> &lhs_tensor, const Tensor<T> &rhs_tensor) {
     // We categorize each column identifier c in string lhs_string into one of the following four categories:
     //
     // present in   |  rhs_string  | target_string |
@@ -49,7 +52,7 @@ std::vector<char> transform_matrices(const char * const s, const Tensor<T> &lhs_
     // We do the same for rhs_string. Then, we transpose and reshape lhs_tensor and rhs_tensor in the following manner:
     //
     // lhs_tensor[batch, kept left, contracted, summed left]
-    // rhs_tensol[batch, contracted, kept right, summed right]
+    // rhs_tensor[batch, contracted, kept right, summed right]
     //
     // IMPORTANT: the column identifiers of batch and contracted of both tensors are obviously the same.
     //            We have to ensure that they also have the same ordering!
@@ -162,31 +165,43 @@ std::vector<char> transform_matrices(const char * const s, const Tensor<T> &lhs_
     reduced_lhs.print();
     reduced_rhs.print();
 #endif
-    return std::vector<char>();
 
-    // Finally, perform the batch matrix multiplication. This can be done with a call to a function
-    // like `compute_einsum`, which handles the final multiplication after reshaping and summing.
+    // Finally, perform the batch matrix multiplication.
+    Tensor<T> bmm_result = std::move(batch_matmul(reduced_lhs, reduced_rhs));
+    std::cout<<"lolollo\n";
 
-    // To generate the target_string tensor column identifiers, we combine the kept dimensions from the lhs and rhs tensors
-    std::vector<char> target_column_identifiers;
+    // We are almost done, we only have to reshape the result to the desired output.
+    // The current form of bmm_result is
 
-    // Add batch dimensions (these are the same for both tensors)
-    for (size_t i = 0; i < batch_dims_lhs.size(); ++i) {
-        target_column_identifiers.push_back(lhs_string[batch_dims_lhs[i]]);
-    }
+    //     bmm_result = [batch | kept_left | kept_right]
+    
+    // where batch corresponds to the order present in lhs_string, as well as  kept_left. kept_right corresponds to rhs_string.
+    // Hence, we need to firstly reshape bmm_result into the individual dimensions, and then find the correct permutation to transpose it back.
 
-    // Add kept left dimensions from lhs
-    for (size_t i = 0; i < kept_left_dims_lhs.size(); ++i) {
-        target_column_identifiers.push_back(lhs_string[kept_left_dims_lhs[i]]);
-    }
+    // Let's start with reshaping it:
+    std::vector<size_t> target_shape;
+    target_shape.reserve(target_string.size());
+    for (auto &i : batch_dims_lhs) target_shape.push_back(lhs_tensor.shape[i]);
+    for (auto &i : kept_left_dims_lhs) target_shape.push_back(lhs_tensor.shape[i]);
+    for (auto &i : kept_right_dims_rhs) target_shape.push_back(lhs_tensor.shape[i]);
 
-    // Add kept right dimensions from rhs
-    for (size_t i = 0; i < kept_right_dims_rhs.size(); ++i) {
-        target_column_identifiers.push_back(rhs_string[kept_right_dims_rhs[i]]);
-    }
+    bmm_result.reshape(target_shape);
 
-    // Return the column identifiers of the target_string tensor
-    return target_column_identifiers;
+#ifdef DEBUG
+    std::cout << "bmm_result after reshaping: \n";
+    bmm_result.print();
+#endif
+
+    // now, we have to transpose it into the correct shape
+    // for that, we have to calculate the permutation in the following manner:
+
+    const std::vector<size_t> target_permutation = get_permutation<char>(merge_vectors<char>({
+        multi_index(batch_dims_lhs, lhs_string.data()),
+        multi_index(kept_left_dims_lhs, lhs_string.data()),
+        multi_index(kept_right_dims_rhs, rhs_string.data()),
+    }), std::vector<char>(target_string.begin(), target_string.end()));
+
+    return bmm_result.transpose(target_permutation);
 }
 
 

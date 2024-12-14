@@ -15,12 +15,15 @@
 template <typename T>
 class Tensor {
 public:
-    size_t ndim = 0;    // Number of dimensions
+    size_t ndim = 0;          // Number of dimensions
     size_t* shape = nullptr;  // Pointer to array defining the shape
     T* data = nullptr;        // Pointer to the actual data
 
     Tensor(size_t ndim, size_t* shape, T* data)
-        : ndim(ndim), shape(shape), data(data) {}
+        : ndim(ndim), data(data) {
+            this->shape = new size_t[ndim];
+            std::memcpy(this->shape, shape, ndim * sizeof(size_t));
+        }
     Tensor() {}
     
     Tensor(Tensor<T> &&other)

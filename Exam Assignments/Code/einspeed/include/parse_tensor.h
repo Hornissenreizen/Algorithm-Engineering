@@ -20,7 +20,7 @@ PyArrayObject* PyObject_to_PyArrayObject(PyObject * const _t) {
 template <typename T>
 const Tensor<T> parse_tensor(PyArrayObject * const _a) {
     size_t ndim = PyArray_NDIM(_a);
-    return Tensor<T>(PyArray_NDIM(_a), cast_all<npy_intp, size_t>(ndim, PyArray_DIMS(_a)), static_cast<T*>(PyArray_DATA(_a)));
+    return Tensor<T>(ndim, cast_all<npy_intp, size_t>(ndim, PyArray_DIMS(_a)), static_cast<T*>(PyArray_DATA(_a)));
 };
 
 #endif
