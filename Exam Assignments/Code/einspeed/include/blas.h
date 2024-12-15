@@ -17,10 +17,10 @@ Tensor<T> batch_matmul(const Tensor<T>& lhs, const Tensor<T>& rhs) {
     }
 
     // Shapes
-    size_t batch_size = lhs.shape[0];
-    size_t rows = lhs.shape[1];
-    size_t cols = rhs.shape[2];
-    size_t inner_dim = lhs.shape[2]; // Same as rhs.shape[1]
+    const size_t batch_size = lhs.shape[0];
+    const size_t rows = lhs.shape[1];
+    const size_t cols = rhs.shape[2];
+    const size_t inner_dim = lhs.shape[2]; // Same as rhs.shape[1]
 
     // Allocate the result tensor
     size_t result_shape[] = {batch_size, rows, cols};
@@ -36,6 +36,7 @@ Tensor<T> batch_matmul(const Tensor<T>& lhs, const Tensor<T>& rhs) {
         // Multiply the two matrices for the current batch
         for (size_t i = 0; i < rows; ++i) {
             for (size_t j = 0; j < cols; ++j) {
+                result_batch[i * cols + j] = 0;
                 for (size_t k = 0; k < inner_dim; ++k) {
                     result_batch[i * cols + j] += lhs_batch[i * inner_dim + k] * rhs_batch[k * cols + j];
                 }
@@ -43,13 +44,7 @@ Tensor<T> batch_matmul(const Tensor<T>& lhs, const Tensor<T>& rhs) {
         }
     }
 
-    std::cout << "HERE";
-    // Return the result tensor
-    auto t = Tensor<T>(3, result_shape, result_data);
-    std::cout << t.shape[0] << t.shape[1] << t.shape[2];
-    // t.print();
-    return t;
-    // return Tensor<T>(3, result_shape, result_data);
+    return Tensor<T>(3, result_shape, result_data);
 }
 
 #endif

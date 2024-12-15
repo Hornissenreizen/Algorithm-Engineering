@@ -1,21 +1,21 @@
 #ifndef FUNC_H
 #define FUNC_H
 
-#include <cstddef>
+#include <unordered_set>
 #include <algorithm> 
+#include <cstddef>
 #include <cctype>
 #include <locale>
-#include <unordered_set>
 
 template <typename FROM, typename TO>
-TO* cast_all(size_t _n, FROM *_a) {
+TO* cast_all(size_t _n, FROM* _a) {
     TO *_r = new TO[_n];
     for (size_t i = 0; i < _n; i++)
         _r[i] = static_cast<TO>(_a[i]);
     return _r;
 }
 
-inline bool contains(std::string &s, char c) {
+inline bool contains(const std::string &s, char c) {
     return s.find(c) != std::string::npos;
 }
 
@@ -51,7 +51,7 @@ void print_vector(const std::vector<T>& vec, const std::string& label = "Vector"
 
 
 template <typename T>
-std::vector<T> multi_index(std::vector<size_t> indices, T *reference) {
+std::vector<T> multi_index(const std::vector<size_t>& indices, T* reference) {
     std::vector<T> result(indices.size());
     for (size_t i = 0; i < indices.size(); i++)
         result[i] = reference[indices[i]];

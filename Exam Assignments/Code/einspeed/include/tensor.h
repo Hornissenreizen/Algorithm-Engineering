@@ -3,14 +3,13 @@
 
 #include <Python.h>
 #include <numpy/arrayobject.h>
-// #include <cstddef>
-#include <vector>
-#include <algorithm>
-#include "numpy_types.h"
-// #include <stdexcept>
-#include <cstring> // For memcpy
 
+#include <algorithm>
 #include <iostream>
+#include <cstring>
+#include <vector>
+
+#include "numpy_types.h"
 
 template <typename T>
 class Tensor {
@@ -18,6 +17,7 @@ public:
     size_t ndim = 0;          // Number of dimensions
     size_t* shape = nullptr;  // Pointer to array defining the shape
     T* data = nullptr;        // Pointer to the actual data
+                              // IMPORTANT: Tensor class does NOT free the data!
 
     Tensor(size_t ndim, size_t* shape, T* data)
         : ndim(ndim), data(data) {
@@ -55,8 +55,8 @@ public:
 
 
     ~Tensor() {
-        if (this->shape) delete[] this->shape; // It is okay to delete this, since when casting to PyObject, we will create a copy (which we will later also delete though)
-        // if (this->data) delete[] this->data; // Don't delete data as it belongs to Python
+        if (this->shape) delete[] this->shape; // It is okay to delete this, since when casting to PyObject, we will create a copy (which we will later also delete though, Python seems to make a copy)
+        // Don't delete data as it might belong to Python
     }
 
     PyObject* to_PyObject() const {
@@ -65,14 +65,20 @@ public:
             import_array(); // Necessary to initialize NumPy C API
         }
 
+        int numpy_type = numpy_type_of<T>();
+
+        // If ndim == 0, return a scalar
+        if (ndim == 0) {
+            if (data) return PyArray_Scalar(data, PyArray_DescrFromType(numpy_type), nullptr);
+            else Py_RETURN_NONE;
+        }
+
         // Create a NumPy array
         npy_intp* np_shape = new npy_intp[ndim];
         for (size_t i = 0; i < ndim; ++i) {
             np_shape[i] = static_cast<npy_intp>(shape[i]);
         }
 
-        int numpy_type = numpy_type_of<T>();
-        
         PyObject* numpy_array = PyArray_SimpleNewFromData(
             static_cast<int>(ndim), np_shape, numpy_type, data
         );
@@ -80,7 +86,7 @@ public:
         // Set ownership of the data to NumPy
         PyArray_ENABLEFLAGS(reinterpret_cast<PyArrayObject*>(numpy_array), NPY_ARRAY_OWNDATA);
 
-        delete[] np_shape; // it is safe to delete it, as python will make a copy
+        delete[] np_shape; // it is safe to delete it, as Python will make a copy
         return numpy_array;
     }
 
@@ -96,6 +102,14 @@ public:
     Tensor<T> transpose(const std::vector<size_t>& perm) const {
         if (perm.size() != ndim) {
             throw std::invalid_argument("Permutation size must match the number of dimensions.");
+        }
+        if (ndim == 0) {
+            // needs special treatment
+            if (data) {
+                T* new_data =  new T[1];
+                *new_data = this->data[0];
+                return Tensor<T>(ndim, shape, new_data);
+            } else return Tensor<T>();
         }
 
         // Check if perm is a valid permutation
@@ -165,57 +179,22 @@ public:
     }
 
 
-    Tensor<T> reduce(const std::vector<size_t> &axes_to_reduce) const {
-        // Determine the new shape
-        return Tensor<T>();
-        std::vector<size_t> new_shape;
-        std::vector<size_t> reduce_axes_set(axes_to_reduce.begin(), axes_to_reduce.end());
+    // Reduce method
+    Tensor<T> reduce() const {
+        // reduces over the last dimension
+        const size_t last_dimension = this->shape[this->ndim-1];
+        const size_t target_size = this->calculate_size(this->shape, this->ndim) / last_dimension;
+        T* target_data = new T[target_size];
 
-        for (size_t i = 0; i < ndim; i++) {
-            if (std::find(reduce_axes_set.begin(), reduce_axes_set.end(), i) == reduce_axes_set.end()) {
-                new_shape.push_back(shape[i]);
+        for (size_t i = 0; i < target_size; i++) {
+            T sum = 0;
+            for (size_t k = 0; k < last_dimension; k++) {
+                sum += this->data[i * last_dimension + k];
             }
+            target_data[i] = sum;
         }
-
-        if (new_shape.empty()) {
-            new_shape.push_back(1); // Reduction to scalar
-        }
-
-        size_t new_size = calculate_size(new_shape.data(), new_shape.size());
-        size_t original_size = calculate_size(shape, ndim);
-
-        // Create new tensor
-        Tensor<T> result(new_shape.size(), new_shape.data(), nullptr);
-        std::fill(result.data, result.data + new_size, static_cast<T>(0));
-
-        // Perform reduction
-        for (size_t idx = 0; idx < original_size; idx++) {
-            // Compute the multi-dimensional index for the original tensor
-            size_t multi_idx[ndim];
-            size_t temp = idx;
-            for (size_t i = ndim; i-- > 0;) {
-                multi_idx[i] = temp % shape[i];
-                temp /= shape[i];
-            }
-
-            // Compute the corresponding index in the reduced tensor
-            size_t reduced_idx = 0;
-            size_t stride = 1;
-            for (size_t i = new_shape.size(); i-- > 0;) {
-                if (std::find(reduce_axes_set.begin(), reduce_axes_set.end(), i) == reduce_axes_set.end()) {
-                    reduced_idx += multi_idx[i] * stride;
-                    stride *= new_shape[i];
-                }
-            }
-
-            // Add value to the reduced tensor
-            result.data[reduced_idx] += data[idx];
-        }
-
-        return result;
+        return Tensor<T>(this->ndim-1, this->shape, target_data);
     }
-
-
 
 
 
@@ -230,8 +209,12 @@ public:
         return size;
     }
 
-    static inline size_t calculate_size(const std::vector<size_t> &shape) {
+    static inline size_t calculate_size(const std::vector<size_t>& shape) {
         return Tensor<T>::calculate_size(shape.data(), shape.size());
+    }
+
+    size_t inline size() const {
+        return Tensor<T>::calculate_size(this->shape, this->ndim);
     }
 
     void print() const {
@@ -243,7 +226,7 @@ public:
         std::cout << "):" << std::endl;
 
         // Print data in a formatted way
-        Tensor<T>::print_data_recursive(data, shape, ndim, 0);
+        if (ndim) Tensor<T>::print_data_recursive(data, shape, ndim, 0);
     }
 
 private:

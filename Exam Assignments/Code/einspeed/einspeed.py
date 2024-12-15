@@ -1,17 +1,19 @@
 import einspeed
 import numpy as np
 
-# Pass and process a large matrix
-matrix = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]], dtype=np.float64)
+dtype = np.complex128
+matrix = np.array([[1.0, 2.0, 3.0+4j], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]], dtype)
+copy = np.copy(matrix)
+vector = np.array([1, 2, 3], dtype)
+string = "ab,cd->dcba"
 
-# matrix = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]], dtype=np.float32)
-result = einspeed.einsum("ai,jb->ij", matrix, matrix)
+result = einspeed.einsum(string, matrix, matrix)
+correct = np.einsum(string, matrix, matrix)
 
-print(np.einsum("ai,jb->ij", matrix, matrix))
+print("correct result:")
+print(correct)
 
 print("result:")
 print(result)
-# print(result.shape)
-# print("Updated matrix:")
-# print(matrix)
-# print(matrix.shape)
+
+print("Correct: ", (result==correct).all() and (matrix==copy).all())

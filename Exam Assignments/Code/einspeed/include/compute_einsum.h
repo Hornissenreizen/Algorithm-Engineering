@@ -1,45 +1,36 @@
 #ifndef COMPUTE_EINSUM_H
 #define COMPUTE_EINSUM_H
-#define DEBUG
 
-#include <string>
+// uncomment the following line to show debug information
+// #define DEBUG
+
+#include <unordered_map>
 #include <unordered_set>
 #include <stdexcept>
-// #include "tensor.h"
+#include <string>
+
+#include "tensor.h"
 #include "blas.h"
-
-// ******************************************
-// The core functionality is implemented HERE
-// ******************************************
-
-// template <typename T>
-// PyObject* _compute_einsum(const char * const s, const Tensor<T> &&lhs_tensor, const Tensor<T> &&rhs_tensor) {
-//     if (!is_valid_einsum_expression(s, lhs_tensor, rhs_tensor)) Py_RETURN_NONE;
-//     // auto target_current_column_identifiers = transform_matrices(s, lhs_tensor, rhs_tensor);
-//     return transform_matrices<T>(s, lhs_tensor, rhs_tensor).to_PyObject();
-
-//     if constexpr (std::is_same_v<T, double>) {
-//         // lhs_tensor.data[0] = 42;
-//     }
-//     auto perm = std::vector<size_t>({1, 0});
-//     auto shape = std::vector<size_t>({9});
-//     return lhs_tensor.transpose(perm).reshape(shape).to_PyObject();
-// }
+#include "func.h"
 
 
-std::vector<size_t> column_identifiers_like(const std::vector<size_t> &target_column_identifiers, const std::string &target_identifier_string, const std::string &origin_identifier_string) {
-    // it is assumed that every character in target_identifier_string accessed by target_column_identifiers is also present in origin_identifier_string
-    std::vector<size_t> origin_column_identifiers;
-    for (size_t i = 0; i < target_column_identifiers.size(); i++) {
-        origin_column_identifiers.push_back(origin_identifier_string.find(target_identifier_string[target_column_identifiers[i]]));
-    }
-    return origin_column_identifiers;
-}
+// **************************************************
+// *** The core functionality is implemented HERE ***
+// **************************************************
 
 
-// TODO: reread the entire comments to check for errors (since I changed all occurences of target to target_string, conflicting maybe with target_tensor)
+// Some declarations (implementation can be found below)
+std::vector<size_t> column_identifiers_like(const std::vector<size_t>& target_column_identifiers, const std::string& target_identifier_string, const std::string& origin_identifier_string);
+template <typename T> bool is_valid_einsum_expression(const char* const s, const Tensor<T>& lhs_tensor, const Tensor<T>& rhs_tensor, std::string& lhs_string, std::string& rhs_string, std::string& target_string);
+
+
 template <typename T>
-Tensor<T> compute_einsum(const char * const s, const Tensor<T> &lhs_tensor, const Tensor<T> &rhs_tensor) {
+Tensor<T> compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const Tensor<T>& rhs_tensor) {
+
+    // *************************
+    // *** Function Overview ***
+    // *************************
+
     // We categorize each column identifier c in string lhs_string into one of the following four categories:
     //
     // present in   |  rhs_string  | target_string |
@@ -55,27 +46,20 @@ Tensor<T> compute_einsum(const char * const s, const Tensor<T> &lhs_tensor, cons
     // rhs_tensor[batch, contracted, kept right, summed right]
     //
     // IMPORTANT: the column identifiers of batch and contracted of both tensors are obviously the same.
-    //            We have to ensure that they also have the same ordering!
+    //            We have to ensure that they also have the same dimensions and ordering!
 
     // Now, we are ready to perform an axis summation on lhs_tensor over the last dimension (= summed left). The same for rhs_tensor.
     // Then, we can finally use batch matrix matrix multiplication
-    // The result matrix target_string will be of the form
+    // The resulting matrix bmm_result will be of the form
     //
-    // target_tensor[batch, kept left, kept right]
+    // bmm_result[batch, kept left, kept right]
     //
-    // To transform it back it to the desired shape specified by target_string, we need to track the column identifiers.
-    // We return his list of column identifiers.
+    // To transform it back to the desired shape specified by target_string, we need to track the column identifiers.
 
+    std::string lhs_string, rhs_string, target_string;
+    is_valid_einsum_expression(s, lhs_tensor, rhs_tensor, lhs_string, rhs_string, target_string); // throws error if not
 
-    std::string expr(s);
-    size_t comma_pos = expr.find(",");
-    size_t arrow_pos = expr.find("->");
-
-    // Split the expression into lhs_string, rhs_string, and target_string
-    std::string lhs_string = trim_copy((expr.substr(0, comma_pos)));
-    std::string rhs_string = trim_copy(expr.substr(comma_pos + 1, arrow_pos - (comma_pos + 1)));
-    std::string target_string = trim_copy(expr.substr(arrow_pos + 2));
-
+    
     // Vectors to store categorized index types
     std::vector<size_t> batch_dims_lhs, kept_left_dims_lhs, contracted_dims_lhs, summed_left_dims_lhs;
     std::vector<size_t> batch_dims_rhs, kept_right_dims_rhs, contracted_dims_rhs, summed_right_dims_rhs;
@@ -102,6 +86,7 @@ Tensor<T> compute_einsum(const char * const s, const Tensor<T> &lhs_tensor, cons
         }
     }
 
+    // We need to reorder the rhs dimensions to match lhs
     batch_dims_rhs = column_identifiers_like(batch_dims_lhs, lhs_string, rhs_string);
     contracted_dims_rhs = column_identifiers_like(contracted_dims_lhs, lhs_string, rhs_string);
 
@@ -134,32 +119,28 @@ Tensor<T> compute_einsum(const char * const s, const Tensor<T> &lhs_tensor, cons
                                                 Tensor<T>::calculate_size(multi_index(summed_right_dims_rhs, rhs_tensor.shape))}));
 
 #ifdef DEBUG
-    lhs_tensor.print();
+    std::cout << "Tensors after reshaping:\n";
     transposed_lhs.print();
-    rhs_tensor.print();
     transposed_rhs.print();
 #endif
 
     // Perform axis summation on lhs_tensor and rhs_tensor for the summed dimensions (summed left, summed right)
     // If, however, the last dimension is one, we simply need to reshape the matrix (there is no need for a reduction)
     Tensor<T> reduced_lhs, reduced_rhs;
-    transposed_lhs.print();
-    std::cout << "shape[3] = " << transposed_lhs.shape[3] << '\n';
     if (transposed_lhs.shape[3] == 1) {
         reduced_lhs = std::move(transposed_lhs.reshape(std::vector<size_t>(transposed_lhs.shape, transposed_lhs.shape + 3)));
     } else {
-        reduced_lhs = std::move(transposed_lhs.reduce(std::vector<size_t>({3})));
+        reduced_lhs = std::move(transposed_lhs.reduce());
         delete transposed_lhs.data; // no longer needed
     }
     // now for rhs
     if (transposed_rhs.shape[3] == 1) {
         reduced_rhs = std::move(transposed_rhs.reshape(std::vector<size_t>(transposed_rhs.shape, transposed_rhs.shape + 3)));
     } else {
-        reduced_rhs = std::move(transposed_rhs.reduce(std::vector<size_t>({3})));
+        reduced_rhs = std::move(transposed_rhs.reduce());
         delete transposed_rhs.data; // no longer needed
     }
 
-#define DEBUG
 #ifdef DEBUG
     std::cout << "Reduced Matrices:" << '\n';
     reduced_lhs.print();
@@ -167,8 +148,24 @@ Tensor<T> compute_einsum(const char * const s, const Tensor<T> &lhs_tensor, cons
 #endif
 
     // Finally, perform the batch matrix multiplication.
-    Tensor<T> bmm_result = std::move(batch_matmul(reduced_lhs, reduced_rhs));
-    std::cout<<"lolollo\n";
+    Tensor<T> bmm_result;
+    if (!(reduced_rhs.size() == 1 && reduced_rhs.data[0] == T(1))) // little heuristic to improve performance
+        bmm_result = std::move(batch_matmul(reduced_lhs, reduced_rhs));
+    else {
+        bmm_result = std::move(reduced_lhs);
+#ifdef DEBUG
+        std::cout << "skipped batch_matmul!\n";
+#endif
+    }
+
+    // Now we free the data of reduced_lhs and reduced_rhs, as it is no longer needed
+    // delete[] reduced_lhs.data;
+    // delete[] reduced_rhs.data;
+
+#ifdef DEBUG
+    std::cout << "Result of Batch Matrix Multiplication:\n";
+    bmm_result.print();
+#endif
 
     // We are almost done, we only have to reshape the result to the desired output.
     // The current form of bmm_result is
@@ -181,19 +178,19 @@ Tensor<T> compute_einsum(const char * const s, const Tensor<T> &lhs_tensor, cons
     // Let's start with reshaping it:
     std::vector<size_t> target_shape;
     target_shape.reserve(target_string.size());
-    for (auto &i : batch_dims_lhs) target_shape.push_back(lhs_tensor.shape[i]);
-    for (auto &i : kept_left_dims_lhs) target_shape.push_back(lhs_tensor.shape[i]);
-    for (auto &i : kept_right_dims_rhs) target_shape.push_back(lhs_tensor.shape[i]);
+    for (auto& i : batch_dims_lhs) target_shape.push_back(lhs_tensor.shape[i]);
+    for (auto& i : kept_left_dims_lhs) target_shape.push_back(lhs_tensor.shape[i]);
+    for (auto& i : kept_right_dims_rhs) target_shape.push_back(lhs_tensor.shape[i]);
 
     bmm_result.reshape(target_shape);
 
 #ifdef DEBUG
-    std::cout << "bmm_result after reshaping: \n";
+    std::cout << "bmm_result after reshaping:\n";
     bmm_result.print();
 #endif
 
-    // now, we have to transpose it into the correct shape
-    // for that, we have to calculate the permutation in the following manner:
+    // Now, we have to transpose it into the correct shape.
+    // For that, we have to calculate the permutation in the following manner:
 
     const std::vector<size_t> target_permutation = get_permutation<char>(merge_vectors<char>({
         multi_index(batch_dims_lhs, lhs_string.data()),
@@ -205,15 +202,24 @@ Tensor<T> compute_einsum(const char * const s, const Tensor<T> &lhs_tensor, cons
 }
 
 
+std::vector<size_t> column_identifiers_like(const std::vector<size_t>& target_column_identifiers, const std::string& target_identifier_string, const std::string& origin_identifier_string) {
+    // it is assumed that every character in target_identifier_string accessed by target_column_identifiers is also present in origin_identifier_string
+    std::vector<size_t> origin_column_identifiers;
+    for (size_t i = 0; i < target_column_identifiers.size(); i++) {
+        origin_column_identifiers.push_back(origin_identifier_string.find(target_identifier_string[target_column_identifiers[i]]));
+    }
+    return origin_column_identifiers;
+}
+
+
 template <typename T>
-bool is_valid_einsum_expression(const char * const s, const Tensor<T> &lhs_tensor, const Tensor<T> &rhs_tensor) {
+bool is_valid_einsum_expression(const char* const s, const Tensor<T>& lhs_tensor, const Tensor<T>& rhs_tensor, std::string& lhs_string, std::string& rhs_string, std::string& target_string) {
     // we split the string into
     // s = lhs_string , rhs_string -> target_string
     //
     // s hast to satisfy the following criteria:
     // -----------------------------------------
     // 1. every char in target_string must be present in either lhs_string or rhs_string
-    // TODO: implement 2 and 4
     // 2. there are no duplicate characters in lhs_string, rhs_string or target_string
     // 3. the size of lhs_string must match the number of dimensions of lhs_tensor. The same for rhs_string and rhs_tensor
     // 4. common column identifiers in lhs_string and rhs_string must correspond to matching dimension sizes in lhs_tensor and rhs_tensor
@@ -226,10 +232,9 @@ bool is_valid_einsum_expression(const char * const s, const Tensor<T> &lhs_tenso
         throw std::invalid_argument("Invalid einsum expression: Missing or misplaced ',' or '->' to separate subscripts and target_string.");
     }
 
-    // Split the expression into lhs_string, rhs_string, and target_string
-    std::string lhs_string = trim_copy((expr.substr(0, comma_pos)));
-    std::string rhs_string = trim_copy(expr.substr(comma_pos + 1, arrow_pos - (comma_pos + 1)));
-    std::string target_string = trim_copy(expr.substr(arrow_pos + 2));
+    lhs_string = trim_copy((expr.substr(0, comma_pos)));
+    rhs_string = trim_copy(expr.substr(comma_pos + 1, arrow_pos - (comma_pos + 1)));
+    target_string = trim_copy(expr.substr(arrow_pos + 2));
 
     // Criterion 1: Ensure every character in target_string appears in either lhs_string or rhs_string
     std::unordered_set<char> valid_chars(lhs_string.begin(), lhs_string.end());
@@ -241,7 +246,26 @@ bool is_valid_einsum_expression(const char * const s, const Tensor<T> &lhs_tenso
         }
     }
 
-    // Criterion 2: Ensure the number of subscripts matches the dimensions of the tensors
+    // Criterion 2: Ensure there are no duplicate characters in lhs_string, rhs_string, or target_string
+    auto has_duplicates = [](const std::string& str) {
+        std::unordered_set<char> char_set;
+        for (char c : str) {
+            if (!char_set.insert(c).second) return true;
+        }
+        return false;
+    };
+
+    if (has_duplicates(lhs_string)) {
+        throw std::invalid_argument("Invalid einsum expression: LHS subscripts contain duplicate characters.");
+    }
+    if (has_duplicates(rhs_string)) {
+        throw std::invalid_argument("Invalid einsum expression: RHS subscripts contain duplicate characters.");
+    }
+    if (has_duplicates(target_string)) {
+        throw std::invalid_argument("Invalid einsum expression: Target subscripts contain duplicate characters.");
+    }
+
+    // Criterion 3: Ensure the number of subscripts matches the dimensions of the tensors
     if (lhs_string.size() != lhs_tensor.ndim) {
         throw std::invalid_argument("Invalid einsum expression: LHS number of subscripts does not match the number of dimensions of lhs_tensor.");
     }
@@ -249,7 +273,23 @@ bool is_valid_einsum_expression(const char * const s, const Tensor<T> &lhs_tenso
         throw std::invalid_argument("Invalid einsum expression: RHS number of subscripts does not match the number of dimensions of rhs_tensor.");
     }
 
-    // If both criteria are satisfied, return true
+    // Criterion 4: Ensure common column identifiers in lhs_string and rhs_string have matching dimension sizes
+    std::unordered_map<char, size_t> lhs_dim_map;
+    for (size_t i = 0; i < lhs_string.size(); ++i) {
+        lhs_dim_map[lhs_string[i]] = lhs_tensor.shape[i];
+    }
+
+    for (size_t i = 0; i < rhs_string.size(); ++i) {
+        char rhs_char = rhs_string[i];
+        if (lhs_dim_map.find(rhs_char) != lhs_dim_map.end()) { // If shared identifier
+            if (lhs_dim_map[rhs_char] != rhs_tensor.shape[i]) {
+                throw std::invalid_argument("Invalid einsum expression: Mismatched dimension sizes for shared subscript '" +
+                                            std::string(1, rhs_char) + "'.");
+            }
+        }
+    }
+
+    // If all criteria are satisfied, return true
     return true;
 }
 
