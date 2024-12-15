@@ -149,18 +149,27 @@ Tensor<T> compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
 
     // Finally, perform the batch matrix multiplication.
     Tensor<T> bmm_result;
-    if (!(reduced_rhs.size() == 1 && reduced_rhs.data[0] == T(1))) // little heuristic to improve performance
-        bmm_result = std::move(batch_matmul(reduced_lhs, reduced_rhs));
-    else {
+    {
+    if (reduced_rhs.size() == 1 && reduced_rhs.data[0] == T(1)) { // little heuristic to improve performance
         bmm_result = std::move(reduced_lhs);
+        delete[] reduced_rhs.data;
+#ifdef DEBUG
+        std::cout << "skipped batch_matmul!\n";
+#endif
+    } else if (reduced_lhs.size() == 1 && reduced_lhs.data[0] == T(1)) {
+        bmm_result = std::move(reduced_rhs);
+        delete[] reduced_rhs.data;
 #ifdef DEBUG
         std::cout << "skipped batch_matmul!\n";
 #endif
     }
-
-    // Now we free the data of reduced_lhs and reduced_rhs, as it is no longer needed
-    // delete[] reduced_lhs.data;
-    // delete[] reduced_rhs.data;
+    else {
+        bmm_result = std::move(batch_matmul(reduced_lhs, reduced_rhs));
+        // Now we free the data of reduced_lhs and reduced_rhs, as it is no longer needed
+        delete[] reduced_lhs.data;
+        delete[] reduced_rhs.data;
+    }
+    }
 
 #ifdef DEBUG
     std::cout << "Result of Batch Matrix Multiplication:\n";
@@ -180,7 +189,12 @@ Tensor<T> compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
     target_shape.reserve(target_string.size());
     for (auto& i : batch_dims_lhs) target_shape.push_back(lhs_tensor.shape[i]);
     for (auto& i : kept_left_dims_lhs) target_shape.push_back(lhs_tensor.shape[i]);
-    for (auto& i : kept_right_dims_rhs) target_shape.push_back(lhs_tensor.shape[i]);
+    for (auto& i : kept_right_dims_rhs) target_shape.push_back(rhs_tensor.shape[i]);
+
+#ifdef DEBUG
+    std::cout << "New shape of target matrix:\n";
+    print_vector(target_shape);
+#endif
 
     bmm_result.reshape(target_shape);
 

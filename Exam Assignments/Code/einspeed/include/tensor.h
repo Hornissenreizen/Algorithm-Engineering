@@ -201,6 +201,10 @@ public:
 
     // Utility Methods
 
+    bool inline is_scalar() const {
+        return ndim == 0 && data;
+    }
+    
     static size_t calculate_size(const size_t* shape, size_t ndim) {
         size_t size = 1;
         for (size_t i = 0; i < ndim; ++i) {
