@@ -50,7 +50,7 @@ const int NUMPY_TYPES[] = {
 };
 
 constexpr const int SUPPORTED_NUMPY_TYPES[] = {
-    NPY_INT64,
+    // NPY_INT64, // no int64, as hptt does not support it
     NPY_FLOAT64,
     NPY_COMPLEX128
 };

@@ -5,7 +5,7 @@
 #include <numpy/arrayobject.h>
 
 #include <omp.h>
-#include <immintrin.h>  // For SIMD intrinsics (optional)
+#include <immintrin.h>
 
 #include <algorithm>
 #include <iostream>
@@ -104,67 +104,8 @@ public:
     // **********
 
     // Transpose method
-    Tensor<T> transpose(const std::vector<size_t>& perm) const {
-        // return fast_transpose(perm);
-        if (perm.size() != ndim) {
-            throw std::invalid_argument("Permutation size must match the number of dimensions.");
-        }
-        if (ndim == 0) {
-            // needs special treatment
-            if (data) {
-                T* new_data =  new T[1];
-                *new_data = this->data[0];
-                return Tensor<T>(ndim, shape, new_data);
-            } else return Tensor<T>();
-        }
-
-        // Check if perm is a valid permutation
-        std::vector<bool> seen(ndim, false);
-        for (size_t i : perm) {
-            if (i >= ndim || seen[i]) {
-                throw std::invalid_argument("Invalid permutation array.");
-            }
-            seen[i] = true;
-        }
-
-        // Compute the new shape
-        size_t* new_shape = new size_t[ndim];
-        for (size_t i = 0; i < ndim; ++i) {
-            new_shape[i] = shape[perm[i]];
-        }
-
-        // Allocate memory for the transposed data
-        T* new_data = new T[calculate_size(new_shape, ndim)];
-
-        // Compute strides for both old and new tensor layouts
-        std::vector<size_t> old_strides = compute_strides(shape, ndim);
-        std::vector<size_t> new_strides = compute_strides(new_shape, ndim);
-
-        // Fill the new_data array
-        std::vector<size_t> old_indices(ndim, 0);
-        for (size_t new_index = 0; new_index < calculate_size(new_shape, ndim); ++new_index) {
-            // Map the flat new_index to multi-dimensional indices in the new layout
-            size_t remaining = new_index;
-            for (size_t i = 0; i < ndim; ++i) {
-                old_indices[perm[i]] = remaining / new_strides[i];
-                remaining %= new_strides[i];
-            }
-
-            // Compute the flat index in the original tensor
-            size_t old_index = 0;
-            for (size_t i = 0; i < ndim; ++i) {
-                old_index += old_indices[i] * old_strides[i];
-            }
-
-            // Copy the data
-            new_data[new_index] = data[old_index];
-        }
-
-        // Create and return the new transposed tensor
-        return Tensor<T>(ndim, new_shape, new_data);
-    }
-    Tensor<T> fast_transpose(const std::vector<size_t>& perm) const;
-    PyObject* lazy_transpose_and_return_PyObjet(const std::vector<size_t> &perm) const {
+    Tensor<T> transpose(const std::vector<size_t>& perm) const;
+    PyObject* lazy_transpose_and_return_PyObject(const std::vector<size_t> &perm) const {
         // Initialize NumPy (if not already done)
         if (!PyArray_API) {
             import_array(); // Necessary to initialize NumPy C API
@@ -342,7 +283,7 @@ private:
 
 
 template <typename T>
-Tensor<T> Tensor<T>::fast_transpose(const std::vector<size_t>& perm) const {
+Tensor<T> Tensor<T>::transpose(const std::vector<size_t>& perm) const {
 #ifdef DEBUG
     std::cout << "Using fast_transpose\n";
 #endif
@@ -373,7 +314,6 @@ Tensor<T> Tensor<T>::fast_transpose(const std::vector<size_t>& perm) const {
         new_shape[i] = shape[perm[i]];
     }
 
-
     T* transposed = new T[Tensor<T>::calculate_size(shape, ndim)];
     int* tmp_size = cast_all<size_t, int>(ndim, shape);
     int* tmp_perm = cast_all<size_t, int>(ndim, perm.data());
@@ -386,22 +326,14 @@ Tensor<T> Tensor<T>::fast_transpose(const std::vector<size_t>& perm) const {
     plan->execute();
     delete[] tmp_size;
     delete[] tmp_perm;
-    return Tensor<T>(ndim, new_shape, transposed);
-}
-
-template <>
-Tensor<double> Tensor<double>::transpose(const std::vector<size_t>& perm) const {
-    return fast_transpose(perm);
-}
-
-template<>
-Tensor<std::complex<double>> Tensor<std::complex<double>>::transpose(const std::vector<size_t>& perm) const {
-    std::cout << "using fast transpose\n";
-    return fast_transpose(perm);
+    Tensor<T> result(ndim, new_shape, transposed);
+    delete new_shape;
+    return result;
 }
 
 
 
+// These specialized methods don't really yield any performance benefits, but it is interesting to see them in action
 template <>
 Tensor<float> Tensor<float>::reduce() const {
     const size_t last_dimension = this->shape[this->ndim-1];
@@ -416,14 +348,15 @@ Tensor<float> Tensor<float>::reduce() const {
         // Use AVX SIMD for vectorized summation
         __m256 vec_sum = _mm256_setzero_ps(); // Initialize to zero
         
-        for (size_t k = start_idx; k < start_idx + last_dimension; k += 4) {
+        for (size_t k = start_idx; k < start_idx + last_dimension; k += 8) {
             // Load 4 values at once
             __m256 vec_vals = _mm256_loadu_ps(&this->data[k]);
             vec_sum = _mm256_add_ps(vec_sum, vec_vals); // Add the values
         }
 
         // Sum the partial results
-        sum += vec_sum[0] + vec_sum[1] + vec_sum[2] + vec_sum[3];
+        sum += vec_sum[0] + vec_sum[1] + vec_sum[2] + vec_sum[3]
+            +  vec_sum[4] + vec_sum[5] + vec_sum[6] + vec_sum[7];
         
         target_data[i] = sum;
     }

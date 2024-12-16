@@ -43,7 +43,7 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
     // We do the same for rhs_string. Then, we transpose and reshape lhs_tensor and rhs_tensor in the following manner:
     //
     // lhs_tensor[batch, kept left, contracted, summed left]
-    // rhs_tensor[batch, contracted, kept right, summed right]
+    // rhs_tensor[batch, kept right, contracted, summed right]
     //
     // IMPORTANT: the column identifiers of batch and contracted of both tensors are obviously the same.
     //            We have to ensure that they also have the same dimensions and ordering!
@@ -94,10 +94,10 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
 
     // Reshaping the lhs and rhs tensors as described:
     // lhs_tensor[batch, kept left, contracted, summed left]
-    // rhs_tensor[batch, contracted, kept right, summed right]
+    // rhs_tensor[batch, kept right, contracted, summed right]
     Tensor<T> transposed_lhs = lhs_tensor.transpose(merge_vectors({batch_dims_lhs, kept_left_dims_lhs, contracted_dims_lhs, summed_left_dims_lhs}));
-    // Tensor<T> transposed_rhs = rhs_tensor.transpose(merge_vectors({batch_dims_rhs, contracted_dims_rhs, kept_right_dims_rhs, summed_right_dims_rhs}));
     Tensor<T> transposed_rhs = rhs_tensor.transpose(merge_vectors({batch_dims_rhs, kept_right_dims_rhs, contracted_dims_rhs, summed_right_dims_rhs}));
+
 #ifdef DEBUG
     std::cout << "Transposed Tensors:" << '\n';
     transposed_lhs.print();
@@ -113,15 +113,10 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
                                                 Tensor<T>::calculate_size(multi_index(kept_left_dims_lhs, lhs_tensor.shape)),
                                                 Tensor<T>::calculate_size(multi_index(contracted_dims_lhs, lhs_tensor.shape)),
                                                 Tensor<T>::calculate_size(multi_index(summed_left_dims_lhs, lhs_tensor.shape))}));
-    // transposed_rhs.reshape(std::vector<size_t>({Tensor<T>::calculate_size(multi_index(batch_dims_rhs, rhs_tensor.shape)),
-    //                                             Tensor<T>::calculate_size(multi_index(contracted_dims_rhs, rhs_tensor.shape)),
-    //                                             Tensor<T>::calculate_size(multi_index(kept_right_dims_rhs, rhs_tensor.shape)),
-    //                                             Tensor<T>::calculate_size(multi_index(summed_right_dims_rhs, rhs_tensor.shape))}));
     transposed_rhs.reshape(std::vector<size_t>({Tensor<T>::calculate_size(multi_index(batch_dims_rhs, rhs_tensor.shape)),
                                                 Tensor<T>::calculate_size(multi_index(kept_right_dims_rhs, rhs_tensor.shape)),
                                                 Tensor<T>::calculate_size(multi_index(contracted_dims_rhs, rhs_tensor.shape)),
                                                 Tensor<T>::calculate_size(multi_index(summed_right_dims_rhs, rhs_tensor.shape))}));
-
 
 #ifdef DEBUG
     std::cout << "Tensors after reshaping:\n";
@@ -132,18 +127,26 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
     // Perform axis summation on lhs_tensor and rhs_tensor for the summed dimensions (summed left, summed right)
     // If, however, the last dimension is one, we simply need to reshape the matrix (there is no need for a reduction)
     Tensor<T> reduced_lhs, reduced_rhs;
+    T* available_memory = nullptr; // keeping track of available memory in order to reuse it later
+    size_t available_memory_size = 0;
     if (transposed_lhs.shape[3] == 1) {
         reduced_lhs = std::move(transposed_lhs.reshape(std::vector<size_t>(transposed_lhs.shape, transposed_lhs.shape + 3)));
     } else {
         reduced_lhs = std::move(transposed_lhs.reduce());
-        delete transposed_lhs.data; // no longer needed
+        available_memory = transposed_lhs.data;
+        available_memory_size = transposed_lhs.size();
     }
     // now for rhs
     if (transposed_rhs.shape[3] == 1) {
         reduced_rhs = std::move(transposed_rhs.reshape(std::vector<size_t>(transposed_rhs.shape, transposed_rhs.shape + 3)));
     } else {
         reduced_rhs = std::move(transposed_rhs.reduce());
-        delete transposed_rhs.data; // no longer needed
+        size_t transposed_rhs_size = transposed_rhs.size();
+        if (transposed_rhs_size > available_memory_size) {
+            if (available_memory) delete[] available_memory;
+            available_memory = transposed_rhs.data;
+            available_memory_size = transposed_rhs_size;
+        } else delete[] transposed_rhs.data; // no longer needed
     }
 
 #ifdef DEBUG
@@ -169,7 +172,7 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
 #endif
     }
     else {
-        bmm_result = std::move(batch_matrix_times_transpose_matrix(reduced_lhs, reduced_rhs));
+        bmm_result = batch_matrix_matmul_transpose(reduced_lhs, reduced_rhs, available_memory, available_memory_size);
         // Now we free the data of reduced_lhs and reduced_rhs, as it is no longer needed
         delete[] reduced_lhs.data;
         delete[] reduced_rhs.data;
@@ -217,7 +220,7 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
         multi_index(kept_right_dims_rhs, rhs_string.data()),
     }), std::vector<char>(target_string.begin(), target_string.end()));
 
-    return bmm_result.lazy_transpose_and_return_PyObjet(target_permutation);
+    return bmm_result.lazy_transpose_and_return_PyObject(target_permutation);
 }
 
 
