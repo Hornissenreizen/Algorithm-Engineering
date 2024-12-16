@@ -75,25 +75,42 @@ clean: src/clean
 .PHONY : clean
 
 #=============================================================================
+# Directory level rules for directory external/hptt
+
+# Recursive "all" directory target.
+external/hptt/all: external/hptt/CMakeFiles/hptt.dir/all
+.PHONY : external/hptt/all
+
+# Recursive "preinstall" directory target.
+external/hptt/preinstall:
+.PHONY : external/hptt/preinstall
+
+# Recursive "clean" directory target.
+external/hptt/clean: external/hptt/CMakeFiles/hptt.dir/clean
+.PHONY : external/hptt/clean
+
+#=============================================================================
 # Directory level rules for directory src
 
 # Recursive "all" directory target.
 src/all: src/CMakeFiles/einspeed.dir/all
+src/all: external/hptt/all
 .PHONY : src/all
 
 # Recursive "preinstall" directory target.
-src/preinstall:
+src/preinstall: external/hptt/preinstall
 .PHONY : src/preinstall
 
 # Recursive "clean" directory target.
 src/clean: src/CMakeFiles/einspeed.dir/clean
+src/clean: external/hptt/clean
 .PHONY : src/clean
 
 #=============================================================================
 # Target rules for target src/CMakeFiles/einspeed.dir
 
 # All Build rule for target.
-src/CMakeFiles/einspeed.dir/all:
+src/CMakeFiles/einspeed.dir/all: external/hptt/CMakeFiles/hptt.dir/all
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/einspeed.dir/build.make src/CMakeFiles/einspeed.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/einspeed.dir/build.make src/CMakeFiles/einspeed.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=1,2 "Built target einspeed"
@@ -101,7 +118,7 @@ src/CMakeFiles/einspeed.dir/all:
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/einspeed.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/einspeed.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" 0
 .PHONY : src/CMakeFiles/einspeed.dir/rule
@@ -114,6 +131,32 @@ einspeed: src/CMakeFiles/einspeed.dir/rule
 src/CMakeFiles/einspeed.dir/clean:
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/einspeed.dir/build.make src/CMakeFiles/einspeed.dir/clean
 .PHONY : src/CMakeFiles/einspeed.dir/clean
+
+#=============================================================================
+# Target rules for target external/hptt/CMakeFiles/hptt.dir
+
+# All Build rule for target.
+external/hptt/CMakeFiles/hptt.dir/all:
+	$(MAKE) $(MAKESILENT) -f external/hptt/CMakeFiles/hptt.dir/build.make external/hptt/CMakeFiles/hptt.dir/depend
+	$(MAKE) $(MAKESILENT) -f external/hptt/CMakeFiles/hptt.dir/build.make external/hptt/CMakeFiles/hptt.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=3,4,5,6,7 "Built target hptt"
+.PHONY : external/hptt/CMakeFiles/hptt.dir/all
+
+# Build rule for subdir invocation for target.
+external/hptt/CMakeFiles/hptt.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" 5
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/hptt/CMakeFiles/hptt.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" 0
+.PHONY : external/hptt/CMakeFiles/hptt.dir/rule
+
+# Convenience name for target.
+hptt: external/hptt/CMakeFiles/hptt.dir/rule
+.PHONY : hptt
+
+# clean rule for target.
+external/hptt/CMakeFiles/hptt.dir/clean:
+	$(MAKE) $(MAKESILENT) -f external/hptt/CMakeFiles/hptt.dir/build.make external/hptt/CMakeFiles/hptt.dir/clean
+.PHONY : external/hptt/CMakeFiles/hptt.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

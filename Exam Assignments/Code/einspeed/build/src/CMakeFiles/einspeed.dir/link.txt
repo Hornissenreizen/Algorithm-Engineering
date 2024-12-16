@@ -1,1 +1,1 @@
-/usr/bin/c++ -fPIC -shared  -o einspeed.so CMakeFiles/einspeed.dir/einspeed.cpp.o 
+/usr/bin/c++ -fPIC -shared  -o einspeed.so CMakeFiles/einspeed.dir/einspeed.cpp.o  ../external/hptt/libhptt.a /usr/lib/gcc/x86_64-linux-gnu/13/libgomp.so /usr/lib/x86_64-linux-gnu/libpthread.a 

@@ -96,8 +96,9 @@ Tensor<T> compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
     // lhs_tensor[batch, kept left, contracted, summed left]
     // rhs_tensor[batch, contracted, kept right, summed right]
     Tensor<T> transposed_lhs = lhs_tensor.transpose(merge_vectors({batch_dims_lhs, kept_left_dims_lhs, contracted_dims_lhs, summed_left_dims_lhs}));
-    Tensor<T> transposed_rhs = rhs_tensor.transpose(merge_vectors({batch_dims_rhs, contracted_dims_rhs, kept_right_dims_rhs, summed_right_dims_rhs}));
-
+    // Tensor<T> transposed_rhs = rhs_tensor.transpose(merge_vectors({batch_dims_rhs, contracted_dims_rhs, kept_right_dims_rhs, summed_right_dims_rhs}));
+    Tensor<T> transposed_rhs = rhs_tensor.transpose(merge_vectors({batch_dims_rhs, kept_right_dims_rhs, contracted_dims_rhs, summed_right_dims_rhs}));
+    print_vector(merge_vectors({batch_dims_rhs, kept_right_dims_rhs, contracted_dims_rhs, summed_right_dims_rhs}), "B permutation");
 #ifdef DEBUG
     std::cout << "Transposed Tensors:" << '\n';
     transposed_lhs.print();
@@ -113,10 +114,15 @@ Tensor<T> compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
                                                 Tensor<T>::calculate_size(multi_index(kept_left_dims_lhs, lhs_tensor.shape)),
                                                 Tensor<T>::calculate_size(multi_index(contracted_dims_lhs, lhs_tensor.shape)),
                                                 Tensor<T>::calculate_size(multi_index(summed_left_dims_lhs, lhs_tensor.shape))}));
+    // transposed_rhs.reshape(std::vector<size_t>({Tensor<T>::calculate_size(multi_index(batch_dims_rhs, rhs_tensor.shape)),
+    //                                             Tensor<T>::calculate_size(multi_index(contracted_dims_rhs, rhs_tensor.shape)),
+    //                                             Tensor<T>::calculate_size(multi_index(kept_right_dims_rhs, rhs_tensor.shape)),
+    //                                             Tensor<T>::calculate_size(multi_index(summed_right_dims_rhs, rhs_tensor.shape))}));
     transposed_rhs.reshape(std::vector<size_t>({Tensor<T>::calculate_size(multi_index(batch_dims_rhs, rhs_tensor.shape)),
-                                                Tensor<T>::calculate_size(multi_index(contracted_dims_rhs, rhs_tensor.shape)),
                                                 Tensor<T>::calculate_size(multi_index(kept_right_dims_rhs, rhs_tensor.shape)),
+                                                Tensor<T>::calculate_size(multi_index(contracted_dims_rhs, rhs_tensor.shape)),
                                                 Tensor<T>::calculate_size(multi_index(summed_right_dims_rhs, rhs_tensor.shape))}));
+
 
 #ifdef DEBUG
     std::cout << "Tensors after reshaping:\n";
@@ -164,7 +170,8 @@ Tensor<T> compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
 #endif
     }
     else {
-        bmm_result = std::move(batch_matmul(reduced_lhs, reduced_rhs));
+        // bmm_result = std::move(batch_matmul(reduced_lhs, reduced_rhs));
+        bmm_result = std::move(batch_matrix_times_transpose_matrix(reduced_lhs, reduced_rhs));
         // Now we free the data of reduced_lhs and reduced_rhs, as it is no longer needed
         delete[] reduced_lhs.data;
         delete[] reduced_rhs.data;

@@ -4,12 +4,16 @@
 #include <Python.h>
 #include <numpy/arrayobject.h>
 
+#include <omp.h>
+
 #include <algorithm>
 #include <iostream>
 #include <cstring>
 #include <vector>
 
 #include "numpy_types.h"
+#include "func.h"
+#include "hptt.h"
 
 template <typename T>
 class Tensor {
@@ -157,6 +161,9 @@ public:
         // Create and return the new transposed tensor
         return Tensor<T>(ndim, new_shape, new_data);
     }
+    Tensor<T> fast_transpose(const std::vector<size_t>& perm) const;
+
+    
 
 
     // Reshape method
@@ -270,5 +277,62 @@ private:
         return strides;
     }
 };
+
+
+
+
+template <typename T>
+Tensor<T> Tensor<T>::fast_transpose(const std::vector<size_t>& perm) const {
+#ifdef DEBUG
+    std::cout << "Using fast_transpose\n";
+#endif
+    if (perm.size() != ndim) {
+        throw std::invalid_argument("Permutation size must match the number of dimensions.");
+    }
+    if (ndim == 0) {
+        // needs special treatment
+        if (data) {
+            T* new_data =  new T[1];
+            *new_data = this->data[0];
+            return Tensor<T>(ndim, shape, new_data);
+        } else return Tensor<T>();
+    }
+
+    // Check if perm is a valid permutation
+    std::vector<bool> seen(ndim, false);
+    for (size_t i : perm) {
+        if (i >= ndim || seen[i]) {
+            throw std::invalid_argument("Invalid permutation array.");
+        }
+        seen[i] = true;
+    }
+
+    // Compute the new shape
+    size_t* new_shape = new size_t[ndim];
+    for (size_t i = 0; i < ndim; ++i) {
+        new_shape[i] = shape[perm[i]];
+    }
+
+
+    T* transposed = new T[Tensor<T>::calculate_size(shape, ndim)];
+    int* tmp_size = cast_all<size_t, int>(ndim, shape);
+    int* tmp_perm = cast_all<size_t, int>(ndim, perm.data());
+    // create a plan (shared_ptr)
+    auto plan = hptt::create_plan( tmp_perm, (int) ndim, 
+                                T(1), data, tmp_size, NULL, 
+                                T(0),  transposed, NULL, 
+                                hptt::ESTIMATE, omp_get_num_procs(), nullptr, true);
+    
+    plan->execute();
+    delete[] tmp_size;
+    delete[] tmp_perm;
+    return Tensor<T>(ndim, new_shape, transposed);
+}
+
+template <>
+Tensor<double> Tensor<double>::transpose(const std::vector<size_t>& perm) const {
+    return fast_transpose(perm);
+}
+
 
 #endif

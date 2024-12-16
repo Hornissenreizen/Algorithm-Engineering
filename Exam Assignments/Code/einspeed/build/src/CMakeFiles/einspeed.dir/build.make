@@ -92,6 +92,9 @@ einspeed_EXTERNAL_OBJECTS =
 
 src/einspeed.so: src/CMakeFiles/einspeed.dir/einspeed.cpp.o
 src/einspeed.so: src/CMakeFiles/einspeed.dir/build.make
+src/einspeed.so: external/hptt/libhptt.a
+src/einspeed.so: /usr/lib/gcc/x86_64-linux-gnu/13/libgomp.so
+src/einspeed.so: /usr/lib/x86_64-linux-gnu/libpthread.a
 src/einspeed.so: src/CMakeFiles/einspeed.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared module einspeed.so"
 	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/src" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/einspeed.dir/link.txt --verbose=$(VERBOSE)

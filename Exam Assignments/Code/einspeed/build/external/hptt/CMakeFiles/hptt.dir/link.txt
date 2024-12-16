@@ -1,0 +1,2 @@
+/usr/bin/ar qc libhptt.a CMakeFiles/hptt.dir/src/hptt.cpp.o CMakeFiles/hptt.dir/src/plan.cpp.o CMakeFiles/hptt.dir/src/transpose.cpp.o CMakeFiles/hptt.dir/src/utils.cpp.o
+/usr/bin/ranlib libhptt.a

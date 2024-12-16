@@ -12,6 +12,12 @@ file(GLOB SOURCES "./**.cpp")
 # Create library
 add_library(einspeed MODULE ${SOURCES})
 
+# add_subdirectory(${CMAKE_SOURCE_DIR}/external/hptt)
+add_subdirectory(${CMAKE_SOURCE_DIR}/external/hptt ${CMAKE_BINARY_DIR}/external/hptt)
+target_link_libraries(einspeed PRIVATE hptt)
+
+
+
 # Find NumPy (ensure NumPy is installed in the Python environment)
 execute_process(
     COMMAND ${Python3_EXECUTABLE} -c "import numpy; print(numpy.get_include())"
