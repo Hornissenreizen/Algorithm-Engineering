@@ -33,7 +33,7 @@ static PyObject* einsum(PyObject* const self, PyObject* const args) {
     for_<NO_SUPPORTED_NUMPY_TYPES>([&] (auto i) {
         if (SUPPORTED_NUMPY_TYPES[i.value] == a_type) {
             using cpp_type = typename numpy_to_cpp_type<SUPPORTED_NUMPY_TYPES[i.value]>::type;
-            result = compute_einsum<cpp_type>(s, parse_tensor<cpp_type>(a), parse_tensor<cpp_type>(b)).to_PyObject();
+            result = compute_einsum<cpp_type>(s, parse_tensor<cpp_type>(a), parse_tensor<cpp_type>(b));
         }
     });
 

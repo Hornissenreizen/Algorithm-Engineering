@@ -25,7 +25,7 @@ template <typename T> bool is_valid_einsum_expression(const char* const s, const
 
 
 template <typename T>
-Tensor<T> compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const Tensor<T>& rhs_tensor) {
+PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const Tensor<T>& rhs_tensor) {
 
     // *************************
     // *** Function Overview ***
@@ -98,7 +98,6 @@ Tensor<T> compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
     Tensor<T> transposed_lhs = lhs_tensor.transpose(merge_vectors({batch_dims_lhs, kept_left_dims_lhs, contracted_dims_lhs, summed_left_dims_lhs}));
     // Tensor<T> transposed_rhs = rhs_tensor.transpose(merge_vectors({batch_dims_rhs, contracted_dims_rhs, kept_right_dims_rhs, summed_right_dims_rhs}));
     Tensor<T> transposed_rhs = rhs_tensor.transpose(merge_vectors({batch_dims_rhs, kept_right_dims_rhs, contracted_dims_rhs, summed_right_dims_rhs}));
-    print_vector(merge_vectors({batch_dims_rhs, kept_right_dims_rhs, contracted_dims_rhs, summed_right_dims_rhs}), "B permutation");
 #ifdef DEBUG
     std::cout << "Transposed Tensors:" << '\n';
     transposed_lhs.print();
@@ -170,7 +169,6 @@ Tensor<T> compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
 #endif
     }
     else {
-        // bmm_result = std::move(batch_matmul(reduced_lhs, reduced_rhs));
         bmm_result = std::move(batch_matrix_times_transpose_matrix(reduced_lhs, reduced_rhs));
         // Now we free the data of reduced_lhs and reduced_rhs, as it is no longer needed
         delete[] reduced_lhs.data;
@@ -219,7 +217,7 @@ Tensor<T> compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
         multi_index(kept_right_dims_rhs, rhs_string.data()),
     }), std::vector<char>(target_string.begin(), target_string.end()));
 
-    return bmm_result.transpose(target_permutation);
+    return bmm_result.lazy_transpose_and_return_PyObjet(target_permutation);
 }
 
 

@@ -5,6 +5,7 @@
 #include <numpy/arrayobject.h>
 
 #include <omp.h>
+#include <immintrin.h>  // For SIMD intrinsics (optional)
 
 #include <algorithm>
 #include <iostream>
@@ -104,6 +105,7 @@ public:
 
     // Transpose method
     Tensor<T> transpose(const std::vector<size_t>& perm) const {
+        // return fast_transpose(perm);
         if (perm.size() != ndim) {
             throw std::invalid_argument("Permutation size must match the number of dimensions.");
         }
@@ -162,6 +164,58 @@ public:
         return Tensor<T>(ndim, new_shape, new_data);
     }
     Tensor<T> fast_transpose(const std::vector<size_t>& perm) const;
+    PyObject* lazy_transpose_and_return_PyObjet(const std::vector<size_t> &perm) const {
+        // Initialize NumPy (if not already done)
+        if (!PyArray_API) {
+            import_array(); // Necessary to initialize NumPy C API
+        }
+
+        int numpy_type = numpy_type_of<T>();
+
+        // If ndim == 0, return a scalar
+        if (ndim == 0) {
+            if (data) return PyArray_Scalar(data, PyArray_DescrFromType(numpy_type), nullptr);
+            else Py_RETURN_NONE;
+        }
+
+        // Create the shape and strides arrays
+        npy_intp* np_shape = new npy_intp[ndim];
+        npy_intp* np_strides = new npy_intp[ndim];
+
+        std::vector<size_t> strides = compute_strides(shape, ndim);
+        for (size_t i = 0; i < ndim; ++i) {
+            np_shape[i] = static_cast<npy_intp>(shape[perm[i]]);
+            np_strides[i] = static_cast<npy_intp>(strides[perm[i]] * sizeof(T)); // Convert strides to byte offsets
+        }
+
+        // Create a NumPy array
+        PyObject* numpy_array = PyArray_New(
+            &PyArray_Type,                         // Type of array
+            static_cast<int>(ndim),                // Number of dimensions
+            np_shape,                              // Shape
+            numpy_type,                            // NumPy data type
+            np_strides,                            // Strides
+            data,                                  // Data pointer
+            0,                                     // Item size (0 = use the default for the dtype)
+            NPY_ARRAY_CARRAY,                      // Flags
+            nullptr                                // Base object
+        );
+
+        if (!numpy_array) {
+            delete[] np_shape;
+            delete[] np_strides;
+            throw std::runtime_error("Failed to create NumPy array.");
+        }
+
+        // Set ownership of the data to NumPy
+        PyArray_ENABLEFLAGS(reinterpret_cast<PyArrayObject*>(numpy_array), NPY_ARRAY_OWNDATA);
+
+        // Clean up temporary allocations
+        delete[] np_shape;
+        delete[] np_strides;
+
+        return numpy_array;
+    }
 
     
 
@@ -193,13 +247,19 @@ public:
         const size_t target_size = this->calculate_size(this->shape, this->ndim) / last_dimension;
         T* target_data = new T[target_size];
 
+        #pragma omp parallel for
         for (size_t i = 0; i < target_size; i++) {
             T sum = 0;
-            for (size_t k = 0; k < last_dimension; k++) {
-                sum += this->data[i * last_dimension + k];
+            size_t start_idx = i * last_dimension;
+            size_t end_idx = start_idx + last_dimension;
+
+            for (size_t k = start_idx; k < end_idx; k++) {
+                sum += this->data[k];
             }
+            
             target_data[i] = sum;
         }
+
         return Tensor<T>(this->ndim-1, this->shape, target_data);
     }
 
@@ -334,5 +394,70 @@ Tensor<double> Tensor<double>::transpose(const std::vector<size_t>& perm) const 
     return fast_transpose(perm);
 }
 
+template<>
+Tensor<std::complex<double>> Tensor<std::complex<double>>::transpose(const std::vector<size_t>& perm) const {
+    std::cout << "using fast transpose\n";
+    return fast_transpose(perm);
+}
+
+
+
+template <>
+Tensor<float> Tensor<float>::reduce() const {
+    const size_t last_dimension = this->shape[this->ndim-1];
+    const size_t target_size = this->calculate_size(this->shape, this->ndim) / last_dimension;
+    float* target_data = new float[target_size];
+
+    #pragma omp parallel for
+    for (size_t i = 0; i < target_size; i++) {
+        float sum = 0;
+        size_t start_idx = i * last_dimension;
+        
+        // Use AVX SIMD for vectorized summation
+        __m256 vec_sum = _mm256_setzero_ps(); // Initialize to zero
+        
+        for (size_t k = start_idx; k < start_idx + last_dimension; k += 4) {
+            // Load 4 values at once
+            __m256 vec_vals = _mm256_loadu_ps(&this->data[k]);
+            vec_sum = _mm256_add_ps(vec_sum, vec_vals); // Add the values
+        }
+
+        // Sum the partial results
+        sum += vec_sum[0] + vec_sum[1] + vec_sum[2] + vec_sum[3];
+        
+        target_data[i] = sum;
+    }
+
+    return Tensor<float>(this->ndim - 1, this->shape, target_data);
+}
+
+template <>
+Tensor<double> Tensor<double>::reduce() const {
+    const size_t last_dimension = this->shape[this->ndim-1];
+    const size_t target_size = this->calculate_size(this->shape, this->ndim) / last_dimension;
+    double* target_data = new double[target_size];
+
+    #pragma omp parallel for
+    for (size_t i = 0; i < target_size; i++) {
+        double sum = 0;
+        size_t start_idx = i * last_dimension;
+        
+        // Use AVX SIMD for vectorized summation
+        __m256d vec_sum = _mm256_setzero_pd(); // Initialize to zero
+        
+        for (size_t k = start_idx; k < start_idx + last_dimension; k += 4) {
+            // Load 4 values at once
+            __m256d vec_vals = _mm256_loadu_pd(&this->data[k]);
+            vec_sum = _mm256_add_pd(vec_sum, vec_vals); // Add the values
+        }
+
+        // Sum the partial results
+        sum += vec_sum[0] + vec_sum[1] + vec_sum[2] + vec_sum[3];
+        
+        target_data[i] = sum;
+    }
+
+    return Tensor<double>(this->ndim - 1, this->shape, target_data);
+}
 
 #endif
