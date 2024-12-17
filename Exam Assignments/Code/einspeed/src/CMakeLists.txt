@@ -10,11 +10,12 @@ find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 file(GLOB SOURCES "./**.cpp")
 
 # Create library
-add_library(einspeed MODULE ${SOURCES})
+# add_library(einspeed MODULE ${SOURCES})
+add_library(einspeed SHARED ${SOURCES})
 
-# add_subdirectory(${CMAKE_SOURCE_DIR}/external/hptt)
+# Add the external library hptt
 add_subdirectory(${CMAKE_SOURCE_DIR}/external/hptt ${CMAKE_BINARY_DIR}/external/hptt)
-target_link_libraries(einspeed PRIVATE hptt)
+target_link_libraries(einspeed PUBLIC hptt)
 
 
 
@@ -32,7 +33,7 @@ set_target_properties(einspeed PROPERTIES
 )
 
 # Include directories for NumPy and Python
-target_include_directories(einspeed PRIVATE
+target_include_directories(einspeed PUBLIC
     ${Python3_INCLUDE_DIRS}
     ${NUMPY_INCLUDE_DIR}
 )

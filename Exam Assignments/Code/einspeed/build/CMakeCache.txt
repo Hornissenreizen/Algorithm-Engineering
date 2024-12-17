@@ -258,22 +258,22 @@ OpenMP_gomp_LIBRARY:FILEPATH=/usr/lib/gcc/x86_64-linux-gnu/13/libgomp.so
 OpenMP_pthread_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpthread.a
 
 //Value Computed by CMake
-catch2_BINARY_DIR:STATIC=/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/src/tests
+catch2_BINARY_DIR:STATIC=/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/tests
 
 //Value Computed by CMake
 catch2_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-catch2_SOURCE_DIR:STATIC=/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/src/tests
+catch2_SOURCE_DIR:STATIC=/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/tests
 
 //Value Computed by CMake
-catch_BINARY_DIR:STATIC=/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/src/tests/catch
+catch_BINARY_DIR:STATIC=/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/tests/catch
 
 //Value Computed by CMake
 catch_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-catch_SOURCE_DIR:STATIC=/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/src/tests/catch
+catch_SOURCE_DIR:STATIC=/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/tests/catch
 
 //Value Computed by CMake
 einspeed_BINARY_DIR:STATIC=/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/src
@@ -401,7 +401,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

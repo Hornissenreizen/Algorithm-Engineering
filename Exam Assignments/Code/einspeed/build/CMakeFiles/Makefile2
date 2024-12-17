@@ -64,14 +64,17 @@ CMAKE_BINARY_DIR = "/home/jonas/Documents/University/5. Semester/Algorithm Engin
 
 # The main recursive "all" target.
 all: src/all
+all: tests/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: src/preinstall
+preinstall: tests/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: src/clean
+clean: tests/clean
 .PHONY : clean
 
 #=============================================================================
@@ -107,13 +110,45 @@ src/clean: external/hptt/clean
 .PHONY : src/clean
 
 #=============================================================================
+# Directory level rules for directory tests
+
+# Recursive "all" directory target.
+tests/all: tests/CMakeFiles/catch2.dir/all
+tests/all: tests/catch/all
+.PHONY : tests/all
+
+# Recursive "preinstall" directory target.
+tests/preinstall: tests/catch/preinstall
+.PHONY : tests/preinstall
+
+# Recursive "clean" directory target.
+tests/clean: tests/CMakeFiles/catch2.dir/clean
+tests/clean: tests/catch/clean
+.PHONY : tests/clean
+
+#=============================================================================
+# Directory level rules for directory tests/catch
+
+# Recursive "all" directory target.
+tests/catch/all:
+.PHONY : tests/catch/all
+
+# Recursive "preinstall" directory target.
+tests/catch/preinstall:
+.PHONY : tests/catch/preinstall
+
+# Recursive "clean" directory target.
+tests/catch/clean:
+.PHONY : tests/catch/clean
+
+#=============================================================================
 # Target rules for target src/CMakeFiles/einspeed.dir
 
 # All Build rule for target.
 src/CMakeFiles/einspeed.dir/all: external/hptt/CMakeFiles/hptt.dir/all
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/einspeed.dir/build.make src/CMakeFiles/einspeed.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/einspeed.dir/build.make src/CMakeFiles/einspeed.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=1,2 "Built target einspeed"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=4,5 "Built target einspeed"
 .PHONY : src/CMakeFiles/einspeed.dir/all
 
 # Build rule for subdir invocation for target.
@@ -139,7 +174,7 @@ src/CMakeFiles/einspeed.dir/clean:
 external/hptt/CMakeFiles/hptt.dir/all:
 	$(MAKE) $(MAKESILENT) -f external/hptt/CMakeFiles/hptt.dir/build.make external/hptt/CMakeFiles/hptt.dir/depend
 	$(MAKE) $(MAKESILENT) -f external/hptt/CMakeFiles/hptt.dir/build.make external/hptt/CMakeFiles/hptt.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=3,4,5,6,7 "Built target hptt"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=6,7,8,9,10 "Built target hptt"
 .PHONY : external/hptt/CMakeFiles/hptt.dir/all
 
 # Build rule for subdir invocation for target.
@@ -157,6 +192,33 @@ hptt: external/hptt/CMakeFiles/hptt.dir/rule
 external/hptt/CMakeFiles/hptt.dir/clean:
 	$(MAKE) $(MAKESILENT) -f external/hptt/CMakeFiles/hptt.dir/build.make external/hptt/CMakeFiles/hptt.dir/clean
 .PHONY : external/hptt/CMakeFiles/hptt.dir/clean
+
+#=============================================================================
+# Target rules for target tests/CMakeFiles/catch2.dir
+
+# All Build rule for target.
+tests/CMakeFiles/catch2.dir/all: src/CMakeFiles/einspeed.dir/all
+tests/CMakeFiles/catch2.dir/all: external/hptt/CMakeFiles/hptt.dir/all
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/catch2.dir/build.make tests/CMakeFiles/catch2.dir/depend
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/catch2.dir/build.make tests/CMakeFiles/catch2.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=1,2,3 "Built target catch2"
+.PHONY : tests/CMakeFiles/catch2.dir/all
+
+# Build rule for subdir invocation for target.
+tests/CMakeFiles/catch2.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" 10
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/catch2.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" 0
+.PHONY : tests/CMakeFiles/catch2.dir/rule
+
+# Convenience name for target.
+catch2: tests/CMakeFiles/catch2.dir/rule
+.PHONY : catch2
+
+# clean rule for target.
+tests/CMakeFiles/catch2.dir/clean:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/catch2.dir/build.make tests/CMakeFiles/catch2.dir/clean
+.PHONY : tests/CMakeFiles/catch2.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

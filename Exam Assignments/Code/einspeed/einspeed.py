@@ -5,8 +5,8 @@ import time
 dtype = np.complex128
 epsilon = 1e-2 # we need to be generous here, as there is a big computing error on large tensors
 size = 50
-matrix_lhs = np.random.rand(size, size, size).astype(dtype)
-matrix_rhs = np.random.rand(size, size, size).astype(dtype)
+matrix_lhs = (1+np.random.rand(size, size, size)).astype(dtype)
+matrix_rhs = (1+np.random.rand(size, size, size)).astype(dtype)
 # matrix_lhs = np.array([[[1,2],[3,4]],[[5,6], [7,8]]], dtype)
 # matrix_rhs = matrix_lhs
 # matrix_rhs = np.array([1], dtype)

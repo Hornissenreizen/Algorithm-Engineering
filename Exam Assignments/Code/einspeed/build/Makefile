@@ -187,6 +187,19 @@ hptt/fast:
 	$(MAKE) $(MAKESILENT) -f external/hptt/CMakeFiles/hptt.dir/build.make external/hptt/CMakeFiles/hptt.dir/build
 .PHONY : hptt/fast
 
+#=============================================================================
+# Target rules for targets named catch2
+
+# Build rule for target.
+catch2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 catch2
+.PHONY : catch2
+
+# fast build rule for target.
+catch2/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/catch2.dir/build.make tests/CMakeFiles/catch2.dir/build
+.PHONY : catch2/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -199,6 +212,7 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... catch2"
 	@echo "... einspeed"
 	@echo "... hptt"
 .PHONY : help
