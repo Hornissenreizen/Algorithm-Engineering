@@ -11,7 +11,7 @@
 \settopmatter{printacmref=false} % Removes citation information below abstract
 \renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in 
 
-\acmConference[AEPRO 2025]{AEPRO 2025: Algorithm Engineering Projects}{March 1}{Jena, Germany}
+% \acmConference[AEPRO 2025]{AEPRO 2025: Algorithm Engineering Projects}{March 1}{Jena, Germany}
 
 % convert text to title case
 % http://individed.com/code/to-title-case/
@@ -24,30 +24,55 @@
 %%
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
-\title[Fast Entity Resolution With Mock Labels and Sorted Integer Sets]{Fast Entity Resolution With Mock Labels and Sorted Integer Sets\\\large Algorithm Engineering 2025 Project Paper}
+\title[Fast Einsum Implementation]{Fast Einsum Implementation Using Parallelization, Vectorization, and More\\\large Algorithm Engineering 2025 Project Paper}
 
 %%
 %% The "author" command and its associated commands are used to define
 %% the authors and their affiliations.
 
-\author{Max Mustermann}
+\author{Jonas Peters}
 \affiliation{%
   \institution{Friedrich Schiller University Jena}
   \country{Germany}}
-\email{max.mustermann@uni-jena.de}
+\email{jonas.peters@uni-jena.de}
 
-\author{Erika Mustermann}
-\affiliation{%
-  \institution{Friedrich Schiller University Jena}
-  \country{Germany}}
-\email{erika.mustermann@uni-jena.de}
+% \author{Erika Mustermann}
+% \affiliation{%
+%   \institution{Friedrich Schiller University Jena}
+%   \country{Germany}}
+% \email{erika.mustermann@uni-jena.de}
 
 %% The abstract is a short summary of the work to be presented in the article.
 \begin{abstract}
 
-The five-finger pattern \cite{macgilchrist2014}:
+% The five-finger pattern \cite{macgilchrist2014}:
 \begin{enumerate}
-\item \textbf{Topic and background:} What topic does the paper deal with? What is the point of departure for your research? Why are you studying this now?
+% \item \textbf{Topic and background:} What topic does the paper deal with? What is the point of departure for your research? Why are you studying this now?
+\item \textbf{Topic and background:} The topic of this paper is tensor transformations, and how to perform them efficiently. Tensors consist of many dimensions. Take matrices as specialized tensors with two dimensions (rows and columns) for example. When multiplying two matrices, we calculate "row times column" for each position in the resulting matrix. In tensor language, this is equivalent to \em contracting \em the the second dimension of the first matrix with the first dimension of the second matrix. We can also just rearrange the dimensions in a new order, which is called  \em transposing\em , similar to matrices. Lastly, we can \em reduce \em entire dimensions by summing over all entries, for example reducing the second dimension of a matrix $M$ is equivalent to
+\[ M_{reduced} = M \cdot \vec{1} \quad . \]
+
+In order to not always hardcode these operations, \em einsum \em can be employed by passing in the two operand matrices, together with a format string, which defines how every dimension will be treated. For example \texttt{ik,kj->ij} specifies a normal matrix-matrix-multiplication. Here is how these \em column identifiers \em of \texttt{lhs\_string} in the eisnum expression \texttt{<lhs\_string>,<rhs\_string>-><target\_string>} are interpreted:
+
+\begin{table}[h!]
+  \centering
+  \caption{Column Identifiers of Einsum Expression}
+  \label{tab:column_identifiers}
+  \begin{tabular}{lccc}
+    \toprule
+    \textbf{Category} & \textbf{rhs\_string} & \textbf{target\_string} \\
+    \midrule
+    Batch              & Yes    & Yes    \\
+    Kept left          & No     & Yes    \\
+    Contracted         & Yes    & No     \\
+    Summed left        & No     & No     \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+You have to read the table in the following manner. Take a column identifier of \texttt{lhs\_string}. Then you check whether it is present in \texttt{rhs\_string} and \texttt{target\_string}, and based on these results you assign it to one of the four specified categories, where "Summed left" describes a dimension to reduce.
+
+A similar table can be produced for column identifiers in \texttt{rhs\_string}. The column identifiers in \texttt{target\_string} also specify the resulting shape of the operation. All of the necessary computations to achieve the desired transformation is performed by the einsum function.
+
 \item \textbf{Focus:} What is your research question? What are you studying precisely?
 \item \textbf{Method:} What did you do?
 \item \textbf{Key findings:} What did you discover?
@@ -77,6 +102,7 @@ The five-finger pattern \cite{macgilchrist2014}:
 \subsection{Background}
 
 \subsection{Related Work}
+I used this~\cite{hptt2017} C++ library 
 
 \subsection{Our Contributions}
 
@@ -87,21 +113,7 @@ The five-finger pattern \cite{macgilchrist2014}:
 \section{The Algorithm}
 
 \subsection{Internal Representation of Mock Labels}
-\label{sub:sec:internal}
 
-In Figure~\ref{fig:integer:sets} we convert the mock labels to sorted integer sets.
-
-
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=\linewidth]{./graphics/integer_sets.pdf}
-  \caption{Conversion of mock camera labels to sorted integer sets. 
-We map each unique token (key) in camera labels to a unique value. 
-Based on these key-value-mappings, we convert camera labels to sorted integer sets. 
-A camera can have different names in different countries. Therefore, repeating IDs reference the same cameras (see, for example, ID=3).} 
-  \label{fig:integer:sets}
-\end{figure}
 
 \subsection{Efficient Preprocessing of Input Data}
 \label{sub:sec:preprocessing}
