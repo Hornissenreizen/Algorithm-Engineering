@@ -6,7 +6,6 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: literature.bib
-Warning--I didn't find a database entry for "Zhuang2016"
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=200001) to 20 items from 10.
@@ -14,7 +13,7 @@ Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 You've used 1 entry,
             5979 wiz_defined-function locations,
-            1486 strings with 18265 characters,
+            1484 strings with 18245 characters,
 and the built_in function-call counts, 1306 in all, are:
 = -- 136
 > -- 31
@@ -53,4 +52,3 @@ warning$ -- 0
 while$ -- 6
 width$ -- 0
 write$ -- 64
-(There was 1 warning)

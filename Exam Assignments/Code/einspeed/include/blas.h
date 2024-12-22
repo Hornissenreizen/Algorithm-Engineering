@@ -46,8 +46,9 @@ Tensor<T> batch_matrix_matmul_transpose(const Tensor<T>& lhs, const Tensor<T>& r
                 const T* lhs_row = lhs.data + b * rows * inner_dim + i * inner_dim;
                 const T* rhs_col = rhs.data + b * cols * inner_dim + j * inner_dim;
                 T* result_row = result_data + b * rows * cols + i * cols;
-
                 T sum = T(); // Initialize sum as zero for type T
+
+                #pragma omp simd
                 for (size_t k = 0; k < inner_dim; ++k) {
                     sum += lhs_row[k] * rhs_col[k];
                 }

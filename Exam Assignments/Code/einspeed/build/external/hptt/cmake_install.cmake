@@ -1,4 +1,4 @@
-# Install script for directory: /home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt
+# Install script for directory: /home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -51,7 +51,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/usr/local/lib" TYPE STATIC_LIBRARY FILES "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/external/hptt/libhptt.a")
+  file(INSTALL DESTINATION "/usr/local/lib" TYPE STATIC_LIBRARY FILES "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/external/hptt/libhptt.a")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -64,13 +64,13 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   file(INSTALL DESTINATION "/usr/local/include" TYPE FILE FILES
-    "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/include/compute_node.h"
-    "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/include/hptt_types.h"
-    "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/include/hptt.h"
-    "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/include/macros.h"
-    "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/include/plan.h"
-    "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/include/utils.h"
-    "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/include/transpose.h"
+    "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/include/compute_node.h"
+    "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/include/hptt_types.h"
+    "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/include/hptt.h"
+    "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/include/macros.h"
+    "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/include/plan.h"
+    "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/include/utils.h"
+    "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/include/transpose.h"
     )
 endif()
 

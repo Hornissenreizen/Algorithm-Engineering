@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/src/einspeed.cpp" "src/CMakeFiles/einspeed.dir/einspeed.cpp.o" "gcc" "src/CMakeFiles/einspeed.dir/einspeed.cpp.o.d"
+  "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/src/einspeed.cpp" "src/CMakeFiles/einspeed.dir/einspeed.cpp.o" "gcc" "src/CMakeFiles/einspeed.dir/einspeed.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

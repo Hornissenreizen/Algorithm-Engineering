@@ -48,10 +48,44 @@
 % The five-finger pattern \cite{macgilchrist2014}:
 \begin{enumerate}
 % \item \textbf{Topic and background:} What topic does the paper deal with? What is the point of departure for your research? Why are you studying this now?
-\item \textbf{Topic and background:} The topic of this paper is tensor transformations, and how to perform them efficiently. Tensors consist of many dimensions. Take matrices as specialized tensors with two dimensions (rows and columns) for example. When multiplying two matrices, we calculate "row times column" for each position in the resulting matrix. In tensor language, this is equivalent to \em contracting \em the the second dimension of the first matrix with the first dimension of the second matrix. We can also just rearrange the dimensions in a new order, which is called  \em transposing\em , similar to matrices. Lastly, we can \em reduce \em entire dimensions by summing over all entries, for example reducing the second dimension of a matrix $M$ is equivalent to
-\[ M_{reduced} = M \cdot \vec{1} \quad . \]
+\item \textbf{Topic and background:} This paper concerns tensor operations, specifically those implemented in the Python library numpy with its \texttt{numpy.einsum} method. Tenor operations are very common in todays data driven world, especially with the rise of \em Deep Learning\em . Hence, we should ensure that those important methods are implemented efficiently, as \em time \em and \em space complexity \em are a big concern when operating on increasingly bigger data. 
 
-In order to not always hardcode these operations, \em einsum \em can be employed by passing in the two operand matrices, together with a format string, which defines how every dimension will be treated. For example \texttt{ik,kj->ij} specifies a normal matrix-matrix-multiplication. Here is how these \em column identifiers \em of \texttt{lhs\_string} in the eisnum expression \texttt{<lhs\_string>,<rhs\_string>-><target\_string>} are interpreted:
+% \item \textbf{Focus:} What is your research question? What are you studying precisely?
+\item \textbf{Focus:} The einsum operation implements three fundamental tensor operations: \em Transposition\em , \em Reduction \em and \em Contraction\em . This paper tests all of these operations, as well as their combinations, and compares it to a hardcoded implementation written in C++.
+\item \textbf{Method:} To this end, I implemented a bare einsum implementation which implements these three operatios in C++, where one external library for transposing tensors is employed. Then, both implementations are compared, and the findings are presented in this paper.
+\item \textbf{Key findings:} The library einsum implementation does a really good job at transposing tensors. However, when contraction and especially reduction take up much of the workload, numpy's einsum implementation is remarkably ineffecient, as my C++ implementation executes faster by magnitudes.
+% \item \textbf{Conclusions or implications:} What do these findings mean? What broader issues do they speak to?
+\item \textbf{Conclusions or implications:} These findings emphasize that we cannot trust every implementation of a library to be implemented efficiently, even when speaking of popular libraries like numpy. In this specfic case of einsum, I advise the reader not to use it for big data operations which rely heavily on contraction or reduction.
+\end{enumerate}
+
+
+\end{abstract}
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+% \keywords{entity resolution, data cleansing, programming contest}
+\keywords{Tensor Operations, High-Performance Computing, NumPy, Transposition, Reduction, Contraction}
+
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+
+\let\thefootnote\relax\footnotetext{AEPRO 2025, March 1, Jena, Germany. Copyright \copyright 2025 for this paper by its authors. Use permitted under Creative Commons License Attribution 4.0 International (CC BY 4.0).}
+
+
+\section{Introduction}
+\subsection{Background}
+The topic of this paper is tensor transformations, and how to perform them efficiently. Tensors consist of many dimensions. Take matrices as specialized tensors with two dimensions (rows and columns) for example. When multiplying two matrices, we calculate "row times column" for each position in the resulting matrix. In tensor language, this is equivalent to \em contracting \em the the second dimension of the first matrix with the first dimension of the second matrix. We can also just rearrange the dimensions in a new order, which is called  \em transposing\em , similar to matrices. Lastly, we can \em reduce \em entire dimensions by summing over all entries, for example reducing the second dimension of a matrix $M$ is equivalent to
+\[ M_{reduced} = M \cdot \begin{pmatrix}
+  1 \\
+  \vdots \\
+  1
+\end{pmatrix} \quad . \]
+
+In order to not always hardcode these operations, \em einsum \em can be employed by passing in the two operand tensors, together with a format string, which defines how every dimension will be treated. For example \texttt{ik,kj->ij} specifies a normal matrix-matrix-multiplication. Here is how these \em column identifiers \em of \texttt{lhs\_string} in the eisnum expression \texttt{<lhs\_string>,<rhs\_string>-><target\_string>} are interpreted:
 
 \begin{table}[h!]
   \centering
@@ -73,66 +107,199 @@ You have to read the table in the following manner. Take a column identifier of 
 
 A similar table can be produced for column identifiers in \texttt{rhs\_string}. The column identifiers in \texttt{target\_string} also specify the resulting shape of the operation. All of the necessary computations to achieve the desired transformation is performed by the einsum function.
 
-\item \textbf{Focus:} What is your research question? What are you studying precisely?
-\item \textbf{Method:} What did you do?
-\item \textbf{Key findings:} What did you discover?
-\item \textbf{Conclusions or implications:} What do these findings mean? What broader issues do they speak to?
-\end{enumerate}
-
-
-\end{abstract}
-
-%%
-%% Keywords. The author(s) should pick words that accurately describe
-%% the work being presented. Separate the keywords with commas.
-\keywords{entity resolution, data cleansing, programming contest}
-
-
-%%
-%% This command processes the author and affiliation and title
-%% information and builds the first part of the formatted document.
-\maketitle
-
-\let\thefootnote\relax\footnotetext{AEPRO 2025, March 1, Jena, Germany. Copyright \copyright 2025 for this paper by its authors. Use permitted under Creative Commons License Attribution 4.0 International (CC BY 4.0).}
-
-
-\section{Introduction}
-
-
-\subsection{Background}
-
 \subsection{Related Work}
-I used this~\cite{hptt2017} C++ library 
+In order to implement einsum, it is necessary to transpose tensors. To this end, I used {this external C++ library}~\cite{hptt2017}.
 
-\subsection{Our Contributions}
+\subsection{My Contributions}
+In order to have a complete einsum implementation, many steps are necessary, like parsing the input string, transposing and reshaping the operand tensors, reducing them, batch matrix multiply them, and reshape and retranspose the resulting matrix again. The details of all of these steps can be found in section \ref{sec:algorithm}. Implementing these individual operations, as well as orchestrating all of them, was part of this project.
 
 \subsection{Outline}
+Next, I present the implemented algorithm in more detail, and explain the design choices (section \ref{sec:algorithm}). After that, we use this implementation to do tensor operations on NumPy arrays, and compare the running times with NumPy's einsum implementation (section \ref{sec:experiments}). To this end, we test different einsum calls, some with much emphasize on individual tensor operations like transposing, reducing or contracting, and other calls which require a combination of these operations.
+Finally, we analyze the findings and draw conclusions (section \ref{sec:conclusions}).
 
 
 
 \section{The Algorithm}
+\label{sec:algorithm}
 
-\subsection{Internal Representation of Mock Labels}
+\subsection{Prerequisites}
+At this point, the reader should be familiar how einsum categorizes the dimensions of tensors (based on the format string), and how to treat the tensors accordingly. We only focus on two operand and one result tensor, and we only consider the three fundamental tensor operations described above. We store all our tensors in \em row-major order\em .
 
 
-\subsection{Efficient Preprocessing of Input Data}
-\label{sub:sec:preprocessing}
+\subsection{Parsing the Input}
+Firstly, we need to ensure the inputs are valid. Since we get a generic \texttt{PyObject*} as input, this includes checking if we have three objects: a string, and two NumPy arrays of the same data type. This basic parsing is done in \texttt{src/einspeed.cpp}.
 
-The following findings are important to speed up preprocessing of the input data:
+~\\
+Next, we have to ensure that the tuple \texttt{(std::string, Tensor<T>, Tensor<T>)} is a valid einsum expression. To this end, I implemented \texttt{is\_valid\_einsum\_expression} function found in \texttt{include/compute\_einsum.h}. It checks the following five criteria:
 
+\begin{enumerate}
+  \item Every character in target\_string must be present in either lhs\_string or rhs\_string.
+  \item There are no duplicate characters in lhs\_string, rhs\_string or target\_string.
+  \item The size of lhs\_string must match the number of dimensions of lhs\_tensor. The same for rhs\_string and rhs\_tensor.
+  \item Common column identifiers in lhs\_string and rhs\_string must correspond to matching dimension sizes in lhs\_tensor and rhs\_tensor.
+\end{enumerate}
+
+In case the tuple passed all these checks, the function won't throw any error, and hence we can now proceed with the function \texttt{compute\_einsum} knowing we have a valid einsum expression.
+
+
+\subsection{Computing Einsum}
+\subsubsection{Categorizing Dimensions}
+We now investigate the orchestrating function \texttt{compute\_einsum} further.
+The first step is to categorize each dimension of the two input tensors into one of the four categories \em batch, kept left, contracted \em or \em summed left \em in case of the left hand side tensor, similarly for the right hand side. We do this by simply looping over all so called \em column identifiers \em specified by the format string (columnn identifiers are basically just the individual characters in the string) and checking if this identifier is also present in the \texttt{rhs\_string} and \texttt{target\_string}. Based on these checks we assign the categories, see table~\ref{tab:column_identifiers}. We do similarly for the right hand side. We store the indices in appropriate arrays, for example, all the dimension indices which are batch dimensions in the \texttt{lhs\_tensor} will be stored in \texttt{batch\_dims\_lhs}.
+
+\subsubsection{Transposing and Reshaping Operand Tensors}
+Now that we have categorized all the dimensions, we bring both tensors into the canonical form
+
+\[ \text{lhs\_tensor}[\vec{b}, \vec{k_l}, \vec{c}, \vec{s_l}] \ , \ \text{rhs\_tensor}[\vec{b}, \vec{k_r}, \vec{c}, \vec{s_r}] \quad . \]
+
+One very important detail is that the order of the \em batch \em and \em contracted \em dimensions after transposing have the same ordering in the operand tensors. To illustrate this, say we have the einsum expression \texttt{einsum("ab,ba->", lhs\_matrix, rhs\_matrix)}. Naively, there is no need to transpose both matrices, as both of them are in the canonical form (every dimension is a contraction dimension). However, the orderings of these contracted dimensions do not match, hence we do need to transpose a matrix, either the left or the right hand side.
+
+~\\
+To this end, the algorithm reorders the indices-lists for the right hand side such that the resulting order of column identifiers matches the left hand side. For this purpose, we employ the function \texttt{column\_identifiers\_like}.
+
+~\\
+Furthermore, it is worth mentioning that there are different ways to transpose tensors. One way is the "lazy" way, where we just alter meta attributes of the tensor, in particular we alter the \em strides\em , which specify by "how much" we have to multiply an index of a given dimension in order to get the physical index to access the element in the underlying data array. This lazy way of doing it is very fast, as there is no need to move large amount of data. However, there is one big problem: If a tensor has non-canonical strides, we cannot reshape it. This is very bad, because we actually do want to reshape the tensors afterwards. Hence, we need to use the other way of transposing tensors: In he "eager" approach we basically move the data such that it is aligned with the new ordering of the dimensions. This is obviously much more expensive time and space complexity wise, but there is at least one benefit: The data is well aligned for the next operation (after reshaping): The following reduction operation will benefit from a stride access pattern of 1.
+
+\subsubsection{Reducing Operand Tensors}
+Now that we have both operand tensors in the desired shape, we have a fix plan on how to operate on these tensors, which means the following precedure is identical to all possible inputs. Only the reshaping and transposing of the result matrix at the very end needs specific treatment.
+
+We start by reducing the fourth dimension of both operand tensors. This is fairly efficient as we have efficient access patterns as described earlier. After that, the two tensors will have the following form:
+
+\[ \text{lhs\_tensor}[\vec{b}, \vec{k_l}, \vec{c}] \ , \ \text{rhs\_tensor}[\vec{b}, \vec{k_r}, \vec{c}] \quad . \]
+
+It is worth mentioning that it might be possible to combine all of these operations so far (transposing, reshaping, reducing fourth dimension) into one big one. This will at least save some memory, as now we have three tensors for each operand tensor in memory: The original one which we have to leave untouched, the transposed one, as well as the reduced one. I still decided to implement it this way, as this approach is more modular. Furthermore, I initially implemented a transpose method myself, but I realized that it was the bottleneck of my implementation. Hence, I decided to use an external library for transposing, such that the performance of my implementation is not limited by a poor implemented transposing function.
+
+Of course we can now free both transposed tensors after the reduction operation, which we also do. However, I figured that it might be beneficial to actually keep some memory, preferably from the bigger tensor, in order to later reuse it for the result of the following batch matrix multiplication operation.
+
+\subsubsection{Batch Matrix Multiplication}
+Now we take care of contracting the appropriate dimensions by performing a batch matrix multiplication. Note, though, that the contraction dimensions are the last one in each operand tensor (the third dimension), and hence we actually perform a \em batch matrix matmul transpose \em operation, i.e. we treat the rhs operand batch matrices as being transposed. I chose this implementation, as this way we have a stride of one when multiplying individual matrices of a batch both in the lhs and rhs matrix, with respect to the inner most loop. Consequently, this ensures excellent spatial locality and hence we make perfect use of the cache. The result of this operation will be the three dimensiol tensor \texttt{bmm\_result}, with dimension sizes
+
+\[ \text{bmm\_result} = [b, k_l, k_r] \quad . \]
+
+As hinted, we might store the result of this operation in previously allocated memory, all provided that the memory region is big enough. Otherwise we do have to allocate new memory. The question whether our available memory is sufficient for the new data depends on on the dimension sizes of the operand tensors and their categorized dimensions: We have
+
+\begin{align*}
+|\text{lhs\_tensor}| &= b \cdot k_l \cdot c \cdot s_l \\
+|\text{rhs\_tensor}| &= b \cdot k_r \cdot c \cdot s_r \\
+|\text{bmm\_result}| &= b \cdot k_l \cdot k_r \quad ,
+\end{align*}
+
+and hence the memory will be sufficiently big enough iff
+
+\[ c \cdot s_l \geq k_r \]
+
+in case that the lhs tensor is the bigger one of the two (similar if rhs tensor is bigger).
+
+
+\subsubsection{Reshaping and Transposing the Result}
+Now, there is only one final step: Bringing \texttt{bmm\_result} in the correct shape specified by the format string. To this end, we have to firstly split the current three dimensions of our result tensor into the individual ones. Hence, we we look at our inital tensors and their column identifiers again to get the dimension sizes.
+
+For example, so split the batch dimension, we check the the batch dimensions of \texttt{lhs\_tensor} and store their specific dimension sizes in the same order as they are present in the tensor. We do this, as our \texttt{bmm\_result} tensor has the same ordering of its data with respect to the batch dimension as \texttt{lhs\_tensor}. Note that we specifically transposed \texttt{rhs\_tensor} to match the batch and contraction order of \texttt{lhs\_tensor}.
+
+After doing similar for the remaining two dimensions, we reshape our tensor accordingly. Now we have the result tensor as desired, only with potential wrong ordering of the dimensions. Hence, we need a final transposition. But instead of creating a whole new tensor and doing an expensive transpose call, we are very lazy and just return the current tensor as is, only with accordingly altered strides metadata.
+
+To illustrate this, say we have a matrix a 5x10 matrix $M$, and we want to transpose it. When accessing $M[i][j]$ we have to calculate the physical index of the row-major order stored matrix. Hence:
+
+\[ \text{physical\_index}_M(i, j) = 10 \cdot i + 1 \cdot j \quad . \]
+
+When we now transpose this matrix, we can alter this translation function instead of actually moving the data. In this example:
+
+\[ \text{physical\_index}_{M^T}(i, j) = 1 \cdot i + 10 \cdot j \quad . \]
+
+This means that instead of moving data, we transpose the coefficients of this function. These coefficients are stored as \em strides \em in the metadata of a tensor. NumPy does so as well, and hence we employ this by doing this final transposition the lazy manner by setting these NumPy metadata attributes.
+
+This implementation choice is not "cheating", as NumPy's einsum implementation does the same lazy transposition. Hence, it is only fair to do so myself, as this way we get more meaningful comparisons. To prove my point, run the following lines of Python:
+
+\begin{verbatim}
+import numpy as np
+matrix = np.array([[1,2],[3,4]])
+print(matrix.strides)
+transposed = np.einsum("ab,c->ba", matrix, np.array([1]))
+print(transposed.strides)
+\end{verbatim}
+
+You will likely see that the strides got altered simply.
+
+
+\subsection{Transposition Method}
+Let us now take a closer look at the smaller "puzzle pieces" making up the main \texttt{comput\_einsum} function, starting with the tensor transposition method. As already discussed, I chose to use an external library for this purpose, and hence there is not much to analyze, as we just pass the control flow to the library. It is important to note though that we allocate memory for another tensor each call, as this is necessary for the library call, as well as ensuring that the original tensor stays constant. Hence the constant specifier in the method declaration.
+% TODO: write about how efficient it is, vectoriziation, multi threading etc.
+
+\subsection{Reshaping Method}
+The implementation of this method is very sraight forward. As discussed, when calling this method, we ensure that the tensor has canonical strides, as in this case we only have to change the meta attributes \texttt{ndim} and \texttt{shapes}. There isn't else much to say, this is a simple and fast method which will run in $O(1)$.
+
+\subsection{Reduction Method}
+This method is not very generic, as it will only reduce the last dimension of the tensor. By doing so, I kept the implementation simple yet it is sufficient for our computations. At the beginning we have to allocate memory for the resulting tensor. This is the first method we look at which has an impact on performance, thus we should be cautious with implementation choices. Hence, we write the folowing compiler-optimization-friendly code:
+
+\begin{verbatim}
+#pragma omp parallel for
+for (size_t i = 0; i < target_size; i++) {
+    T sum = 0;
+    size_t start_idx = i * last_dimension;
+    size_t end_idx = start_idx + last_dimension;
+
+    for (size_t k = start_idx; k < end_idx; k++) {
+        sum += this->data[k];
+    }
+    
+    target_data[i] = sum;
+}
+\end{verbatim}
+
+Clearly, this code is very efficient. There are two minor problems though: First, there is a potential risk of overflow when summing up the values. Second, we parallelize the outer most loop, which is a wise choice, but in very rare cases when \texttt{target\_size} equals one, like when reducing a one-dimensional vector, there won't be any parallelization.
+
+To quickly address both issues, let me point out that, first, in the case of an overflow, there is not much that can be done other than throwing an error. However, implementing this would create overhead, and hence, it is ultimately the responsibility of the user to ensure correct computations. Second, we just accept that we are unlucky if such a case happens. There is also no quick fix, as both loops cannot get collapsed into one because of the line \texttt{T sum = 0;}, and also we would need to write template specializations for every possible type \texttt{T}, as else the compiler won't compile omp reduction clause. In the end, it comes down to keeping the implementation simple (\em KISS\em ).
+
+% TODO: Explain vectorized versions
+Despite that, I actually tried to optimize this method by using explicit vectorization in specialized template methods. Interestingly, they don't seem to have any performance benefits compared to the generic implementation, which is probably due to the fact that modern compilers will vectorize the generic implementation as well. The code is pretty much self explanatory, we do employ an expensive \texttt{loadu} instead of a \texttt{load} vector instruction, as the data won't be aligned generally.
+
+
+\subsection{Batch Matrix Multiplication}
+Let us now investigate the final sub-function \texttt{batch\_matrix\_matmul\_transpose} found in \texttt{include/}. It is basically very straight forward, also note that we treat the rhs operand batch matrices as transposed, which allows for small strides in the inner most loop. We begin by allocating the memory needed for the output, but before allocating new memory, we check if the available memory we reserved is sufficiently large to hold the new data, and if so use it instead. Next, loop over the batch dimension, loop over the rows of lhs tensor, and loop over the rows of rhs tensor (as it is transposed). We collapse these three loops into one, and inside every iteration, which specifies one entry in the output tensor, we perform an inner product between the two last dimensions of the operand tensors at the specified index. In code it looks like this:
+
+\begin{verbatim}
+#pragma omp parallel for collapse(3)
+for (size_t b = 0; b < batch_size; ++b) {
+    for (size_t i = 0; i < rows; ++i) {
+        for (size_t j = 0; j < cols; ++j) {
+            const T* lhs_row = lhs.data + b * rows * inner_dim + i * inner_dim;
+            const T* rhs_col = rhs.data + b * cols * inner_dim + j * inner_dim;
+            T* result_row = result_data + b * rows * cols + i * cols;
+
+            T sum = T(); // Initialize sum as zero for type T
+            for (size_t k = 0; k < inner_dim; ++k) {
+                sum += lhs_row[k] * rhs_col[k];
+            }
+            result_row[j] = sum;
+        }
+    }
+}
+\end{verbatim}
+
+We face the \textbf{exact} problems we faced at the reduction method, and my responses are the same, we just keep the implementation simple for the sake of demonstration. This function could be manually vectorized as well, but the compiler should do a decent job at optimizing this function, and hence we shouldn't face a big performance penalty.
+
+% overflow, data types, combining methods
+\subsection{Parameter Specification}
+As hinted multiple times, my einsum implementation is not very complete but rather specific. For example, NumPy's implementation also supports passing only one tensor as an argument, passing scalars as arguments, or calculating traces just to name a few features.
+
+For the sake of simplicity my implementation only accepts two (multi-dimensional) NumPy arrays of the same data type, and only implements transposition, reduction, and contraction. It is able to return a scalar value though, and there is also a workaround to only passing in one NumPy array: Just pass in \texttt{np.array([1], dtype)} as a second operand, and specify the only dimension as a reduction one. This will have the same effect as only passing in the original tensor, and there is also little overhead, since in my implementation I check whether one operand tensor is a scalar with value \texttt{T(1)}, and if so skip the batch matrix multiplication.
+
+Also, supported data types are limited by those supported by the external transposition library. Hence, integer value are actually not supported. The only supported data types are \texttt{np.float64} and \texttt{np.complex128}.
+
+
+\subsection{Possible Improvements}
+My implementation lacks some functionality to be used as a library itself. But the implementation could be a good starting point for building one, and because it is written fairly modular, it can be augmented without much effort.
+
+There are several Improvements one could make, but the most obvious ones are:
 \begin{itemize}
-\item Reading many small files concurrently, with multiple threads (compared to a single thread), takes advantage of the internal parallelism of SSDs and thus leads to higher throughput \cite{Zhuang2016}.
-
-\item C-string manipulation functions are often significantly faster than their C++ pendants. For example, locating substrings with \texttt{strstr} is around five times faster than using the C++ \texttt{std::string} function \texttt{find}.
-
-\item Hardcoding regular expressions with \emph{while, for, switch} or \emph{if-else} statements results in faster execution times than using standard RegEx libraries, where regular expressions are compiled at runtime into state machines.
-
-\item Changing strings in place, instead of treating them as immutable objects, eliminates allocation and copying overhead.
-
+  \item Augmenting supported data types. Therefore a new implementation of the transposition method is needed.
+  \item More support for parameters, maybe also tensors of different data types, different operations, etc.
+  \item More optimized main method, more heuristics, etc.
+  \item More optimized sub methods, improving parallelization, vectorization by checking for aligned data, etc.
 \end{itemize}
 
-
 \section{Experiments}
+\label{sec:experiments}
 
 Table~\ref{tab:results} shows the running times of the resolution step of the five best placed teams.
 
@@ -158,6 +325,7 @@ laptop running Ubuntu 19.04 with 16 GB of RAM and two Intel Core i5-4310U CPUs. 
 
 
 \section{Conclusions}
+\label{sec:conclusions}
 
 %%
 %% The next two lines define the bibliography style to be used, and

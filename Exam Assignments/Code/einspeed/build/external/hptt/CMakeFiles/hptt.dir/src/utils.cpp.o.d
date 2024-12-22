@@ -1,5 +1,5 @@
 external/hptt/CMakeFiles/hptt.dir/src/utils.cpp.o: \
- /home/jonas/Documents/University/5.\ Semester/Algorithm\ Engineering/Exam\ Assignments/Code/einspeed/external/hptt/src/utils.cpp \
+ /home/john/Documents/Uni/Algorithm-Engineering/Exam\ Assignments/Code/einspeed/external/hptt/src/utils.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/13/vector \
  /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \

@@ -1,26 +1,26 @@
 [
 {
-  "directory": "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/external/hptt",
-  "command": "/usr/bin/c++  -I\"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/main\" -I\"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/PUBLIC\" -I\"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/include\" -I\"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/include\" -std=gnu++11 -fPIC -fopenmp -march=native -mtune=native -fopenmp -o CMakeFiles/hptt.dir/src/hptt.cpp.o -c \"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/src/hptt.cpp\"",
-  "file": "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/src/hptt.cpp",
+  "directory": "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/external/hptt",
+  "command": "/usr/bin/c++  -I\"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/main\" -I\"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/PUBLIC\" -I\"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/include\" -I\"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/include\" -std=gnu++11 -fPIC -fopenmp -march=native -mtune=native -fopenmp -o CMakeFiles/hptt.dir/src/hptt.cpp.o -c \"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/src/hptt.cpp\"",
+  "file": "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/src/hptt.cpp",
   "output": "external/hptt/CMakeFiles/hptt.dir/src/hptt.cpp.o"
 },
 {
-  "directory": "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/external/hptt",
-  "command": "/usr/bin/c++  -I\"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/main\" -I\"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/PUBLIC\" -I\"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/include\" -I\"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/include\" -std=gnu++11 -fPIC -fopenmp -march=native -mtune=native -fopenmp -o CMakeFiles/hptt.dir/src/plan.cpp.o -c \"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/src/plan.cpp\"",
-  "file": "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/src/plan.cpp",
+  "directory": "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/external/hptt",
+  "command": "/usr/bin/c++  -I\"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/main\" -I\"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/PUBLIC\" -I\"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/include\" -I\"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/include\" -std=gnu++11 -fPIC -fopenmp -march=native -mtune=native -fopenmp -o CMakeFiles/hptt.dir/src/plan.cpp.o -c \"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/src/plan.cpp\"",
+  "file": "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/src/plan.cpp",
   "output": "external/hptt/CMakeFiles/hptt.dir/src/plan.cpp.o"
 },
 {
-  "directory": "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/external/hptt",
-  "command": "/usr/bin/c++  -I\"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/main\" -I\"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/PUBLIC\" -I\"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/include\" -I\"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/include\" -std=gnu++11 -fPIC -fopenmp -march=native -mtune=native -fopenmp -o CMakeFiles/hptt.dir/src/transpose.cpp.o -c \"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/src/transpose.cpp\"",
-  "file": "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/src/transpose.cpp",
+  "directory": "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/external/hptt",
+  "command": "/usr/bin/c++  -I\"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/main\" -I\"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/PUBLIC\" -I\"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/include\" -I\"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/include\" -std=gnu++11 -fPIC -fopenmp -march=native -mtune=native -fopenmp -o CMakeFiles/hptt.dir/src/transpose.cpp.o -c \"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/src/transpose.cpp\"",
+  "file": "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/src/transpose.cpp",
   "output": "external/hptt/CMakeFiles/hptt.dir/src/transpose.cpp.o"
 },
 {
-  "directory": "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/external/hptt",
-  "command": "/usr/bin/c++  -I\"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/main\" -I\"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/PUBLIC\" -I\"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/include\" -I\"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/include\" -std=gnu++11 -fPIC -fopenmp -march=native -mtune=native -fopenmp -o CMakeFiles/hptt.dir/src/utils.cpp.o -c \"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/src/utils.cpp\"",
-  "file": "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/src/utils.cpp",
+  "directory": "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/external/hptt",
+  "command": "/usr/bin/c++  -I\"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/main\" -I\"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/PUBLIC\" -I\"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/include\" -I\"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/include\" -std=gnu++11 -fPIC -fopenmp -march=native -mtune=native -fopenmp -o CMakeFiles/hptt.dir/src/utils.cpp.o -c \"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/src/utils.cpp\"",
+  "file": "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/src/utils.cpp",
   "output": "external/hptt/CMakeFiles/hptt.dir/src/utils.cpp.o"
 }
 ]

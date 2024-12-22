@@ -9,6 +9,7 @@ template <typename T>
 constexpr int numpy_type_of() {throw std::runtime_error("Unsupported data type for NumPy array");}
 
 template<> constexpr int numpy_type_of<long>() {return NPY_INT64;}
+template<> constexpr int numpy_type_of<float>() {return NPY_FLOAT32;}
 template<> constexpr int numpy_type_of<double>() {return NPY_FLOAT64;}
 template<> constexpr int numpy_type_of<std::complex<double>>() {return NPY_COMPLEX128;}
 
@@ -20,6 +21,11 @@ struct numpy_to_cpp_type;
 template <>
 struct numpy_to_cpp_type<NPY_INT64> {
     using type = int64_t;
+};
+
+template<>
+struct numpy_to_cpp_type<NPY_FLOAT32> {
+    using type = float;
 };
 
 template <>
@@ -51,6 +57,7 @@ const int NUMPY_TYPES[] = {
 
 constexpr const int SUPPORTED_NUMPY_TYPES[] = {
     // NPY_INT64, // no int64, as hptt does not support it
+    NPY_FLOAT32,
     NPY_FLOAT64,
     NPY_COMPLEX128
 };

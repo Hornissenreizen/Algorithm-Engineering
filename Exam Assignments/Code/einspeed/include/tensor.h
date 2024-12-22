@@ -349,7 +349,7 @@ Tensor<float> Tensor<float>::reduce() const {
         __m256 vec_sum = _mm256_setzero_ps(); // Initialize to zero
         
         for (size_t k = start_idx; k < start_idx + last_dimension; k += 8) {
-            // Load 4 values at once
+            // Load 8 values at once
             __m256 vec_vals = _mm256_loadu_ps(&this->data[k]);
             vec_sum = _mm256_add_ps(vec_sum, vec_vals); // Add the values
         }

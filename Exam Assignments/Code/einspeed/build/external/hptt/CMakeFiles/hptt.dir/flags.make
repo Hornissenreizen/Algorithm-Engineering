@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/main" -I"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/PUBLIC" -I"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/include" -I"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/external/hptt/include"
+CXX_INCLUDES = -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/main" -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/PUBLIC" -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/include" -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/include"
 
 CXX_FLAGS = -std=gnu++11 -fPIC -fopenmp -march=native -mtune=native -fopenmp
 

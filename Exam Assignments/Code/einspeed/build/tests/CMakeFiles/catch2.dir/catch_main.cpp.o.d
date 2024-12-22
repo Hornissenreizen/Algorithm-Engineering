@@ -1,7 +1,7 @@
 tests/CMakeFiles/catch2.dir/catch_main.cpp.o: \
- /home/jonas/Documents/University/5.\ Semester/Algorithm\ Engineering/Exam\ Assignments/Code/einspeed/tests/catch_main.cpp \
+ /home/john/Documents/Uni/Algorithm-Engineering/Exam\ Assignments/Code/einspeed/tests/catch_main.cpp \
  /usr/include/stdc-predef.h \
- /home/jonas/Documents/University/5.\ Semester/Algorithm\ Engineering/Exam\ Assignments/Code/einspeed/tests/catch/include/catch.hpp \
+ /home/john/Documents/Uni/Algorithm-Engineering/Exam\ Assignments/Code/einspeed/tests/catch/include/catch.hpp \
  /usr/include/c++/13/cstddef \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \

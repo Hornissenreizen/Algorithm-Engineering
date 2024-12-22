@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed"
+CMAKE_SOURCE_DIR = "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build"
+CMAKE_BINARY_DIR = "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build"
 
 # Include any dependencies generated for this target.
 include src/CMakeFiles/einspeed.dir/depend.make
@@ -70,18 +70,18 @@ include src/CMakeFiles/einspeed.dir/progress.make
 include src/CMakeFiles/einspeed.dir/flags.make
 
 src/CMakeFiles/einspeed.dir/einspeed.cpp.o: src/CMakeFiles/einspeed.dir/flags.make
-src/CMakeFiles/einspeed.dir/einspeed.cpp.o: /home/jonas/Documents/University/5.\ Semester/Algorithm\ Engineering/Exam\ Assignments/Code/einspeed/src/einspeed.cpp
+src/CMakeFiles/einspeed.dir/einspeed.cpp.o: /home/john/Documents/Uni/Algorithm-Engineering/Exam\ Assignments/Code/einspeed/src/einspeed.cpp
 src/CMakeFiles/einspeed.dir/einspeed.cpp.o: src/CMakeFiles/einspeed.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/einspeed.dir/einspeed.cpp.o"
-	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/src" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/einspeed.dir/einspeed.cpp.o -MF CMakeFiles/einspeed.dir/einspeed.cpp.o.d -o CMakeFiles/einspeed.dir/einspeed.cpp.o -c "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/src/einspeed.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/einspeed.dir/einspeed.cpp.o"
+	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/src" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/einspeed.dir/einspeed.cpp.o -MF CMakeFiles/einspeed.dir/einspeed.cpp.o.d -o CMakeFiles/einspeed.dir/einspeed.cpp.o -c "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/src/einspeed.cpp"
 
 src/CMakeFiles/einspeed.dir/einspeed.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/einspeed.dir/einspeed.cpp.i"
-	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/src" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/src/einspeed.cpp" > CMakeFiles/einspeed.dir/einspeed.cpp.i
+	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/src" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/src/einspeed.cpp" > CMakeFiles/einspeed.dir/einspeed.cpp.i
 
 src/CMakeFiles/einspeed.dir/einspeed.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/einspeed.dir/einspeed.cpp.s"
-	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/src" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/src/einspeed.cpp" -o CMakeFiles/einspeed.dir/einspeed.cpp.s
+	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/src" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/src/einspeed.cpp" -o CMakeFiles/einspeed.dir/einspeed.cpp.s
 
 # Object files for target einspeed
 einspeed_OBJECTS = \
@@ -96,18 +96,18 @@ src/einspeed.so: external/hptt/libhptt.a
 src/einspeed.so: /usr/lib/gcc/x86_64-linux-gnu/13/libgomp.so
 src/einspeed.so: /usr/lib/x86_64-linux-gnu/libpthread.a
 src/einspeed.so: src/CMakeFiles/einspeed.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library einspeed.so"
-	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/src" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/einspeed.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library einspeed.so"
+	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/src" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/einspeed.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/CMakeFiles/einspeed.dir/build: src/einspeed.so
 .PHONY : src/CMakeFiles/einspeed.dir/build
 
 src/CMakeFiles/einspeed.dir/clean:
-	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/src" && $(CMAKE_COMMAND) -P CMakeFiles/einspeed.dir/cmake_clean.cmake
+	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/src" && $(CMAKE_COMMAND) -P CMakeFiles/einspeed.dir/cmake_clean.cmake
 .PHONY : src/CMakeFiles/einspeed.dir/clean
 
 src/CMakeFiles/einspeed.dir/depend:
-	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed" "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/src" "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build" "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/src" "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Code/einspeed/build/src/CMakeFiles/einspeed.dir/DependInfo.cmake" "--color=$(COLOR)"
+	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed" "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/src" "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/src" "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/src/CMakeFiles/einspeed.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : src/CMakeFiles/einspeed.dir/depend
 

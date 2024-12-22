@@ -1,0 +1,6 @@
+python3
+numpy
+make
+cmake
+
+remove cache from cmake
