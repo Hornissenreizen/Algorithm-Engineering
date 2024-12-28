@@ -158,8 +158,6 @@ public:
         return numpy_array;
     }
 
-    
-
 
     // Reshape method
     Tensor<T>& reshape(const std::vector<size_t>& new_shape) {
@@ -185,17 +183,19 @@ public:
     Tensor<T> reduce() const {
         // reduces over the last dimension
         const size_t last_dimension = this->shape[this->ndim-1];
-        const size_t target_size = this->calculate_size(this->shape, this->ndim) / last_dimension;
-        T* target_data = new T[target_size];
+        const size_t target_size = Tensor<T>::calculate_size(this->shape, this->ndim - 1);
+        T* target_data = nullptr;
+        posix_memalign((void**)&target_data, 32, target_size * sizeof(T));
+        T* data = this->data;
 
-        #pragma omp parallel for
+        #pragma omp parallel for simd aligned(data: 32) aligned(target_data: 32)
         for (size_t i = 0; i < target_size; i++) {
             T sum = 0;
             size_t start_idx = i * last_dimension;
             size_t end_idx = start_idx + last_dimension;
 
             for (size_t k = start_idx; k < end_idx; k++) {
-                sum += this->data[k];
+                sum += data[k];
             }
             
             target_data[i] = sum;
@@ -209,10 +209,6 @@ public:
 
     // Utility Methods
 
-    bool inline is_scalar() const {
-        return ndim == 0 && data;
-    }
-    
     static size_t calculate_size(const size_t* shape, size_t ndim) {
         size_t size = 1;
         for (size_t i = 0; i < ndim; ++i) {
@@ -314,7 +310,8 @@ Tensor<T> Tensor<T>::transpose(const std::vector<size_t>& perm) const {
         new_shape[i] = shape[perm[i]];
     }
 
-    T* transposed = new T[Tensor<T>::calculate_size(shape, ndim)];
+    T* transposed = nullptr;
+    posix_memalign((void**)&transposed, 32, Tensor<T>::calculate_size(shape, ndim) * sizeof(T));
     int* tmp_size = cast_all<size_t, int>(ndim, shape);
     int* tmp_perm = cast_all<size_t, int>(ndim, perm.data());
     // create a plan (shared_ptr)
@@ -327,7 +324,7 @@ Tensor<T> Tensor<T>::transpose(const std::vector<size_t>& perm) const {
     delete[] tmp_size;
     delete[] tmp_perm;
     Tensor<T> result(ndim, new_shape, transposed);
-    delete new_shape;
+    delete[] new_shape;
     return result;
 }
 
@@ -337,8 +334,9 @@ Tensor<T> Tensor<T>::transpose(const std::vector<size_t>& perm) const {
 template <>
 Tensor<float> Tensor<float>::reduce() const {
     const size_t last_dimension = this->shape[this->ndim-1];
-    const size_t target_size = this->calculate_size(this->shape, this->ndim) / last_dimension;
-    float* target_data = new float[target_size];
+    const size_t target_size = Tensor<float>::calculate_size(this->shape, this->ndim - 1);
+    float* target_data = nullptr;
+    posix_memalign((void**)&target_data, 32, target_size * sizeof(float));
 
     #pragma omp parallel for
     for (size_t i = 0; i < target_size; i++) {
@@ -350,7 +348,7 @@ Tensor<float> Tensor<float>::reduce() const {
         
         for (size_t k = start_idx; k < start_idx + last_dimension; k += 8) {
             // Load 8 values at once
-            __m256 vec_vals = _mm256_loadu_ps(&this->data[k]);
+            __m256 vec_vals = _mm256_load_ps(&this->data[k]);
             vec_sum = _mm256_add_ps(vec_sum, vec_vals); // Add the values
         }
 
@@ -367,8 +365,9 @@ Tensor<float> Tensor<float>::reduce() const {
 template <>
 Tensor<double> Tensor<double>::reduce() const {
     const size_t last_dimension = this->shape[this->ndim-1];
-    const size_t target_size = this->calculate_size(this->shape, this->ndim) / last_dimension;
-    double* target_data = new double[target_size];
+    const size_t target_size = Tensor<double>::calculate_size(this->shape, this->ndim - 1);
+    double* target_data = nullptr;
+    posix_memalign((void**)&target_data, 32, target_size * sizeof(double));
 
     #pragma omp parallel for
     for (size_t i = 0; i < target_size; i++) {
@@ -380,7 +379,7 @@ Tensor<double> Tensor<double>::reduce() const {
         
         for (size_t k = start_idx; k < start_idx + last_dimension; k += 4) {
             // Load 4 values at once
-            __m256d vec_vals = _mm256_loadu_pd(&this->data[k]);
+            __m256d vec_vals = _mm256_load_pd(&this->data[k]);
             vec_sum = _mm256_add_pd(vec_sum, vec_vals); // Add the values
         }
 

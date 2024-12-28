@@ -10,7 +10,7 @@
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{tab:column_identifiers}{{1}{1}{Column Identifiers of Einsum Expression}{table.caption.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Related Work}{1}{subsection.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}My Contributions}{1}{subsection.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}My Contributions}{2}{subsection.1.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Outline}{2}{subsection.1.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}The Algorithm}{2}{section.2}\protected@file@percent }
 \newlabel{sec:algorithm}{{2}{2}{The Algorithm}{section.2}{}}
@@ -24,10 +24,13 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.5}Reshaping and Transposing the Result}{3}{subsubsection.2.3.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Transposition Method}{3}{subsection.2.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Reshaping Method}{3}{subsection.2.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Reduction Method}{4}{subsection.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Reduction Method}{3}{subsection.2.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.7}Batch Matrix Multiplication}{4}{subsection.2.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.8}Parameter Specification}{4}{subsection.2.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.9}Possible Improvements}{4}{subsection.2.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8}Parameter Specification}{5}{subsection.2.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.9}Possible Improvements}{5}{subsection.2.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experiments}{5}{section.3}\protected@file@percent }
+\newlabel{sec:experiments}{{3}{5}{Experiments}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Correctness}{5}{subsection.3.1}\protected@file@percent }
 \bibstyle{ACM-Reference-Format}
 \bibdata{literature}
 \bibcite{hptt2017}{{1}{2017}{{Springer et~al\mbox  {.}}}{{}}}
@@ -38,12 +41,11 @@
 \newlabel{tocindent3}{18.198pt}
 \newlabel{tocindent4}{0pt}
 \newlabel{tocindent5}{0pt}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Experiments}{5}{section.3}\protected@file@percent }
-\newlabel{sec:experiments}{{3}{5}{Experiments}{section.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Comparison of the F-measure and the running times of the resolution step of the five best placed teams. The input data for the resolution step consisted of 29{,}787 in JSON formatted e-commerce websites. Measurements were taken on a laptop running Ubuntu 19.04 with 16 GB of RAM and two Intel Core i5-4310U CPUs. The underlying SSD was a 500\,GB 860 EVO mSATA. We cleared the page cache, dentries, and inodes before each run to avoid reading the input data from RAM instead of the SSD.}}{5}{table.caption.5}\protected@file@percent }
-\newlabel{tab:results}{{2}{5}{Comparison of the F-measure and the running times of the resolution step of the five best placed teams. The input data for the resolution step consisted of 29{,}787 in JSON formatted e-commerce websites. Measurements were taken on a laptop running Ubuntu 19.04 with 16 GB of RAM and two Intel Core i5-4310U CPUs. The underlying SSD was a 500\,GB 860 EVO mSATA. We cleared the page cache, dentries, and inodes before each run to avoid reading the input data from RAM instead of the SSD}{table.caption.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusions}{5}{section.4}\protected@file@percent }
-\newlabel{sec:conclusions}{{4}{5}{Conclusions}{section.4}{}}
-\@writefile{toc}{\contentsline {section}{References}{5}{section*.7}\protected@file@percent }
-\newlabel{TotPages}{{5}{5}{}{page.5}{}}
-\gdef \@abspage@last{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Performance}{6}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusions}{6}{section.4}\protected@file@percent }
+\newlabel{sec:conclusions}{{4}{6}{Conclusions}{section.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Comparison of einsum running times. Both NumPy's and my einspeed implementation are tested at varying problem sizes. The problem size specifies the number of entries in the two input tensors. Running times are measured in seconds, the speedup describes the fraction $\frac  {numpy\_time}{einspeed\_time}$. Measurements were taken on a PC running Ubuntu 24.04 with 32 GB of RAM and an AMD Ryzen 5 5600G CPU (6 Cores, 12 Threads).}}{6}{table.caption.5}\protected@file@percent }
+\newlabel{tab:results}{{2}{6}{Comparison of einsum running times. Both NumPy's and my einspeed implementation are tested at varying problem sizes. The problem size specifies the number of entries in the two input tensors. Running times are measured in seconds, the speedup describes the fraction $\frac {numpy\_time}{einspeed\_time}$. Measurements were taken on a PC running Ubuntu 24.04 with 32 GB of RAM and an AMD Ryzen 5 5600G CPU (6 Cores, 12 Threads)}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {section}{References}{6}{section*.7}\protected@file@percent }
+\newlabel{TotPages}{{6}{6}{}{page.6}{}}
+\gdef \@abspage@last{6}

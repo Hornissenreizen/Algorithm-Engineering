@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "stdexcept": "cpp",
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "span": "cpp"
+    },
+    "cmake.sourceDirectory": "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed"
+}

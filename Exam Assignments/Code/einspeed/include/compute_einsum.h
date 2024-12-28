@@ -1,8 +1,9 @@
 #ifndef COMPUTE_EINSUM_H
 #define COMPUTE_EINSUM_H
 
-// uncomment the following line to show debug information
+// uncomment the following lines to show debug information
 // #define DEBUG
+// #define DEBUG_VERBOSE
 
 #include <unordered_map>
 #include <unordered_set>
@@ -54,17 +55,17 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
     //
     // bmm_result[batch, kept left, kept right]
     //
-    // To transform it back to the desired shape specified by target_string, we need to track the column identifiers.
+    // To transform it back to the desired shape specified by target_string, we need to reshape and transpose the tensor based on the column specifiers in target_string.
 
+    // Let's start by parsing the format string
     std::string lhs_string, rhs_string, target_string;
     is_valid_einsum_expression(s, lhs_tensor, rhs_tensor, lhs_string, rhs_string, target_string); // throws error if not
 
-    
     // Vectors to store categorized index types
     std::vector<size_t> batch_dims_lhs, kept_left_dims_lhs, contracted_dims_lhs, summed_left_dims_lhs;
     std::vector<size_t> batch_dims_rhs, kept_right_dims_rhs, contracted_dims_rhs, summed_right_dims_rhs;
 
-    // Split lhs_string and rhs_string by identifying the roles of each index (batch, contracted, etc.)
+    // Identifying the roles of each column identifier (batch, contracted, etc.)
     // Staring with lhs_string
     for (size_t i = 0; i < lhs_string.length(); i++) {
         char lhs_char = lhs_string[i];
@@ -98,7 +99,7 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
     Tensor<T> transposed_lhs = lhs_tensor.transpose(merge_vectors({batch_dims_lhs, kept_left_dims_lhs, contracted_dims_lhs, summed_left_dims_lhs}));
     Tensor<T> transposed_rhs = rhs_tensor.transpose(merge_vectors({batch_dims_rhs, kept_right_dims_rhs, contracted_dims_rhs, summed_right_dims_rhs}));
 
-#ifdef DEBUG
+#ifdef DEBUG_VERBOSE
     std::cout << "Transposed Tensors:" << '\n';
     transposed_lhs.print();
     transposed_rhs.print();
@@ -118,7 +119,7 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
                                                 Tensor<T>::calculate_size(multi_index(contracted_dims_rhs, rhs_tensor.shape)),
                                                 Tensor<T>::calculate_size(multi_index(summed_right_dims_rhs, rhs_tensor.shape))}));
 
-#ifdef DEBUG
+#ifdef DEBUG_VERBOSE
     std::cout << "Tensors after reshaping:\n";
     transposed_lhs.print();
     transposed_rhs.print();
@@ -149,7 +150,7 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
         } else delete[] transposed_rhs.data; // no longer needed
     }
 
-#ifdef DEBUG
+#ifdef DEBUG_VERBOSE
     std::cout << "Reduced Matrices:" << '\n';
     reduced_lhs.print();
     reduced_rhs.print();
@@ -179,7 +180,7 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
     }
     }
 
-#ifdef DEBUG
+#ifdef DEBUG_VERBOSE
     std::cout << "Result of Batch Matrix Multiplication:\n";
     bmm_result.print();
 #endif
@@ -206,7 +207,7 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
 
     bmm_result.reshape(target_shape);
 
-#ifdef DEBUG
+#ifdef DEBUG_VERBOSE
     std::cout << "bmm_result after reshaping:\n";
     bmm_result.print();
 #endif
@@ -214,12 +215,14 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
     // Now, we have to transpose it into the correct shape.
     // For that, we have to calculate the permutation in the following manner:
 
-    const std::vector<size_t> target_permutation = get_permutation<char>(merge_vectors<char>({
-        multi_index(batch_dims_lhs, lhs_string.data()),
-        multi_index(kept_left_dims_lhs, lhs_string.data()),
-        multi_index(kept_right_dims_rhs, rhs_string.data()),
-    }), std::vector<char>(target_string.begin(), target_string.end()));
-
+    const std::vector<size_t> target_permutation = get_permutation<char>(
+        std::vector<char>(target_string.begin(), target_string.end()), 
+        merge_vectors<char>({
+            multi_index(batch_dims_lhs, lhs_string.data()),
+            multi_index(kept_left_dims_lhs, lhs_string.data()),
+            multi_index(kept_right_dims_rhs, rhs_string.data()),
+    }));
+    
     return bmm_result.lazy_transpose_and_return_PyObject(target_permutation);
 }
 

@@ -1,5 +1,31 @@
 \documentclass[sigconf]{acmart}
 \usepackage{booktabs}
+\usepackage{pgfplotstable}
+\usepackage{fancyvrb}
+\usepackage{listings}
+\usepackage{etoolbox}
+
+
+\lstset{
+    breaklines=true       % Enable line breaking
+}
+% Define a custom lstlisting command that avoids page breaks
+\BeforeBeginEnvironment{lstlisting}{\noindent\begin{minipage}{\linewidth}}
+\AfterEndEnvironment{lstlisting}{\end{minipage}}
+
+
+% TODO: write acronyms like cpu, gpu capitalized
+
+\setlength{\emergencystretch}{3em} % Allow LaTeX to stretch lines slightly before exceeding width
+\tolerance=1000                   % Allow more "badness" in line breaks before exceeding width
+\hbadness=10000                   % Report warnings for badness levels higher than this value
+
+\pretolerance=2000  % Try harder to find good breaks before a paragraph
+\tolerance=3000     % Relax line-breaking rules further
+\emergencystretch=5em % Allow additional stretch space
+\renewcommand{\texttt}[1]{\begingroup\ttfamily\sloppy\hbadness=10000 #1\endgroup}
+\linepenalty=1000 % Increase the penalty for exceeding width
+\sloppy
 
 
 %% \BibTeX command to typeset BibTeX logo in the docs
@@ -48,7 +74,7 @@
 % The five-finger pattern \cite{macgilchrist2014}:
 \begin{enumerate}
 % \item \textbf{Topic and background:} What topic does the paper deal with? What is the point of departure for your research? Why are you studying this now?
-\item \textbf{Topic and background:} This paper concerns tensor operations, specifically those implemented in the Python library numpy with its \texttt{numpy.einsum} method. Tenor operations are very common in todays data driven world, especially with the rise of \em Deep Learning\em . Hence, we should ensure that those important methods are implemented efficiently, as \em time \em and \em space complexity \em are a big concern when operating on increasingly bigger data. 
+\item \textbf{Topic and background:} This paper concerns tensor operations, specifically those implemented in the Python library numpy with its \texttt{numpy.einsum} method. Tensor operations are very common in todays data driven world, especially with the rise of \em Deep Learning\em . Hence, we should ensure that those important methods are implemented efficiently, as \em time \em and \em space complexity \em are a big concern when operating on increasingly bigger data. 
 
 % \item \textbf{Focus:} What is your research question? What are you studying precisely?
 \item \textbf{Focus:} The einsum operation implements three fundamental tensor operations: \em Transposition\em , \em Reduction \em and \em Contraction\em . This paper tests all of these operations, as well as their combinations, and compares it to a hardcoded implementation written in C++.
@@ -85,6 +111,7 @@ The topic of this paper is tensor transformations, and how to perform them effic
   1
 \end{pmatrix} \quad . \]
 
+\noindent
 In order to not always hardcode these operations, \em einsum \em can be employed by passing in the two operand tensors, together with a format string, which defines how every dimension will be treated. For example \texttt{ik,kj->ij} specifies a normal matrix-matrix-multiplication. Here is how these \em column identifiers \em of \texttt{lhs\_string} in the eisnum expression \texttt{<lhs\_string>,<rhs\_string>-><target\_string>} are interpreted:
 
 \begin{table}[h!]
@@ -102,7 +129,7 @@ In order to not always hardcode these operations, \em einsum \em can be employed
     \bottomrule
   \end{tabular}
 \end{table}
-
+\noindent
 You have to read the table in the following manner. Take a column identifier of \texttt{lhs\_string}. Then you check whether it is present in \texttt{rhs\_string} and \texttt{target\_string}, and based on these results you assign it to one of the four specified categories, where "Summed left" describes a dimension to reduce.
 
 A similar table can be produced for column identifiers in \texttt{rhs\_string}. The column identifiers in \texttt{target\_string} also specify the resulting shape of the operation. All of the necessary computations to achieve the desired transformation is performed by the einsum function.
@@ -129,7 +156,6 @@ At this point, the reader should be familiar how einsum categorizes the dimensio
 \subsection{Parsing the Input}
 Firstly, we need to ensure the inputs are valid. Since we get a generic \texttt{PyObject*} as input, this includes checking if we have three objects: a string, and two NumPy arrays of the same data type. This basic parsing is done in \texttt{src/einspeed.cpp}.
 
-~\\
 Next, we have to ensure that the tuple \texttt{(std::string, Tensor<T>, Tensor<T>)} is a valid einsum expression. To this end, I implemented \texttt{is\_valid\_einsum\_expression} function found in \texttt{include/compute\_einsum.h}. It checks the following five criteria:
 
 \begin{enumerate}
@@ -139,6 +165,7 @@ Next, we have to ensure that the tuple \texttt{(std::string, Tensor<T>, Tensor<T
   \item Common column identifiers in lhs\_string and rhs\_string must correspond to matching dimension sizes in lhs\_tensor and rhs\_tensor.
 \end{enumerate}
 
+\noindent
 In case the tuple passed all these checks, the function won't throw any error, and hence we can now proceed with the function \texttt{compute\_einsum} knowing we have a valid einsum expression.
 
 
@@ -149,45 +176,33 @@ The first step is to categorize each dimension of the two input tensors into one
 
 \subsubsection{Transposing and Reshaping Operand Tensors}
 Now that we have categorized all the dimensions, we bring both tensors into the canonical form
-
 \[ \text{lhs\_tensor}[\vec{b}, \vec{k_l}, \vec{c}, \vec{s_l}] \ , \ \text{rhs\_tensor}[\vec{b}, \vec{k_r}, \vec{c}, \vec{s_r}] \quad . \]
-
 One very important detail is that the order of the \em batch \em and \em contracted \em dimensions after transposing have the same ordering in the operand tensors. To illustrate this, say we have the einsum expression \texttt{einsum("ab,ba->", lhs\_matrix, rhs\_matrix)}. Naively, there is no need to transpose both matrices, as both of them are in the canonical form (every dimension is a contraction dimension). However, the orderings of these contracted dimensions do not match, hence we do need to transpose a matrix, either the left or the right hand side.
 
-~\\
 To this end, the algorithm reorders the indices-lists for the right hand side such that the resulting order of column identifiers matches the left hand side. For this purpose, we employ the function \texttt{column\_identifiers\_like}.
 
-~\\
 Furthermore, it is worth mentioning that there are different ways to transpose tensors. One way is the "lazy" way, where we just alter meta attributes of the tensor, in particular we alter the \em strides\em , which specify by "how much" we have to multiply an index of a given dimension in order to get the physical index to access the element in the underlying data array. This lazy way of doing it is very fast, as there is no need to move large amount of data. However, there is one big problem: If a tensor has non-canonical strides, we cannot reshape it. This is very bad, because we actually do want to reshape the tensors afterwards. Hence, we need to use the other way of transposing tensors: In he "eager" approach we basically move the data such that it is aligned with the new ordering of the dimensions. This is obviously much more expensive time and space complexity wise, but there is at least one benefit: The data is well aligned for the next operation (after reshaping): The following reduction operation will benefit from a stride access pattern of 1.
 
 \subsubsection{Reducing Operand Tensors}
 Now that we have both operand tensors in the desired shape, we have a fix plan on how to operate on these tensors, which means the following precedure is identical to all possible inputs. Only the reshaping and transposing of the result matrix at the very end needs specific treatment.
 
-We start by reducing the fourth dimension of both operand tensors. This is fairly efficient as we have efficient access patterns as described earlier. After that, the two tensors will have the following form:
-
+We start by reducing the fourth dimension of both operand tensors. This is fairly efficient as we have efficient access patterns as described earlier. After that, the two tensors will have the following form
 \[ \text{lhs\_tensor}[\vec{b}, \vec{k_l}, \vec{c}] \ , \ \text{rhs\_tensor}[\vec{b}, \vec{k_r}, \vec{c}] \quad . \]
-
 It is worth mentioning that it might be possible to combine all of these operations so far (transposing, reshaping, reducing fourth dimension) into one big one. This will at least save some memory, as now we have three tensors for each operand tensor in memory: The original one which we have to leave untouched, the transposed one, as well as the reduced one. I still decided to implement it this way, as this approach is more modular. Furthermore, I initially implemented a transpose method myself, but I realized that it was the bottleneck of my implementation. Hence, I decided to use an external library for transposing, such that the performance of my implementation is not limited by a poor implemented transposing function.
 
 Of course we can now free both transposed tensors after the reduction operation, which we also do. However, I figured that it might be beneficial to actually keep some memory, preferably from the bigger tensor, in order to later reuse it for the result of the following batch matrix multiplication operation.
 
 \subsubsection{Batch Matrix Multiplication}
 Now we take care of contracting the appropriate dimensions by performing a batch matrix multiplication. Note, though, that the contraction dimensions are the last one in each operand tensor (the third dimension), and hence we actually perform a \em batch matrix matmul transpose \em operation, i.e. we treat the rhs operand batch matrices as being transposed. I chose this implementation, as this way we have a stride of one when multiplying individual matrices of a batch both in the lhs and rhs matrix, with respect to the inner most loop. Consequently, this ensures excellent spatial locality and hence we make perfect use of the cache. The result of this operation will be the three dimensiol tensor \texttt{bmm\_result}, with dimension sizes
-
 \[ \text{bmm\_result} = [b, k_l, k_r] \quad . \]
-
 As hinted, we might store the result of this operation in previously allocated memory, all provided that the memory region is big enough. Otherwise we do have to allocate new memory. The question whether our available memory is sufficient for the new data depends on on the dimension sizes of the operand tensors and their categorized dimensions: We have
-
 \begin{align*}
 |\text{lhs\_tensor}| &= b \cdot k_l \cdot c \cdot s_l \\
 |\text{rhs\_tensor}| &= b \cdot k_r \cdot c \cdot s_r \\
 |\text{bmm\_result}| &= b \cdot k_l \cdot k_r \quad ,
 \end{align*}
-
 and hence the memory will be sufficiently big enough iff
-
 \[ c \cdot s_l \geq k_r \]
-
 in case that the lhs tensor is the bigger one of the two (similar if rhs tensor is bigger).
 
 
@@ -199,25 +214,19 @@ For example, so split the batch dimension, we check the the batch dimensions of 
 After doing similar for the remaining two dimensions, we reshape our tensor accordingly. Now we have the result tensor as desired, only with potential wrong ordering of the dimensions. Hence, we need a final transposition. But instead of creating a whole new tensor and doing an expensive transpose call, we are very lazy and just return the current tensor as is, only with accordingly altered strides metadata.
 
 To illustrate this, say we have a matrix a 5x10 matrix $M$, and we want to transpose it. When accessing $M[i][j]$ we have to calculate the physical index of the row-major order stored matrix. Hence:
-
 \[ \text{physical\_index}_M(i, j) = 10 \cdot i + 1 \cdot j \quad . \]
-
 When we now transpose this matrix, we can alter this translation function instead of actually moving the data. In this example:
-
 \[ \text{physical\_index}_{M^T}(i, j) = 1 \cdot i + 10 \cdot j \quad . \]
-
 This means that instead of moving data, we transpose the coefficients of this function. These coefficients are stored as \em strides \em in the metadata of a tensor. NumPy does so as well, and hence we employ this by doing this final transposition the lazy manner by setting these NumPy metadata attributes.
 
 This implementation choice is not "cheating", as NumPy's einsum implementation does the same lazy transposition. Hence, it is only fair to do so myself, as this way we get more meaningful comparisons. To prove my point, run the following lines of Python:
-
-\begin{verbatim}
+\begin{lstlisting}[language=Python]
 import numpy as np
 matrix = np.array([[1,2],[3,4]])
 print(matrix.strides)
 transposed = np.einsum("ab,c->ba", matrix, np.array([1]))
 print(transposed.strides)
-\end{verbatim}
-
+\end{lstlisting}
 You will likely see that the strides got altered simply.
 
 
@@ -231,42 +240,64 @@ The implementation of this method is very sraight forward. As discussed, when ca
 \subsection{Reduction Method}
 This method is not very generic, as it will only reduce the last dimension of the tensor. By doing so, I kept the implementation simple yet it is sufficient for our computations. At the beginning we have to allocate memory for the resulting tensor. This is the first method we look at which has an impact on performance, thus we should be cautious with implementation choices. Hence, we write the folowing compiler-optimization-friendly code:
 
-\begin{verbatim}
-#pragma omp parallel for
+\begin{lstlisting}[language=C++]
+#pragma omp parallel for simd aligned(data: 32) aligned(target_data: 32)
 for (size_t i = 0; i < target_size; i++) {
     T sum = 0;
     size_t start_idx = i * last_dimension;
     size_t end_idx = start_idx + last_dimension;
 
     for (size_t k = start_idx; k < end_idx; k++) {
-        sum += this->data[k];
+        sum += data[k];
     }
     
     target_data[i] = sum;
 }
-\end{verbatim}
-
+\end{lstlisting}
+\\\\
 Clearly, this code is very efficient. There are two minor problems though: First, there is a potential risk of overflow when summing up the values. Second, we parallelize the outer most loop, which is a wise choice, but in very rare cases when \texttt{target\_size} equals one, like when reducing a one-dimensional vector, there won't be any parallelization.
 
 To quickly address both issues, let me point out that, first, in the case of an overflow, there is not much that can be done other than throwing an error. However, implementing this would create overhead, and hence, it is ultimately the responsibility of the user to ensure correct computations. Second, we just accept that we are unlucky if such a case happens. There is also no quick fix, as both loops cannot get collapsed into one because of the line \texttt{T sum = 0;}, and also we would need to write template specializations for every possible type \texttt{T}, as else the compiler won't compile omp reduction clause. In the end, it comes down to keeping the implementation simple (\em KISS\em ).
 
-% TODO: Explain vectorized versions
-Despite that, I actually tried to optimize this method by using explicit vectorization in specialized template methods. Interestingly, they don't seem to have any performance benefits compared to the generic implementation, which is probably due to the fact that modern compilers will vectorize the generic implementation as well. The code is pretty much self explanatory, we do employ an expensive \texttt{loadu} instead of a \texttt{load} vector instruction, as the data won't be aligned generally.
+Despite that, I actually tried to optimize this method by using explicit vectorization in specialized template methods. Interestingly, they don't seem to have any performance benefits compared to the generic implementation, which is probably due to the fact that modern compilers will vectorize the generic implementation as well. The code is pretty much self explanatory, we do employ an efficient \texttt{load} instead of a \texttt{loadu} vector instruction, as the data will be aligned because of the previous transpose operation. Here is the code for tensors of type \texttt{float}:
 
+\begin{lstlisting}[language=C++]
+#pragma omp parallel for
+for (size_t i = 0; i < target_size; i++) {
+    float sum = 0;
+    size_t start_idx = i * last_dimension;
+    
+    // Use AVX SIMD for vectorized summation
+    __m256 vec_sum = _mm256_setzero_ps(); // Initialize to zero
+    
+    for (size_t k = start_idx; k < start_idx + last_dimension; k += 8) {
+        // Load 8 values at once
+        __m256 vec_vals = _mm256_load_ps(&this->data[k]);
+        vec_sum = _mm256_add_ps(vec_sum, vec_vals); // Add the values
+    }
+
+    // Sum the partial results
+    sum += vec_sum[0] + vec_sum[1] + vec_sum[2] + vec_sum[3]
+        +  vec_sum[4] + vec_sum[5] + vec_sum[6] + vec_sum[7];
+    
+    target_data[i] = sum;
+}
+\end{lstlisting}
 
 \subsection{Batch Matrix Multiplication}
 Let us now investigate the final sub-function \texttt{batch\_matrix\_matmul\_transpose} found in \texttt{include/}. It is basically very straight forward, also note that we treat the rhs operand batch matrices as transposed, which allows for small strides in the inner most loop. We begin by allocating the memory needed for the output, but before allocating new memory, we check if the available memory we reserved is sufficiently large to hold the new data, and if so use it instead. Next, loop over the batch dimension, loop over the rows of lhs tensor, and loop over the rows of rhs tensor (as it is transposed). We collapse these three loops into one, and inside every iteration, which specifies one entry in the output tensor, we perform an inner product between the two last dimensions of the operand tensors at the specified index. In code it looks like this:
 
-\begin{verbatim}
-#pragma omp parallel for collapse(3)
+\begin{lstlisting}[language=C++]
+#pragma omp parallel for simd aligned(result_data: 32) aligned(lhs_data: 32) aligned(rhs_data: 32) collapse(3)
 for (size_t b = 0; b < batch_size; ++b) {
     for (size_t i = 0; i < rows; ++i) {
         for (size_t j = 0; j < cols; ++j) {
-            const T* lhs_row = lhs.data + b * rows * inner_dim + i * inner_dim;
-            const T* rhs_col = rhs.data + b * cols * inner_dim + j * inner_dim;
+            const T* lhs_row = lhs_data + b * rows * inner_dim + i * inner_dim;
+            const T* rhs_col = rhs_data + b * cols * inner_dim + j * inner_dim;
             T* result_row = result_data + b * rows * cols + i * cols;
-
             T sum = T(); // Initialize sum as zero for type T
+
+            #pragma omp simd
             for (size_t k = 0; k < inner_dim; ++k) {
                 sum += lhs_row[k] * rhs_col[k];
             }
@@ -274,8 +305,8 @@ for (size_t b = 0; b < batch_size; ++b) {
         }
     }
 }
-\end{verbatim}
-
+\end{lstlisting}
+\\\\
 We face the \textbf{exact} problems we faced at the reduction method, and my responses are the same, we just keep the implementation simple for the sake of demonstration. This function could be manually vectorized as well, but the compiler should do a decent job at optimizing this function, and hence we shouldn't face a big performance penalty.
 
 % overflow, data types, combining methods
@@ -294,38 +325,73 @@ There are several Improvements one could make, but the most obvious ones are:
 \begin{itemize}
   \item Augmenting supported data types. Therefore a new implementation of the transposition method is needed.
   \item More support for parameters, maybe also tensors of different data types, different operations, etc.
-  \item More optimized main method, more heuristics, etc.
+  \item More optimized main method, more heuristics like only transposing when needed, etc.
   \item More optimized sub methods, improving parallelization, vectorization by checking for aligned data, etc.
+  \item Utilize gpu for parallelization.
 \end{itemize}
+
+
 
 \section{Experiments}
 \label{sec:experiments}
 
-Table~\ref{tab:results} shows the running times of the resolution step of the five best placed teams.
+Now that everything is implemented, we test our einsum implementation and compare it to NumPy's. To this end, I have written \texttt{einspeed.py}, which compares both implementations on a variety of test cases focussing on different aspects of einsum calculations.
 
+\subsection{Correctness}
+We start by assessing the correctness. Our implementation seems to operate very precisely, as for small problem sizes both implementations yield the same output. For larger problem sizes, however, there is a growing discrepancy in the entries of the result tensor. This discrepancy can grow arbitrary large for increasing tensor sizes, which is why a relative measure is more meaningful. We calculate it like this:
+
+\begin{lstlisting}[language=Python]
+maximum_relative_discrepancy = np.max(np.abs((result - correct) / correct))
+\end{lstlisting}
+\\\\
+Note that per constraction no entry of \texttt{correct} is zero.
+It turns out that this relative discrepancy stays below a value of approximately \texttt{1e-4}, which is very commendable. One might ask where this error arises, and I my answer to that will be that numerical operations of floating point numbers don't form a mathematical \em field\em . Consequently, the order of operation will have an effect on the final output, and I think that my implementation employs a different order than NumPy's.
+
+Ultimately, however, neither implementanion is exactly correct, and my implementation isn't necessarily worse. In fact, on some test cases it was closer to a hard coded answer, but this doesn't have to mean anything, as these computations will suffer from numerical errors as well. Just to give an example, one can test this by running:
+
+\begin{lstlisting}[language=Python]
+lhs_vector = np.random.rand(100)
+rhs_vector = np.random.rand(100)
+print(np.einsum("i,i->", lhs_vector, rhs_vector))
+print(einspeed.einsum("i,i->", lhs_vector, rhs_vector))
+print(lhs_vector @ rhs_vector)
+\end{lstlisting}
+\\\\
+In conclusion, my implementation seems to operate correctly, and hence we now focus on performance.
+
+
+\subsection{Performance}
+When running the test cases, is is apparent that NumPy did a really good job at implementing einsum, as it outperforms my multi-threaded implementation on many test cases. I think this is mostly due to the fact that my memory management is not the most efficient as I use a lot of memory, and NumPy probably uses a bit more sophisticated algorithms for the computations as well. Notably, there seems to be only a constant factor that separates my implementation from NumPy's, and this factor is roughly 20.
+
+These findings emphasize that the developers behind NumPy really know what they are doing. Hence, it is no surprise that it is very challenging to implement certain methods more efficient than they have. Still, it is very interesting to deeper understand the mechanism behind some implementations, and to test out the limits of computations myself.
+
+Very interestingly, NumPy's einsum function seems to \textbf{really} struggle at big reduction operations, which is very surprising, as they are very simple to implement. This is one of the key findings of this paper. There seems to be a time complexity issue with its implementation, as with growing operand sizes the running time becomes horrendously bad. To give evidence, we execute this einsum expression
+\begin{lstlisting}[language=Python]
+einsum("abc,def->", lhs_tensor, rhs_tensor)
+\end{lstlisting}
+at different operand scales, and compare both implementations. The results are shown in table~\ref{tab:results}.
 
 \begin{table}[htbp]
-  \caption{Comparison of the F-measure and the running times of the resolution step of the five best placed teams. The input data for the resolution step consisted of 29{,}787 in JSON formatted e-commerce websites. Measurements were taken on a
-laptop running Ubuntu 19.04 with 16 GB of RAM and two Intel Core i5-4310U CPUs. The underlying SSD was a 500\,GB 860 EVO mSATA. We cleared the page cache, dentries, and inodes before each run to avoid reading the input data from RAM instead of the SSD.}
+  \caption{Comparison of einsum running times. Both NumPy's and my einspeed implementation are tested at varying problem sizes. The problem size specifies the number of entries in the two input tensors. Running times are measured in seconds, the speedup describes the fraction $\frac{numpy\_time}{einspeed\_time}$. 
+  Measurements were taken on a PC running Ubuntu 24.04 with 32 GB of RAM and an AMD Ryzen 5 5600G CPU (6 Cores, 12 Threads).}
   \label{tab:results}
 \resizebox{\columnwidth}{!}{
-  \begin{tabular}{lcrr}
-    \toprule
-    Team& Language & F-measure & Running time (s)\\
-    \midrule
-	PictureMe (\textbf{this paper}) &C++& 0.99 & \textbf{0.61}\\
-    DBGroup@UniMoRe &Python& 0.99 & 10.65\\
-    DBGroup@SUSTech &C++& 0.99 & 22.13\\
-    eats\_shoots\_and\_leaves &Python& 0.99 & 28.66\\
-    DBTHU &Python& 0.99& 63.21\\
-  \bottomrule
-\end{tabular}
+  \pgfplotstabletypeset[
+    col sep=comma,
+    every head row/.style={% Styling for the header row
+      before row=\toprule, 
+      after row=\midrule},
+    every last row/.style={% Styling for the last row
+      after row=\bottomrule},
+  ]{src/scaling_study.csv}
 }
 \end{table}
 
 
 \section{Conclusions}
 \label{sec:conclusions}
+In this paper, I implemented the einsum function from scratch, in order to evaluate the existing NumPy implementanion. Despite the fact that I certainly could have done better, I was pretty satisfied with my work at the end. The fact that my implementation can "keep up" with NumPy's contributed to this. Yet, I couldn't outperform NumPy generally, only in very specific cases. To be honest, that was predictable. Therefore, these findings emphasize the quality of of libraries like NumPy, but they also show that we should be cautious about performance when using these functions for special purposes, like big reduction operations. Based on my results I advise the reader not to use NumPy's einsum implementation for big reduction operations, as this will result in a serious bottleneck. One should hardcode this operation instead, or use a different einsum implementation. For the latter case, one might use the results of this paper as a starting point to build a better einsum implementation.
+
 
 %%
 %% The next two lines define the bibliography style to be used, and
