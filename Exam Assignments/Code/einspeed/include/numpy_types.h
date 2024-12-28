@@ -11,6 +11,7 @@ constexpr int numpy_type_of() {throw std::runtime_error("Unsupported data type f
 template<> constexpr int numpy_type_of<long>() {return NPY_INT64;}
 template<> constexpr int numpy_type_of<float>() {return NPY_FLOAT32;}
 template<> constexpr int numpy_type_of<double>() {return NPY_FLOAT64;}
+template<> constexpr int numpy_type_of<std::complex<float>>() {return NPY_COMPLEX64;}
 template<> constexpr int numpy_type_of<std::complex<double>>() {return NPY_COMPLEX128;}
 
 
@@ -31,6 +32,11 @@ struct numpy_to_cpp_type<NPY_FLOAT32> {
 template <>
 struct numpy_to_cpp_type<NPY_FLOAT64> {
     using type = double;
+};
+
+template<>
+struct numpy_to_cpph_type<NPY_COMPLEX64> {
+    using type = std::complex<float>;
 };
 
 template <>
@@ -59,6 +65,7 @@ constexpr const int SUPPORTED_NUMPY_TYPES[] = {
     // NPY_INT64, // no int64, as hptt does not support it
     NPY_FLOAT32,
     NPY_FLOAT64,
+    NPY_COMPLEX64,
     NPY_COMPLEX128
 };
 
