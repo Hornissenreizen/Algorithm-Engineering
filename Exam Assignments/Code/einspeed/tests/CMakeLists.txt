@@ -8,7 +8,7 @@ add_subdirectory(catch)
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 
 # Add the executable
-add_executable(catch2 catch_main.cpp catch_tests_fizzbuzz.cpp)
+add_executable(catch2 catch_main.cpp catch_tests_tensor.cpp)
 
 # Link libraries
 target_link_libraries(catch2 

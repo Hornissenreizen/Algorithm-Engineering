@@ -83,30 +83,30 @@ tests/CMakeFiles/catch2.dir/catch_main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/catch2.dir/catch_main.cpp.s"
 	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests/catch_main.cpp" -o CMakeFiles/catch2.dir/catch_main.cpp.s
 
-tests/CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.o: tests/CMakeFiles/catch2.dir/flags.make
-tests/CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.o: /home/john/Documents/Uni/Algorithm-Engineering/Exam\ Assignments/Code/einspeed/tests/catch_tests_fizzbuzz.cpp
-tests/CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.o: tests/CMakeFiles/catch2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.o"
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.o -MF CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.o.d -o CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.o -c "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests/catch_tests_fizzbuzz.cpp"
+tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o: tests/CMakeFiles/catch2.dir/flags.make
+tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o: /home/john/Documents/Uni/Algorithm-Engineering/Exam\ Assignments/Code/einspeed/tests/catch_tests_tensor.cpp
+tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o: tests/CMakeFiles/catch2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o"
+	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o -MF CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o.d -o CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o -c "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests/catch_tests_tensor.cpp"
 
-tests/CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.i"
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests/catch_tests_fizzbuzz.cpp" > CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.i
+tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/catch2.dir/catch_tests_tensor.cpp.i"
+	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests/catch_tests_tensor.cpp" > CMakeFiles/catch2.dir/catch_tests_tensor.cpp.i
 
-tests/CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.s"
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests/catch_tests_fizzbuzz.cpp" -o CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.s
+tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/catch2.dir/catch_tests_tensor.cpp.s"
+	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests/catch_tests_tensor.cpp" -o CMakeFiles/catch2.dir/catch_tests_tensor.cpp.s
 
 # Object files for target catch2
 catch2_OBJECTS = \
 "CMakeFiles/catch2.dir/catch_main.cpp.o" \
-"CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.o"
+"CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o"
 
 # External object files for target catch2
 catch2_EXTERNAL_OBJECTS =
 
 tests/catch2: tests/CMakeFiles/catch2.dir/catch_main.cpp.o
-tests/catch2: tests/CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.o
+tests/catch2: tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o
 tests/catch2: tests/CMakeFiles/catch2.dir/build.make
 tests/catch2: src/einspeed.so
 tests/catch2: /usr/lib/x86_64-linux-gnu/libpython3.12.so

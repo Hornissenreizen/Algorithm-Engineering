@@ -199,29 +199,29 @@ catch_main.cpp.s:
 	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/catch2.dir/build.make tests/CMakeFiles/catch2.dir/catch_main.cpp.s
 .PHONY : catch_main.cpp.s
 
-catch_tests_fizzbuzz.o: catch_tests_fizzbuzz.cpp.o
-.PHONY : catch_tests_fizzbuzz.o
+catch_tests_tensor.o: catch_tests_tensor.cpp.o
+.PHONY : catch_tests_tensor.o
 
 # target to build an object file
-catch_tests_fizzbuzz.cpp.o:
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/catch2.dir/build.make tests/CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.o
-.PHONY : catch_tests_fizzbuzz.cpp.o
+catch_tests_tensor.cpp.o:
+	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/catch2.dir/build.make tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o
+.PHONY : catch_tests_tensor.cpp.o
 
-catch_tests_fizzbuzz.i: catch_tests_fizzbuzz.cpp.i
-.PHONY : catch_tests_fizzbuzz.i
+catch_tests_tensor.i: catch_tests_tensor.cpp.i
+.PHONY : catch_tests_tensor.i
 
 # target to preprocess a source file
-catch_tests_fizzbuzz.cpp.i:
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/catch2.dir/build.make tests/CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.i
-.PHONY : catch_tests_fizzbuzz.cpp.i
+catch_tests_tensor.cpp.i:
+	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/catch2.dir/build.make tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.i
+.PHONY : catch_tests_tensor.cpp.i
 
-catch_tests_fizzbuzz.s: catch_tests_fizzbuzz.cpp.s
-.PHONY : catch_tests_fizzbuzz.s
+catch_tests_tensor.s: catch_tests_tensor.cpp.s
+.PHONY : catch_tests_tensor.s
 
 # target to generate assembly for a file
-catch_tests_fizzbuzz.cpp.s:
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/catch2.dir/build.make tests/CMakeFiles/catch2.dir/catch_tests_fizzbuzz.cpp.s
-.PHONY : catch_tests_fizzbuzz.cpp.s
+catch_tests_tensor.cpp.s:
+	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/catch2.dir/build.make tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.s
+.PHONY : catch_tests_tensor.cpp.s
 
 # Help Target
 help:
@@ -239,9 +239,9 @@ help:
 	@echo "... catch_main.o"
 	@echo "... catch_main.i"
 	@echo "... catch_main.s"
-	@echo "... catch_tests_fizzbuzz.o"
-	@echo "... catch_tests_fizzbuzz.i"
-	@echo "... catch_tests_fizzbuzz.s"
+	@echo "... catch_tests_tensor.o"
+	@echo "... catch_tests_tensor.i"
+	@echo "... catch_tests_tensor.s"
 .PHONY : help
 
 

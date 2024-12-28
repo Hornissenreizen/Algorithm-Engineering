@@ -35,7 +35,7 @@ struct numpy_to_cpp_type<NPY_FLOAT64> {
 };
 
 template<>
-struct numpy_to_cpph_type<NPY_COMPLEX64> {
+struct numpy_to_cpp_type<NPY_COMPLEX64> {
     using type = std::complex<float>;
 };
 

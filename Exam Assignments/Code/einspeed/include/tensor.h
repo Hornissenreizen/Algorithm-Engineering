@@ -24,7 +24,7 @@ public:
     T* data = nullptr;        // Pointer to the actual data
                               // IMPORTANT: Tensor class does NOT free the data!
 
-    Tensor(size_t ndim, size_t* shape, T* data)
+    Tensor(size_t ndim, const size_t* shape, T* data)
         : ndim(ndim), data(data) {
             this->shape = new size_t[ndim];
             std::memcpy(this->shape, shape, ndim * sizeof(size_t));
@@ -235,6 +235,10 @@ public:
 
         // Print data in a formatted way
         if (ndim) Tensor<T>::print_data_recursive(data, shape, ndim, 0);
+    }
+
+    std::vector<size_t> get_shape() const {
+        return std::vector<size_t>(shape, shape + ndim);
     }
 
 private:
