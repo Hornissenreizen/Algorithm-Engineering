@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1734711789.55944 "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/main.tex" "main.pdf" "main" 1734711792.92134 0
-  "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/main.tex" 1734689793.3675 1380 a216467683a9f24dbdbf8fbbf630db72 ""
+["pdflatex"] 1735548750.55114 "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/main.tex" "main.pdf" "main" 1735548753.73811 0
+  "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/main.tex" 1735548429.93126 1419 ed8fba9489077dae1b02a2f6b8f954df ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -197,10 +197,11 @@
   "Chapters/09/access_pattern.png" 1734689793.21349 135896 fde446afd4163e58c23bba7c6b2711c1 ""
   "Chapters/09/array_padding.png" 1734689793.21449 81171 294b2329d599c32aa2f66435a0638cfb ""
   "Chapters/09/loop_blocking.png" 1734689793.21449 121795 12812227fed4a9cbe0374de2b5d5c0c3 ""
-  "main.aux" 1734711792.77445 7203 e75305644cd24a9aa260aeeddacc623c "pdflatex"
-  "main.out" 1734711792.77545 11294 b5081e349a1a9cf5f83fa19c36834c8e "pdflatex"
-  "main.tex" 1734689793.3675 1380 a216467683a9f24dbdbf8fbbf630db72 ""
-  "main.toc" 1734711792.77545 4730 a486094967a82a3409d7e017e06b456a "pdflatex"
+  "Chapters/10/10.tex" 1735548721.14993 2862 635b7202fa58cc16c9cbde691e60cd9b ""
+  "main.aux" 1735548753.61915 7607 0fe4b0ca2c34ad6ded1dbbd058cab1b5 "pdflatex"
+  "main.out" 1735548753.62015 11937 1a32d326f08a2c5886159afd1300b963 "pdflatex"
+  "main.tex" 1735548429.93126 1419 ed8fba9489077dae1b02a2f6b8f954df ""
+  "main.toc" 1735548753.62115 5011 d8140c90915d26ce559efef8f9692b05 "pdflatex"
   (generated)
   "main.aux"
   "main.log"

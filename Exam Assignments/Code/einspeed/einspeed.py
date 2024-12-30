@@ -65,21 +65,21 @@ def run_test_cases():
         # There will be a big discrepancy for np.float32, but einspeed's result is actually CLOSER to the correct result!
 
         # Reduction
-        # benchmark_einsum("abc,def->", [50, 42, 55], [63, 69, 127], dtype, "Multidimensional Reduction")
+        benchmark_einsum("abc,def->", [50, 42, 55], [63, 69, 127], dtype, "Multidimensional Reduction")
 
-        # # Contraction
-        # benchmark_einsum("i,i->", [600000000], [600000000], dtype, "Vector Dot Product")
-        # benchmark_einsum("ij,ij->", [9000, 80000], [9000, 80000], dtype, "Element-wise Contraction")
-        # benchmark_einsum("ij,ji->", [9000, 80000], [80000, 9000], dtype, "Element-wise Contraction with Transpose")
-        # benchmark_einsum("ijk,ijk->", [1000, 2000, 300], [1000, 2000, 300], dtype, "High-Dimensional Contraction")
+        # Contraction
+        benchmark_einsum("i,i->", [600000000], [600000000], dtype, "Vector Dot Product")
+        benchmark_einsum("ij,ij->", [9000, 80000], [9000, 80000], dtype, "Element-wise Contraction")
+        benchmark_einsum("ij,ji->", [9000, 80000], [80000, 9000], dtype, "Element-wise Contraction with Transpose")
+        benchmark_einsum("ijk,ijk->", [1000, 2000, 300], [1000, 2000, 300], dtype, "High-Dimensional Contraction")
 
-        # # Outer product
-        # benchmark_einsum("i,j->ij", [100000], [20000], dtype, "Outer Product")
-        # benchmark_einsum("ij,k->ijk", [300, 2000], [500], dtype, "Outer Product 3D")
+        # Outer product
+        benchmark_einsum("i,j->ij", [100000], [20000], dtype, "Outer Product")
+        benchmark_einsum("ij,k->ijk", [300, 2000], [500], dtype, "Outer Product 3D")
         
         # Transpose-like operations
         benchmark_einsum("ij,jk->ik", [300, 400], [400, 500], dtype, "Matrix Multiplication")
-        benchmark_einsum("ijk,jl->ikjl", [100, 300, 300], [300, 400], dtype, "Tensor Contraction")
+        benchmark_einsum("ijk,jl->ikjl", [100, 300, 30], [300, 40], dtype, "Tensor Contraction")
         
         # Broadcasting
         benchmark_einsum("ij,j->ij", [300, 400], [400], dtype, "Broadcasting along one axis")
@@ -121,10 +121,11 @@ def scaling_study(format_string, lhs_shape, rhs_shape, dtype = np.float32, test_
     create_csv("scaling_study.csv", ("Problem size", problem_sizes), ("Numpy time (s)", numpy_times), ("Einspeed time (s)", einspeed_times), ("Speedup", speedups))
 
 
+run_test_cases()
 # scaling_study("abc,def->", [1, 2, 3], [3, 2, 1], np.float32, "Multidimensional Reduction")
-benchmark_einsum("i,i->", [100000000], [100000000], np.complex128, "Test")
-benchmark_einsum("i,i->", [100000000], [100000000], np.float64, "Test")
-benchmark_einsum("i,i->", [10], [10], np.float64, "Test")
+# benchmark_einsum("i,i->", [100000000], [100000000], np.complex128, "Test")
+# benchmark_einsum("i,i->", [100000000], [100000000], np.float64, "Test")
+# benchmark_einsum("i,i->", [10], [10], np.float64, "Test")
 
 # Test Correctness
 # lhs_vector = np.random.rand(100)

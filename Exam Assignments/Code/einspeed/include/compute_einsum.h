@@ -2,28 +2,26 @@
 #define COMPUTE_EINSUM_H
 
 // uncomment the following lines to show debug information
-// #define DEBUG
+#define DEBUG
 // #define DEBUG_VERBOSE
 
 #include <unordered_map>
 #include <unordered_set>
 #include <stdexcept>
 #include <string>
+#include <omp.h> // Include OpenMP for timing
 
 #include "tensor.h"
 #include "blas.h"
 #include "func.h"
 
-
 // **************************************************
 // *** The core functionality is implemented HERE ***
 // **************************************************
 
-
 // Some declarations (implementation can be found below)
 std::vector<size_t> column_identifiers_like(const std::vector<size_t>& target_column_identifiers, const std::string& target_identifier_string, const std::string& origin_identifier_string);
 template <typename T> bool is_valid_einsum_expression(const char* const s, const Tensor<T>& lhs_tensor, const Tensor<T>& rhs_tensor, std::string& lhs_string, std::string& rhs_string, std::string& target_string);
-
 
 template <typename T>
 PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const Tensor<T>& rhs_tensor) {
@@ -96,8 +94,23 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
     // Reshaping the lhs and rhs tensors as described:
     // lhs_tensor[batch, kept left, contracted, summed left]
     // rhs_tensor[batch, kept right, contracted, summed right]
+#ifdef DEBUG
+    double start_time_transpose_lhs = omp_get_wtime();
+#endif
     Tensor<T> transposed_lhs = lhs_tensor.transpose(merge_vectors({batch_dims_lhs, kept_left_dims_lhs, contracted_dims_lhs, summed_left_dims_lhs}));
+#ifdef DEBUG
+    double end_time_transpose_lhs = omp_get_wtime();
+    std::cout << "Time taken to transpose LHS: " << (end_time_transpose_lhs - start_time_transpose_lhs) << " seconds\n";
+#endif
+
+#ifdef DEBUG
+    double start_time_transpose_rhs = omp_get_wtime();
+#endif
     Tensor<T> transposed_rhs = rhs_tensor.transpose(merge_vectors({batch_dims_rhs, kept_right_dims_rhs, contracted_dims_rhs, summed_right_dims_rhs}));
+#ifdef DEBUG
+    double end_time_transpose_rhs = omp_get_wtime();
+    std::cout << "Time taken to transpose RHS: " << (end_time_transpose_rhs - start_time_transpose_rhs) << " seconds\n";
+#endif
 
 #ifdef DEBUG_VERBOSE
     std::cout << "Transposed Tensors:" << '\n';
@@ -110,14 +123,29 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
                                                 Tensor<T>::calculate_size(multi_index(summed_left_dims_lhs, lhs_tensor.shape))}));
 #endif
 
+#ifdef DEBUG
+    double start_time_reshape_lhs = omp_get_wtime();
+#endif
     transposed_lhs.reshape(std::vector<size_t>({Tensor<T>::calculate_size(multi_index(batch_dims_lhs, lhs_tensor.shape)),
                                                 Tensor<T>::calculate_size(multi_index(kept_left_dims_lhs, lhs_tensor.shape)),
                                                 Tensor<T>::calculate_size(multi_index(contracted_dims_lhs, lhs_tensor.shape)),
                                                 Tensor<T>::calculate_size(multi_index(summed_left_dims_lhs, lhs_tensor.shape))}));
+#ifdef DEBUG
+    double end_time_reshape_lhs = omp_get_wtime();
+    std::cout << "Time taken to reshape LHS: " << (end_time_reshape_lhs - start_time_reshape_lhs) << " seconds\n";
+#endif
+
+#ifdef DEBUG
+    double start_time_reshape_rhs = omp_get_wtime();
+#endif
     transposed_rhs.reshape(std::vector<size_t>({Tensor<T>::calculate_size(multi_index(batch_dims_rhs, rhs_tensor.shape)),
                                                 Tensor<T>::calculate_size(multi_index(kept_right_dims_rhs, rhs_tensor.shape)),
                                                 Tensor<T>::calculate_size(multi_index(contracted_dims_rhs, rhs_tensor.shape)),
                                                 Tensor<T>::calculate_size(multi_index(summed_right_dims_rhs, rhs_tensor.shape))}));
+#ifdef DEBUG
+    double end_time_reshape_rhs = omp_get_wtime();
+    std::cout << "Time taken to reshape RHS: " << (end_time_reshape_rhs - start_time_reshape_rhs) << " seconds\n";
+#endif
 
 #ifdef DEBUG_VERBOSE
     std::cout << "Tensors after reshaping:\n";
@@ -130,6 +158,9 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
     Tensor<T> reduced_lhs, reduced_rhs;
     T* available_memory = nullptr; // keeping track of available memory in order to reuse it later
     size_t available_memory_size = 0;
+#ifdef DEBUG
+    double start_time_reduce_lhs = omp_get_wtime();
+#endif
     if (transposed_lhs.shape[3] == 1) {
         reduced_lhs = std::move(transposed_lhs.reshape(std::vector<size_t>(transposed_lhs.shape, transposed_lhs.shape + 3)));
     } else {
@@ -137,7 +168,14 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
         available_memory = transposed_lhs.data;
         available_memory_size = transposed_lhs.size();
     }
-    // now for rhs
+#ifdef DEBUG
+    double end_time_reduce_lhs = omp_get_wtime();
+    std::cout << "Time taken to reduce LHS: " << (end_time_reduce_lhs - start_time_reduce_lhs) << " seconds\n";
+#endif
+
+#ifdef DEBUG
+    double start_time_reduce_rhs = omp_get_wtime();
+#endif
     if (transposed_rhs.shape[3] == 1) {
         reduced_rhs = std::move(transposed_rhs.reshape(std::vector<size_t>(transposed_rhs.shape, transposed_rhs.shape + 3)));
     } else {
@@ -149,6 +187,10 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
             available_memory_size = transposed_rhs_size;
         } else delete[] transposed_rhs.data; // no longer needed
     }
+#ifdef DEBUG
+    double end_time_reduce_rhs = omp_get_wtime();
+    std::cout << "Time taken to reduce RHS: " << (end_time_reduce_rhs - start_time_reduce_rhs) << " seconds\n";
+#endif
 
 #ifdef DEBUG_VERBOSE
     std::cout << "Reduced Matrices:" << '\n';
@@ -173,7 +215,14 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
 #endif
     }
     else {
+#ifdef DEBUG
+        double start_time_bmm = omp_get_wtime();
+#endif
         bmm_result = batch_matrix_matmul_transpose(reduced_lhs, reduced_rhs, available_memory, available_memory_size);
+#ifdef DEBUG
+        double end_time_bmm = omp_get_wtime();
+        std::cout << "Time taken for batch_matrix_matmul_transpose: " << (end_time_bmm - start_time_bmm) << " seconds\n";
+#endif
         // Now we free the data of reduced_lhs and reduced_rhs, as it is no longer needed
         delete[] reduced_lhs.data;
         delete[] reduced_rhs.data;
@@ -205,7 +254,14 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
     print_vector(target_shape);
 #endif
 
+#ifdef DEBUG
+    double start_time_reshape_result = omp_get_wtime();
+#endif
     bmm_result.reshape(target_shape);
+#ifdef DEBUG
+    double end_time_reshape_result = omp_get_wtime();
+    std::cout << "Time taken to reshape result: " << (end_time_reshape_result - start_time_reshape_result) << " seconds\n";
+#endif
 
 #ifdef DEBUG_VERBOSE
     std::cout << "bmm_result after reshaping:\n";
@@ -223,9 +279,17 @@ PyObject* compute_einsum(const char* const s, const Tensor<T>& lhs_tensor, const
             multi_index(kept_right_dims_rhs, rhs_string.data()),
     }));
     
-    return bmm_result.lazy_transpose_and_return_PyObject(target_permutation);
-}
+#ifdef DEBUG
+    double start_time_transpose_result = omp_get_wtime();
+#endif
+    PyObject* result = bmm_result.lazy_transpose_and_return_PyObject(target_permutation);
+#ifdef DEBUG
+    double end_time_transpose_result = omp_get_wtime();
+    std::cout << "Time taken to transpose result: " << (end_time_transpose_result - start_time_transpose_result) << " seconds\n";
+#endif
 
+    return result;
+}
 
 std::vector<size_t> column_identifiers_like(const std::vector<size_t>& target_column_identifiers, const std::string& target_identifier_string, const std::string& origin_identifier_string) {
     // it is assumed that every character in target_identifier_string accessed by target_column_identifiers is also present in origin_identifier_string
@@ -235,7 +299,6 @@ std::vector<size_t> column_identifiers_like(const std::vector<size_t>& target_co
     }
     return origin_column_identifiers;
 }
-
 
 template <typename T>
 bool is_valid_einsum_expression(const char* const s, const Tensor<T>& lhs_tensor, const Tensor<T>& rhs_tensor, std::string& lhs_string, std::string& rhs_string, std::string& target_string) {

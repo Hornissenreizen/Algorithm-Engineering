@@ -6,5 +6,5 @@ CXX_DEFINES = -Deinspeed_EXPORTS
 
 CXX_INCLUDES = -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/main" -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/PUBLIC" -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/include" -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/include" -I/usr/include/python3.12 -I/usr/lib/python3/dist-packages/numpy/core/include
 
-CXX_FLAGS = -fPIC -fopenmp -march=native -mtune=native -fopenmp
+CXX_FLAGS =  -Ofast -march=native -ffast-math -fPIC -fopenmp -march=native -mtune=native -fopenmp
 

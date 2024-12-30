@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex paper"] 1735401686.57956 "paper.aux" "paper.bbl" "paper" 1735402687.30848 0
+["bibtex paper"] 1735401686.57956 "paper.aux" "paper.bbl" "paper" 1735492325.30039 0
   "./literature.bib" 1734689793.3685 783 76d3f2609cdf4ab2a163cfe0e4661540 ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/acmart/ACM-Reference-Format.bst" 1732740966 90302 853ee4b223ed1a0e896f3ab1ff980426 ""
-  "paper.aux" 1735402686.82056 5267 64ac934da75ac96cae47bb865531fe56 "pdflatex"
+  "paper.aux" 1735492324.13015 5267 64ac934da75ac96cae47bb865531fe56 "pdflatex"
   (generated)
   "paper.bbl"
   "paper.blg"
   (rewritten before read)
-["pdflatex"] 1735402685.21429 "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/paper/paper.tex" "paper.pdf" "paper" 1735402687.30879 0
-  "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/paper/paper.tex" 1735402684.97657 34245 f686c3755d320574606e8b0c0e575270 ""
+["pdflatex"] 1735492321.88543 "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/paper/paper.tex" "paper.pdf" "paper" 1735492325.30083 0
+  "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/paper/paper.tex" 1735492321.43218 34354 0702507a86f200c1e72fa1f0c36854e8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc" 1558214095 7693 0f2dce6d313c82989ec3a67fc24df2a0 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1490131464 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1490131464 2933 9ad527ce78d7c5fa0a642dead095f172 ""
@@ -329,10 +329,10 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1734705286 5485709 8129e419010b46b234085a26866cdb87 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1734705385 3343776 7b550fb143c8844e093d81085ae33088 ""
   "/usr/local/texlive/2024/texmf.cnf" 1734705281.41451 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
-  "paper.aux" 1735402686.82056 5267 64ac934da75ac96cae47bb865531fe56 "pdflatex"
+  "paper.aux" 1735492324.13015 5267 64ac934da75ac96cae47bb865531fe56 "pdflatex"
   "paper.bbl" 1735401686.70931 2523 ce2875fbfdef9b685fc8772213975014 "bibtex paper"
-  "paper.out" 1735402686.82156 3068 23b3acbb28311d3dcbe442967772fe48 "pdflatex"
-  "paper.tex" 1735402684.97657 34245 f686c3755d320574606e8b0c0e575270 ""
+  "paper.out" 1735492324.13115 3068 23b3acbb28311d3dcbe442967772fe48 "pdflatex"
+  "paper.tex" 1735492321.43218 34354 0702507a86f200c1e72fa1f0c36854e8 ""
   "src/scaling_study.csv" 1735035202.19609 523 cfb6179c970fe71293a0850338355c9a ""
   (generated)
   "paper.aux"

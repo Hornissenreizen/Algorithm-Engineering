@@ -1,0 +1,14 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+\section{Debugging and Profiling}
+\subsection{Donald Knuth on Premature Optimization}
+Donald Knuth states: "We should forget about small efficiencies, say about 97\% of the time: premature optimization is the root of all evil."
+This quote is a reminder that we should not focus on optimizing code before we have a clear understanding of the problem we are trying to solve. This is because premature optimization can lead to code that is difficult to read, maintain, and debug. It can also lead to code that is less flexible and harder to change in the future. Instead, we should focus on writing clear, readable, and maintainable code that solves the problem at hand. Once we have a clear understanding of the problem and have written code that works, we can then focus on optimizing it if necessary. I agree with this quote because I have seen firsthand how premature optimization can lead to code that is difficult to work with. By focusing on writing clear, readable, and maintainable code first, we can avoid many of the pitfalls of premature optimization and create code that is easier to work with in the long run. Optimization should only be done later when necessary and should be based on data and profiling, not on assumptions or premature guesses.
+
+\subsection{Debugging With cout Is a Valid Alternative}
+Let us analyze slide 7, which states debuggers are not always preferred for debugging by some programmers, including famous ones like Linus Torvalds etc. On the slide there is a link to a webpage, which features a discussion about debuggers. The main statement is that debuggers have their place, but they are not always the best tool for the job, especially when dealing with scalable systems. Also, the author mentions that debuggers do find mistakes in the code and help to make quick fixes, but in order to find the "real" fixes, that make the program flow more organized and well structured, one has to deeply understand the code one is working on and see the bigger picture.
+
+I agree with the statement that debuggers should not be the preferred tool for debugging generally. Let me phrase it like this: If there aren't many alternatives to using a debugger, the real mistake (metaphorically the \emph{bug}) was made beforehand. Bad structuring and not writing tests or checks for parameters will lead to complex control flows. Hence, not using debuggers will enforce the programmer to take preventive measures, such as writing cleaner code, adding proper tests, and ensuring good code structure. This approach can lead to more maintainable and understandable code in the long run. Consequently, the resulting code will be more scalable and easier to debug, which ultimately leads to a more efficient development process. This is why I prefer this approach over using debuggers.
+
+\end{document}

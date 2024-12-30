@@ -117,8 +117,8 @@ Tensor<float> batch_matrix_matmul_transpose<float>(const Tensor<float>& lhs, con
                 size_t k = 0;
                 for (; k + 7 < inner_dim; k += 8) { // Process 8 elements at a time
                     // Load 8 floats from lhs_row and rhs_col
-                    __m256 vec_lhs = _mm256_load_ps(lhs_row + k);
-                    __m256 vec_rhs = _mm256_load_ps(rhs_col + k);
+                    __m256 vec_lhs = _mm256_loadu_ps(lhs_row + k);
+                    __m256 vec_rhs = _mm256_loadu_ps(rhs_col + k);
 
                     // Multiply and accumulate
                     __m256 vec_product = _mm256_mul_ps(vec_lhs, vec_rhs);
@@ -198,8 +198,8 @@ Tensor<double> batch_matrix_matmul_transpose<double>(const Tensor<double>& lhs, 
                 size_t k = 0;
                 for (; k + 3 < inner_dim; k += 4) { // Process 4 elements at a time
                     // Load 4 floats from lhs_row and rhs_col
-                    __m256d vec_lhs = _mm256_load_pd(lhs_row + k);
-                    __m256d vec_rhs = _mm256_load_pd(rhs_col + k);
+                    __m256d vec_lhs = _mm256_loadu_pd(lhs_row + k);
+                    __m256d vec_rhs = _mm256_loadu_pd(rhs_col + k);
 
                     // Multiply and accumulate
                     __m256d vec_product = _mm256_mul_pd(vec_lhs, vec_rhs);

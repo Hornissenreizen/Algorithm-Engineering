@@ -43,3 +43,6 @@
 \contentsline {subsection}{\numberline {8.2}Influence of temporal locality and spatial locality on program performance}{31}{subsection.8.2}%
 \contentsline {subsection}{\numberline {8.3}Cache Associativity}{32}{subsection.8.3}%
 \contentsline {subsection}{\numberline {8.4}An Overview of Cache Optimization Techniques and Cache-Aware Numerical Algorithms}{33}{subsection.8.4}%
+\contentsline {section}{\numberline {9}Chapter 10}{36}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Donald Knuth on Premature Optimization}{36}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Debugging With cout Is a Valid Alternative}{36}{subsection.9.2}%

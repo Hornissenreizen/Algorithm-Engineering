@@ -312,7 +312,7 @@ for (size_t b = 0; b < batch_size; ++b) {
 }
 \end{lstlisting}
 \\\\
-We face the \textbf{exact} problems we faced at the reduction method, and my responses are the same, we just keep the implementation simple for the sake of demonstration. This function could be manually vectorized as well, but the compiler should do a decent job at optimizing this function, and hence we shouldn't face a big performance penalty.
+We face the \textbf{exact} problems we faced at the reduction method, and my responses are the same, we just keep the implementation simple for the sake of demonstration. This function can be manually vectorized as well, however the compiler should do a decent job at optimizing this function, and hence we shouldn't face a big performance penalty. For \texttt{float} and \texttt{double} vectorized code can be found in specialized template methods below.
 
 % overflow, data types, combining methods
 \subsection{Parameter Specification}

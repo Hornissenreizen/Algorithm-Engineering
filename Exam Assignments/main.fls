@@ -389,6 +389,10 @@ INPUT ./Chapters/09/array_padding.png
 INPUT Chapters/09/array_padding.png
 INPUT ./Chapters/09/array_padding.png
 INPUT ./Chapters/09/array_padding.png
+INPUT ./Chapters/10/10.tex
+INPUT Chapters/10/10.tex
+INPUT ./Chapters/10/10.tex
+INPUT Chapters/10/10.tex
 INPUT main.aux
 INPUT ./main.out
 INPUT ./main.out
