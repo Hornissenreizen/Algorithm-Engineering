@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.20)  30 DEC 2024 09:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.17)  4 MAR 2025 15:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Chapters/06/06.tex"
-(/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Chapters/06/06.tex
+**"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/answers/chapters/06/06.tex"
+(/home/jonas/Documents/University/5. Semester/Algorithm Engineering/answers/chapters/06/06.tex
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-11-02>
 (/usr/local/texlive/2024/texmf-dist/tex/latex/subfiles/subfiles.cls
@@ -12,7 +12,7 @@ Document Class: subfiles 2020/11/14 v2.2 Multi-file projects (class)
 Preamble taken from file `../../main.tex'
 (/usr/local/texlive/2024/texmf-dist/tex/latex/import/import.sty
 Package: import 2020/04/01  v 6.2
-) (../../main.tex (/usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls
+) (chapters/06/../../main.tex (/usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
@@ -481,7 +481,7 @@ File: lstlang1.sty 2024/09/23 1.10c listings language file
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count325
 \l__pdf_internal_box=\box68
-) (./06.aux)
+) (chapters/06/06.aux)
 \openout1 = `06.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
@@ -522,33 +522,25 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package hyperref Info: Link coloring ON on input line 3.
- (./06.out) (./06.out)
+ (chapters/06/06.out) (chapters/06/06.out)
 \@outlinefile=\write4
 \openout4 = `06.out'.
 
 \c@lstlisting=\count332
-
-Underfull \hbox (badness 10000) in paragraph at lines 8--9
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--10
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 10--11
-
- []
-
-
+LaTeX Font Info:    Trying to load font information for U+msa on input line 8.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 8.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 
 [1
 
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-[2] (./06.aux)
+[2] (chapters/06/06.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-11-02>
@@ -557,18 +549,18 @@ Package rerunfilecheck Info: File `06.out' has not changed.
 (rerunfilecheck)             Checksum: FEE28196470371E202575CA129750AC6;1205.
  ) 
 Here is how much of TeX's memory you used:
- 21994 strings out of 473330
- 402728 string characters out of 5719768
- 959214 words of memory out of 5000000
- 44778 multiletter control sequences out of 15000+600000
- 559587 words of font info for 41 fonts, out of 8000000 for 9000
+ 22395 strings out of 473330
+ 406585 string characters out of 5719768
+ 982214 words of memory out of 5000000
+ 45143 multiletter control sequences out of 15000+600000
+ 565702 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 104i,5n,110p,617b,442s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on 06.pdf (2 pages, 56106 bytes).
+ 104i,8n,110p,862b,1169s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on chapters/06/06.pdf (2 pages, 125982 bytes).
 PDF statistics:
- 58 PDF objects out of 1000 (max. 8388607)
- 47 compressed objects within 1 object stream
- 8 named destinations out of 1000 (max. 500000)
+ 104 PDF objects out of 1000 (max. 8388607)
+ 81 compressed objects within 1 object stream
+ 17 named destinations out of 1000 (max. 500000)
  53 words of extra memory for PDF output out of 10000 (max. 10000000)
 

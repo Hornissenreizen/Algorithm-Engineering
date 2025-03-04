@@ -5,21 +5,36 @@
     \subsection{Characteristics of SSE, AVX(2) and AVX-512}
 
     \begin{description}
-        \item[SSE (Streaming SIMD Extensions):] ~\\ Introduced with x86, supports 128-bit vector registers, enabling SIMD operations on 4 single-precision floating-point or 2 double-precision values in parallel. Limited in width and functionality compared to later extensions. \\
-        \item[AVX/AVX2 (Advanced Vector Extensions):] ~\\ Extends SIMD width to 256 bits, doubling parallelism compared to SSE. AVX introduced floating-point operations, while AVX2 added integer operations and support for gather instructions. \\
-        \item[AVX-512:] ~\\ Widens SIMD to 512 bits, allowing operations on 16 single-precision floats or 8 double-precision values simultaneously. It includes more registers, mask registers for conditional operations, and broader instruction sets but increases power consumption and requires hardware support. \\
+        \item[SSE (Streaming SIMD Extensions):] ~\\ Introduced in 1999 by Intel in its Pentium III series\footnotemark,  SSE supports 128-bit vector registers, enabling SIMD operations on 4 single-precision floating-point or 2 double-precision values in parallel. Limited in width and functionality compared to later extensions. \\
+\footnotetext{Source: \href{https://en.wikipedia.org/wiki/Streaming\_SIMD\_Extensions}{https://en.wikipedia.org/wiki/Streaming\_SIMD\_Extensions}}
+        \item[AVX/AVX2 (Advanced Vector Extensions):] ~\\ AVX were proposed by Intel in March 2008 and they extended the SIMD width from 128 to 256 bits, doubling parallelism compared to SSE\footnotemark. AVX employs 16 vector registers and supports various additional instructions, like for instance so called \em three-operand SIMD instructions\em, which store the result of the operation in a third independent register. AVX2 expand most integer instructions to 256 bits and introduced yet again new features like gathering vector elements from non-contiguous memory locations.  \\
+\footnotetext{Source: \href{https://en.wikipedia.org/wiki/Advanced\_Vector\_Extensions}{https://en.wikipedia.org/wiki/Advanced\_Vector\_Extensions}}
+        \item[AVX-512:] ~\\ Widens SIMD to 512 bits, allowing operations on 16 single-precision floats or 8 double-precision values simultaneously. It increases the number of registers to 32, and adds 8 new mask registers for conditional operations\footnotemark. New instructions and features were added, like including 4 operand operations, and introducing explicit rounding control, etc.\\
+\footnotetext{Source: \href{https://en.wikipedia.org/wiki/AVX-512}{https://en.wikipedia.org/wiki/AVX-512}}
     \end{description}
 
-    \bigskip
+    % \bigskip
     \subsection{Impact of Memory Aliasing on Performance}
-    Memory aliasing occurs when two or more pointers reference overlapping memory regions, making it difficult for the compiler or CPU to optimize memory accesses. This uncertainty can prevent reordering or parallelizing memory operations, resulting in stalls and reduced performance due to additional dependency checks and cache conflicts.
+    Memory aliasing occurs when two or more pointers reference overlapping memory regions, making it difficult for the compiler or CPU to optimize memory accesses.
+    To illustrate this, say we have the following code:
+
+    \begin{lstlisting}
+void add(float *a, float *b, int n) {
+    for (int i = 0; i < n; i++) {
+        a[i] = a[i] + b[i]; 
+    }
+}
+    \end{lstlisting}
+
+    \noindent
+    At first glance, it looks well written such that the compiler has no difficulty vectorizing it. But this is a fallacy, as the programmer has made the hidden assumption that $\texttt{a}$ and $\texttt{b}$ don't overlap. For the argument's sake, let's assume that $\texttt{a = b + 1}$. This would mean that when updating $\texttt{a[i]}$, we also update $\texttt{b[i+1]}$, which is accessed in the following iteration. Thus, we have a dependency of every iteration to the previous one, and hence vectorizing it would change the the programs behavior and hence the compiler won't do it. The solution of course is to mark $\texttt{a}$ and $\texttt{b}$ as $\texttt{\_\_restrict\_\_}$ if they indeed point to not-overlapping memory regions.
 
     \bigskip
     \subsection{Advantages of Unit Stride Memory Access}
-    Unit stride (stride-1) memory access sequentially accesses adjacent memory locations, maximizing cache utilization and enabling efficient prefetching. Larger strides, like stride-8, result in less efficient cache usage, increased memory latency, and potential cache line thrashing due to non-contiguous data access patterns.
+    Unit stride (stride-1) memory access sequentially accesses adjacent memory locations, maximizing cache utilization and resulting in higher bandwidth utilization. Furthermore, unit stride access patterns facilitate the utilization of efficient vector instructions employed by the compiler. Larger strides on the other hand, like stride-8, result in less efficient cache usage and increased memory latency. Vectorization is also harder and less efficient. Thus, it is generally a good advise trying to employ unit strides when accessing the memory whenever possible. 
 
     \bigskip
     \subsection{When to Prefer Structure of Arrays}
-    Structure of Arrays (SoA) is preferred when working with SIMD/vectorized operations or when the workload requires processing individual fields of a dataset independently. SoA provides better memory alignment and avoids unnecessary memory fetches, leading to improved cache efficiency and parallelism compared to Array of Structures (AoS).
+    Structure of Arrays (SoA) is preferred when working with SIMD/vectorized operations or when the workload requires processing individual fields of a dataset independently. This is simply due to the fact of strided and homogenous memory access like discussed previously. Especially for big data with these mentioned operations one should consider SoA over AoS (Array of Structures), which, on the other hand, may be used in less compute intensive tasks to improve readability and maintainability of the code, or in cases where the access patterns would align with such a layout. 
             
 \end{document}
