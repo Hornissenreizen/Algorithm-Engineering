@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.17)  14 JAN 2025 09:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.17)  4 MAR 2025 11:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -557,19 +557,19 @@ Package pdftex.def Info: Chapters/01/page_15.png  used on input line 10.
 [3 <./Chapters/01/page_15.png>]
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 109--110
+Underfull \hbox (badness 10000) in paragraph at lines 112--113
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 125--126
+Underfull \hbox (badness 10000) in paragraph at lines 128--129
 
  []
 
 
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 138--139
+Underfull \hbox (badness 10000) in paragraph at lines 141--142
 
  []
 
@@ -578,22 +578,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 138--139
 [6]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 140.
+(hyperref)                removing `math shift' on input line 143.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\pi' on input line 140.
+(hyperref)                removing `\pi' on input line 143.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 140.
+(hyperref)                removing `math shift' on input line 143.
 
 )
 
 [7] (./Chapters/02/02.tex
 
 [8]
-<Chapters/02/more_room_at_the_top.png, id=386, 1522.68875pt x 1088.065pt>
+<Chapters/02/more_room_at_the_top.png, id=387, 1522.68875pt x 1088.065pt>
 File: Chapters/02/more_room_at_the_top.png Graphic file (type png)
 <use Chapters/02/more_room_at_the_top.png>
 Package pdftex.def Info: Chapters/02/more_room_at_the_top.png  used on input line 58.
@@ -624,7 +624,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 87--88
 [12] (./Chapters/03/03.tex
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 67--68
+Underfull \hbox (badness 10000) in paragraph at lines 55--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 68--69
 
  []
 
@@ -635,7 +640,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 67--68
 [15]
 
 [16]
-<Chapters/04/./running_times.png, id=518, 722.7pt x 433.62pt>
+<Chapters/04/./running_times.png, id=519, 722.7pt x 433.62pt>
 File: Chapters/04/./running_times.png Graphic file (type png)
 <use Chapters/04/./running_times.png>
 Package pdftex.def Info: Chapters/04/./running_times.png  used on input line 23.
@@ -645,7 +650,7 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 23--24
 [][] 
  []
 
-<Chapters/04/./speedup.png, id=519, 722.7pt x 433.62pt>
+<Chapters/04/./speedup.png, id=520, 722.7pt x 433.62pt>
 File: Chapters/04/./speedup.png Graphic file (type png)
 <use Chapters/04/./speedup.png>
 Package pdftex.def Info: Chapters/04/./speedup.png  used on input line 28.
@@ -658,7 +663,7 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 28--29
 
 
 [17 <./Chapters/04/./running_times.png> <./Chapters/04/./speedup.png>]
-<Chapters/04/./running_times_array.png, id=526, 2022.8373pt x 836.1639pt>
+<Chapters/04/./running_times_array.png, id=527, 2022.8373pt x 836.1639pt>
 File: Chapters/04/./running_times_array.png Graphic file (type png)
 <use Chapters/04/./running_times_array.png>
 Package pdftex.def Info: Chapters/04/./running_times_array.png  used on input line 35.
@@ -668,7 +673,7 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 35--36
 [][] 
  []
 
-<Chapters/04/./speedup_array.png, id=527, 722.7pt x 433.62pt>
+<Chapters/04/./speedup_array.png, id=528, 722.7pt x 433.62pt>
 File: Chapters/04/./speedup_array.png Graphic file (type png)
 <use Chapters/04/./speedup_array.png>
 Package pdftex.def Info: Chapters/04/./speedup_array.png  used on input line 40.
@@ -716,39 +721,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 10--11
 [22] (./Chapters/07/07.tex
 
 [23]
-<Chapters/07/vectorizing_branches.png, id=569, 1586.92876pt x 1393.205pt>
+
+[24]
+<Chapters/07/vectorizing_branches.png, id=580, 1586.92876pt x 1393.205pt>
 File: Chapters/07/vectorizing_branches.png Graphic file (type png)
 <use Chapters/07/vectorizing_branches.png>
-Package pdftex.def Info: Chapters/07/vectorizing_branches.png  used on input line 77.
+Package pdftex.def Info: Chapters/07/vectorizing_branches.png  used on input line 80.
 (pdftex.def)             Requested size: 345.0pt x 302.87083pt.
 
-Overfull \hbox (25.00003pt too wide) in paragraph at lines 77--78
+Overfull \hbox (25.00003pt too wide) in paragraph at lines 80--81
 [][] 
  []
 
-
-
-[24]
-<Chapters/07/unpack.png, id=579, 1364.09625pt x 419.5675pt>
+<Chapters/07/unpack.png, id=581, 1364.09625pt x 419.5675pt>
 File: Chapters/07/unpack.png Graphic file (type png)
 <use Chapters/07/unpack.png>
-Package pdftex.def Info: Chapters/07/unpack.png  used on input line 89.
+Package pdftex.def Info: Chapters/07/unpack.png  used on input line 92.
 (pdftex.def)             Requested size: 345.0pt x 106.11441pt.
 
-Overfull \hbox (25.00003pt too wide) in paragraph at lines 89--90
+Overfull \hbox (25.00003pt too wide) in paragraph at lines 92--93
 [][] 
  []
 
 
 
 [25 <./Chapters/07/vectorizing_branches.png>]
-<Chapters/07/transpose.png, id=586, 1510.64375pt x 1034.86626pt>
+<Chapters/07/transpose.png, id=588, 1510.64375pt x 1034.86626pt>
 File: Chapters/07/transpose.png Graphic file (type png)
 <use Chapters/07/transpose.png>
-Package pdftex.def Info: Chapters/07/transpose.png  used on input line 101.
+Package pdftex.def Info: Chapters/07/transpose.png  used on input line 104.
 (pdftex.def)             Requested size: 345.0pt x 236.34041pt.
 
-Overfull \hbox (25.00003pt too wide) in paragraph at lines 101--102
+Overfull \hbox (25.00003pt too wide) in paragraph at lines 104--105
 [][] 
  []
 
@@ -765,31 +769,31 @@ Overfull \hbox (25.00003pt too wide) in paragraph at lines 101--102
 [30] (./Chapters/09/09.tex
 
 [31]
-<Chapters/09/Set-Associative_Cache_Snehal_Img.png, id=667, 680.5425pt x 411.03563pt>
+<Chapters/09/Set-Associative_Cache_Snehal_Img.png, id=669, 680.5425pt x 411.03563pt>
 File: Chapters/09/Set-Associative_Cache_Snehal_Img.png Graphic file (type png)
 <use Chapters/09/Set-Associative_Cache_Snehal_Img.png>
-Package pdftex.def Info: Chapters/09/Set-Associative_Cache_Snehal_Img.png  used on input line 38.
+Package pdftex.def Info: Chapters/09/Set-Associative_Cache_Snehal_Img.png  used on input line 39.
 (pdftex.def)             Requested size: 345.0pt x 208.37102pt.
 
 
 [32 <./Chapters/09/Set-Associative_Cache_Snehal_Img.png>]
-<Chapters/09/loop_blocking.png, id=677, 1505.625pt x 537.00626pt>
+<Chapters/09/loop_blocking.png, id=679, 1505.625pt x 537.00626pt>
 File: Chapters/09/loop_blocking.png Graphic file (type png)
 <use Chapters/09/loop_blocking.png>
-Package pdftex.def Info: Chapters/09/loop_blocking.png  used on input line 60.
+Package pdftex.def Info: Chapters/09/loop_blocking.png  used on input line 61.
 (pdftex.def)             Requested size: 319.99997pt x 114.13484pt.
-<Chapters/09/access_pattern.png, id=678, 2033.5975pt x 897.3525pt>
+<Chapters/09/access_pattern.png, id=680, 2033.5975pt x 897.3525pt>
 File: Chapters/09/access_pattern.png Graphic file (type png)
 <use Chapters/09/access_pattern.png>
-Package pdftex.def Info: Chapters/09/access_pattern.png  used on input line 64.
+Package pdftex.def Info: Chapters/09/access_pattern.png  used on input line 65.
 (pdftex.def)             Requested size: 319.99997pt x 141.19684pt.
 
 
 [33 <./Chapters/09/loop_blocking.png>]
-<Chapters/09/array_padding.png, id=687, 1180.41pt x 358.33875pt>
+<Chapters/09/array_padding.png, id=689, 1180.41pt x 358.33875pt>
 File: Chapters/09/array_padding.png Graphic file (type png)
 <use Chapters/09/array_padding.png>
-Package pdftex.def Info: Chapters/09/array_padding.png  used on input line 72.
+Package pdftex.def Info: Chapters/09/array_padding.png  used on input line 73.
 (pdftex.def)             Requested size: 319.99997pt x 97.14096pt.
 
 
@@ -798,11 +802,6 @@ Package pdftex.def Info: Chapters/09/array_padding.png  used on input line 72.
 [35] (./Chapters/10/10.tex)
 
 [36] (./Chapters/11/11.tex
-Underfull \hbox (badness 10000) in paragraph at lines 18--19
-
- []
-
-
 Overfull \hbox (12.51323pt too wide) in paragraph at lines 23--24
 []\OT1/cmr/m/n/10 We have al-ready es-tab-lished that we should
  []
@@ -818,12 +817,7 @@ Overfull \hbox (7.56367pt too wide) in paragraph at lines 24--25
 
 [38] (./Chapters/12/12.tex
 
-[39]
-Underfull \hbox (badness 10000) in paragraph at lines 35--36
-
- []
-
-(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
+[39] (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
@@ -833,11 +827,6 @@ LaTeX Warning: Float too large for page by 75.81598pt on input line 106.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 111--112
-
- []
 
 
 
@@ -860,18 +849,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: F009529D385A5B693007F60B4AB87087;13502.
  ) 
 Here is how much of TeX's memory you used:
- 23845 strings out of 473330
- 431539 string characters out of 5719768
+ 23847 strings out of 473330
+ 431555 string characters out of 5719768
  1127700 words of memory out of 5000000
  46123 multiletter control sequences out of 15000+600000
  567248 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,14n,93p,1156b,1460s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,16n,93p,1156b,1460s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (43 pages, 1455216 bytes).
+Output written on main.pdf (43 pages, 1455789 bytes).
 PDF statistics:
- 1011 PDF objects out of 1200 (max. 8388607)
- 893 compressed objects within 9 object streams
- 413 named destinations out of 1000 (max. 500000)
+ 1015 PDF objects out of 1200 (max. 8388607)
+ 897 compressed objects within 9 object streams
+ 415 named destinations out of 1000 (max. 500000)
  518 words of extra memory for PDF output out of 10000 (max. 10000000)
 

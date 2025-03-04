@@ -6,11 +6,13 @@
 \subsection{Analyzing slide 15}
 Here is slide 15 again:
 
-~\\
-\includegraphics[width=\textwidth]{page_15.png}
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{page_15.png}
+    \caption{Slide 15 from lecture 1}
+\end{figure}
 
 ~\\
-Let us proof the statement
+Let us prove the statement
 \[
     \int_{0}^{1}\frac{1}{1+x^2} dx = \frac{\pi}{4}
 \]
@@ -86,6 +88,7 @@ One way to do this is to calculate the Riemann sum, as shown in the lecture.
 The Riemann sum tries to approximate little intervals of the function $\frac{1}{1+x^2}$ by constant functions.
 A better way to approximate the function on these intervals would be a linear function connecting the end points, resulting in the \em Trapezoidal Rule\em.
 
+\noindent
 Even better is the approximation by parabolas, which pass through the end points of the interval as well as the mid point. This is called the \em Simpson Rule\em.
 It reads as follows:
 \[
@@ -99,7 +102,7 @@ To this end, let $P$ be such a partition. Then
 \[
     \int_{a}^{b} f(x) dx \ \ \approx \sum_{(t, t+h) \in P} I_{(t, t+h)}(f) \ \ \ \ \ ,
 \]
-
+\noindent
 where \(I_{(t, t+h)}(f)\) tries to approximate \(\int_{t}^{t+h} f(x) dx\).
 
 ~\\
@@ -112,7 +115,7 @@ The book gave a quick overview about operating systems and computer hardware, an
 I'd like to discuss the memory hierarchy as well as virtual memory.
 
 \subsubsection{Memory Hierarchy}
-The inverse correlation between speed and volume of different memory types war presented in the book.
+The inverse correlation between speed and volume of different memory types was presented in the book.
 This lead to the memory hierarchy, where we try exploit the benefits of both worlds be having big, slow memory, and a smaller amount of fast memory, which we the computer tries to employ as much as possible.
 
 ~\\

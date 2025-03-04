@@ -1,8 +1,8 @@
-PWD /home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments
+PWD /home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments
 INPUT /usr/local/texlive/2024/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Chapters/10/10.tex
+INPUT /home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/Chapters/10/10.tex
 OUTPUT Chapters/10/10.log
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/subfiles/subfiles.cls
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/subfiles/subfiles.cls

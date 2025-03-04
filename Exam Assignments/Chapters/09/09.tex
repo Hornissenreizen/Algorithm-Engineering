@@ -6,25 +6,26 @@
 compute-bound computations?}
 The difference is quite obvious. When running a program, it will run in a finite amount of time (hopefully). But why doesn't it terminate instantly? What a silly question, because a computer has to execute one instruction at a time, and each instruction takes a little bit of time to complete.
 
-Now, we differentiate between two kinds of operations: Usual cpu instructions and memory operations. The reason for this is that memory operations are relatively much more time expensive, and the recent hardware trends make this gap grow bigger. Hence, we would like to know whether our program is bottlenecked by these expensive memory operations, which we very much would like to avoid, as we want to utilize our cpu with useful instructions instead.
+Now, we differentiate between two kinds of operations: Usual CPU instructions and memory operations. The reason for this is that memory operations are relatively much more time expensive, and the recent hardware trends make this gap grow bigger. Hence, we would like to know whether our program is bottlenecked by these expensive memory operations, which we very much would like to avoid, as we want to utilize our CPU with useful instructions instead.
 
 To this end, we call computations \em memory-bound \em iff they are bottlenecked by the latency of memory operations. This, of course, is dependent on many factors, such as hardware and so on.
 
-If our program is not memory-bound, it still executes not instantly, as it is bound by the execution speed of the cpu. We have a \em compute-bound\em . In a sense, every program or operation experiences a compute-bound. Hence, it is more useful when we quantify this bound, by analyzing the cpu frequency and the execution speed of individual operations, so that we can estimate the program's execution time.
+If our program is not memory-bound, it still executes not instantly, as it is bound by the execution speed of the CPU. We have a \em compute-bound\em . In a sense, every program or operation experiences a compute-bound. Hence, it is more useful when we quantify this bound, by analyzing the CPU frequency and the execution speed of individual operations, so that we can estimate the program's execution time.
 
 \bigskip
 \subsection{Influence of temporal locality and spatial locality on program performance}
 If our program uses a lot of data, and thus faces a memory-bound, we have to intentionally engineer a program that employs good temporal as well spatial locality.
 
-This is, because a lot of data will read from and written to memory, which, as explained, is very time consuming. Luckily, computer engineers introduced caches to this end, which store some data of main memory, and provide it to the program with faster access times. The only problem will be if the caches or, more precisely, their hash bucket are full. Because caches are usually not \em fully-associative\em , which means that if we have a cache line in memory, we can not write it to any cache line in the cache as we like. In fact, we only have $N$ cache lines available in an \em N-way associative \em cache.
+This is, because a lot of data will be read from and written to memory, which, as explained, is very time consuming. Luckily, computer engineers introduced caches to this end, which store some data of main memory, and provide it to the program with faster access times. The only problem will be if the caches, or, more precisely, their hash bucket are full. Because caches are usually not \em fully-associative\em , which means that if we have a cache line in memory, we can not write it to any cache line in the cache as we like. In fact, we only have $N$ cache lines available in an \em N-way associative \em cache.
 
 As we can see, caches are very useful, but we have to understand their behavior in order to specifically tailor a program to effectively utilize them. In fact, a \em cache-aware \em algorithm employs good temporal as well as spatial locality. But what does that mean?
 
 \begin{description}
     \item[Temporal locality] describes the concept that recently accessed memory has a higher probability to be accessed again.
-    \item[Spatial locality] on the other hand is used to refer to the concept that memory, which is spatially close to recently accessed memory, has a higher probability of being accessed themself.
+    \item[Spatial locality] on the other hand is used to refer to the concept that memory, which is spatially close to recently accessed memory, has a higher probability of being accessed itself.
 \end{description}
 
+\noindent
 But why is all that useful? Well, it is due to the \em replacement policy \em of caches. As explained, caches will run full, and at that instance, they will have to evict a cache line. But how do they decide? Well, one common replacement policy is \em LRU (Least Recently Used)\em , which means that they choose the cache line whose access is the most far away in time. This is why temporal locality comes in handy, as it increases the chances that our data lies in cache, and thus reduces the risk of a cache miss.
 
 Finally, spatial locality is useful, because, as described, caches hold entire cache lines, which commonly hold 64 bytes of memory. Hence, if the data we access is closely clustered, we reduce the potential number of cache lines required, reducing the space requirement in the cache, and we will have more accesses to our cache lines. All of this contributes to a lower risk of a cache miss, which ultimately reduces the running time of our program.
@@ -59,7 +60,7 @@ In this paper the author explains the importance of cache-aware programs, as com
     
     \includegraphics[width=\linewidth]{Chapters/09/loop_blocking.png}
 
-    Both matrices $a$ and $b$ are stored in row-order fashion. Hence, when running the left algorithm, $a$ has good spatial locality, whereas $b$'s is horrendous, as it leads to a cache miss on every access. The idea is now to find a tradeoff between these two. Let us analyze the access pattern of the two algorithms:
+    Both matrices $a$ and $b$ are stored in row-order fashion. Hence, when running the left algorithm, $a$ has good spatial locality, whereas $b$'s is horrendous, as it leads to a cache miss on every access. The idea now is to find a tradeoff between these two. Let us analyze the access pattern of the two algorithms:
 
     \includegraphics[width=\linewidth]{Chapters/09/access_pattern.png}
 

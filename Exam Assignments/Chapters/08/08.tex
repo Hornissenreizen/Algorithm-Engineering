@@ -3,7 +3,7 @@
 \begin{document}
     \section{Vector Intrinsics and Instruction-Level Parallelism}
     \subsection{Analyzing slide 14}
-    Slide 14 explains how we can utilize vector instrinsics to transpose 8x8 matrices. Here is the code:
+    Slide 14 explains how we can utilize vector intrinsics to transpose 8x8 matrices. Here is the code:
     \begin{lstlisting}
 // transpose 8 x 8 matrix with intrinsics
 inline void transpose_8x8_int_intrinsics(__m256i *vecs) {
@@ -102,7 +102,7 @@ Hence, we get after this blending operation, which selects elements based on the
 \end{lstlisting}
 
 ~\\
-From here, we can see that we are almost done, $a$ and $e$ look like they almost contain one column, in fact the contain two columns "cut in the middle". Hence, after a final permutation we should be done calculating a column. To this end, we use \texttt{\_mm256\_permute2f128\_ps} and specify that we want to use the lower bits of both $a$ and $e$ by setting the mask to \texttt{CC}:
+From here, we can see that we are almost done, $a$ and $e$ look like they almost contain one column, in fact the contain two columns "cut in the middle". Hence, after a final permutation we should be done calculating a column. To this end, we use \texttt{\_mm256\_permute2f128\_ps} and specify that we want to use the lower bits of both $a$ and $e$ by setting the mask to \texttt{0x20}:
 \begin{lstlisting}
     v[0] = _mm256_permute2f128_ps(a, e, 0x20);
     v[0] = {a00, a10, a20, a30, a40, a50, a60, a70};
@@ -123,22 +123,22 @@ This explanation was not very detailed, but it gives a guideline to get a \em fe
 Obviously, the lower the latency, and the the higher the throughput, the better. In certain situations, however, one metric is much more decisive than the other:
 
 ~\\
-If one writes dependent code, i.e. the next line of code may only be executed after the current one because of a dependency, the latency of the operation will be the main factor for performance, since we want our result as quickly as possible to procede with the execution.
+If one writes dependent code, i.e. the next line of code may only be executed after the current one because of a dependency, the latency of the operation will be the main factor for performance, since we want our result as quickly as possible to proceed with the execution.
 
 ~\\
 On the other hand, if we write independent code which also uses many repeated operations, throughput will be key, as it determines how many clock cycles we approximately need to finish all calculations.
 %  \\ ($no\_clock\_cycles \approx \frac{no\_operations}{throughput\_of\_operation}$ (Note that the number of operations does not directly correlate with the number of instructions in code, as certain code instructions need more cpu instructions)).
-In this case, the latency has a neglectable influence on the performance, especially if the number of operations grows bigger.
+In this case, the latency has a negligible influence on the performance, especially if the number of operations grows bigger.
 
 \bigskip
 \subsubsection{Analyzing Vectorized Hash Tables Across CPU Architectures}
 In this paper the authors explained how to employ SIMD instructions to efficiently implement hash tables. Hash tables are quite diverse, as different implementation approaches can be used. One common implementation employs linear probing to search through the key array to find the specified key, so that the desired value can be returned for reading. Here is how we might implement this using vector instructions:
 
 \begin{description}
-    \item[Vectorized Linear Probing] The keys should be integer values, so that they can fit comfortably into the vector registers. Linear probing starts by checking the index specified by the hash value of the current key first, and then keeps going one step at a time until we found our key. The "key" idea is to simply load multiple consecutive keys into one vector register, and to compare them all against the search key. If one comparison is successful, we can calculate the index and return tha value at that index. Otherwise, we keep probing with the next set of keys.
+    \item[Vectorized Linear Probing] The keys should be integer values, so that they can fit comfortably into the vector registers. Linear probing starts by checking the index specified by the hash value of the current key first, and then keeps going one step at a time until we found our key. The "key" idea is to simply load multiple consecutive keys into one vector register, and to compare them all against the search key. If one comparison is successful, we can calculate the index and return the value at that index. Otherwise, we keep probing with the next set of keys.
     
     The authors also mentioned that there are subtle challenges, as vector instructions require the data in memory to be correctly aligned (by their register size). When we start probing at the hash index, however, we are almost certainly not at an aligned address. Hence, we should ensure to "align ourselves", for example by loading the aligned memory region containing the first search index into a vector register.
 
-    \item[Vectorized Fingerprinting] As mentioned, vectorized linear probing require integer keys. So what could we do if wanted to use strings instead? The "key" idea is to calculate "keys" for the keys themself (quite many keys around here). One can think of these keys as hash values (though not necessarily the same as the real hashes) of the keys. To avoid confusion, they are called \em fingerprints \em instead, and are quite short, in the paper the authors used fingerprints of size 8 or 16 bits. Using this technique, we can use vectorized linear probing on these fingerprints as described earlier, with the only difference being that we might run into fingerprint-conflicts. Thus, after a successful match of fingerprints, we have to then compare the actual keys to determine an actual hit.
+    \item[Vectorized Fingerprinting] As mentioned, vectorized linear probing requires integer keys. So what could we do if wanted to use strings instead? The "key" idea is to calculate "keys" for the keys themselves (quite many keys around here). One can think of these keys as hash values (though not necessarily the same as the real hashes) of the keys. To avoid confusion, they are called \em fingerprints \em instead, and are quite short, in the paper the authors used fingerprints of size 8 or 16 bits. Using this technique, we can use vectorized linear probing on these fingerprints as described earlier, with the only difference being that we might run into fingerprint-conflicts. Thus, after a successful match of fingerprints, we have to then compare the actual keys to determine an actual hit.
 \end{description}
 \end{document}

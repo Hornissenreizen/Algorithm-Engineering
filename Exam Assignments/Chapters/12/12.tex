@@ -32,7 +32,7 @@ The following example demonstrates the use of cancellation points in OpenMP:
 ~\\
 Now, the reader may ask why we need additional directives for this behavior, couldn't we just use a global variable and check it in the parallel region? Well, we definitely could do that, but the cancellation points are more efficient and easier to use. The OpenMP runtime system can check the cancellation condition at the end of the loop iterations, and if the condition is met, it will stop the execution of the parallel region. This is more efficient than checking the condition in every iteration of the loop, and it is also easier to use since the programmer doesn't have to write the code for checking the condition. Furthermore, imagine the scenario of a for loop with \em dynamic \em scheduling. If we used a global variable for the cancellation condition, we would only cancel the current batch of iterations the thread is working on, and potentially there are many more batches of iterations left which are not yet cancelled. Needless to say, this is not very efficient.
 
-~\\
+\bigskip
 \subsection{CUDA}
 CUDA is a parallel computing platform and application programming interface (API) model created by NVIDIA. It allows software developers to use a CUDA-enabled graphics processing unit (GPU) for general-purpose processing. The CUDA platform is used in many scientific applications, where high performance is required. It is also used in many machine learning applications, where large amounts of data need to be processed quickly. The CUDA platform provides a set of libraries and tools for developing parallel applications, and it is supported by many programming languages, including C, C++, and Fortran. Thus, let us lake a look at the basic structure of a CUDA program shown in figure~\ref{fig:cuda}.
 
@@ -108,9 +108,9 @@ int main() {
 
 
 
-~\\
+\bigskip
 \subsection{MPI}
-MPI stands for Message Passing Interface, and it is a standard for parallel programming. It is used for distributed memory systems, where each processor has its own memory. The processors communicate with each other by sending messages. The MPI library is available in many programming languages like C, C++, and Fortran, and is used in many scientific applications, where high performance is required. To this end, MPI provides functions for sending and receiving messages, and for synchronizing the processors. 
+MPI stands for Message Passing Interface, and it is a standard for parallel programming. It is used for distributed memory systems, where each process has its own memory. The processes communicate with each other by sending messages. The MPI library is available in many programming languages like C, C++, and Fortran, and is used in many scientific applications, where high performance is required. To this end, MPI provides functions for sending and receiving messages, and for synchronizing the processors. 
 
 ~\\
 One of the fundamental features of MPI is its ability to send and receive messages between processors. The \texttt{MPI\_Send} function is used to send data from one processor to another, while \texttt{MPI\_Recv} is used to receive data. These functions ensure point-to-point communication, which is critical for many parallel algorithms. For example, \texttt{MPI\_Send} requires parameters such as the data buffer, count of elements, data type, destination rank, tag, and communicator. Similarly, \texttt{MPI\_Recv} specifies the source rank, among other parameters, to successfully retrieve messages. Figure~\ref{fig:mpi} demonstrates how one might use these functions.
