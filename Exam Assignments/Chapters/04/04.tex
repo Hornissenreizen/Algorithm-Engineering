@@ -23,7 +23,7 @@ Here are the results when running the sorting algorithms with varying numbers of
 \includegraphics[width=\linewidth]{./running_times.png}
 
 ~\\
-And here are the performance gains compared to std::sort():
+And here are the performance gains compared to std::sort(). Note the different coloring:
 
 \includegraphics[width=\linewidth]{./speedup.png}
 
@@ -55,7 +55,7 @@ They are proportional to $\frac{1}{\text{Number of Threads}}$, as one might expe
 % One might think that this speedup is exponential, but it is not (note the logarithmic scale!), it is rather approximately $(\text{Serial Running Time}) \cdot (1 - \frac{1}{12 \cdot E})$, where $E$ is the efficiency $E = \frac{\frac{\text{Serial Running Time}}{\text{Threads}}}{\text{Parallel Running Time}}$, and note that the number of threads on this machine is 12.
 % Note, that Serial Running Time is expected to grow $\Theta(n \cdot \log(n))$, and so should the speedup.
 Let us now analyze the second two pictures, showing the running times at different array sizes.
-The graphs are as expected, the running times of the parallel algorithms is better, even more so for very large array sizes, as in those instances we can fully employ the parallel power of the cpu cores without much overhead relative to the running time, thus decreasing the running time significantly.
+The graphs are as expected, the running times of the parallel algorithms is better, even more so for very large array sizes, as in those instances we can fully employ the parallel power of the CPU cores without much overhead relative to the running time, thus decreasing the running time significantly.
 This is why the speedup gets better with increasing array size initially.
 The speedup, however, start to plateau quickly at an array size of roughly 1 MB, as at this point the overhead of parallelization with respect to the running time stays constant (i.e. $\frac{\text{Time of Overhead}}{\text{Parallel Running Time}} = \text{const.}$):
 
@@ -84,7 +84,7 @@ we have
 \subsection{What every systems programmer should know about concurrency}
 \subsubsection{Why it is not enough to declare shared variables as volatile}
 By declaring variables as volatile in C and C++, we make the compiler read and write the variable from and to memory every time we access it.
-Cache coherency protocols then ensure that every local cache of the cpu cores has the same value of the shared variable.
+Cache coherency protocols then ensure that every local cache of the CPU cores has the same value of the shared variable.
 So everything should be good then, right?
 
 ~\\

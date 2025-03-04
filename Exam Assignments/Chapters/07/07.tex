@@ -11,7 +11,7 @@
 \section{Guided Vectorization and Data Types for Vector Intrinsics}
 \subsection{Vectorization Clauses}
 \begin{description}
-    \item[aligned] ~\\ This clause tells the compiler that every element of an array $a$ is $n$-bit aligned if one uses \texttt{\#pragma opm simd aligned(a, n)}. The compiler employs this information to effectively vectorize the code section.
+    \item[aligned] ~\\ This clause tells the compiler that every element of an array $a$ is $n$-byte aligned if one uses \texttt{\#pragma opm simd aligned(a, n)}. The compiler employs this information to effectively vectorize the code section.
     \bigskip
     \item[safelen] ~\\ Imagine we had the following code:
     \begin{lstlisting}
@@ -34,6 +34,7 @@ for (int i = 1; i < n; i++) {
 
 \newpage
 \subsubsection{AVX512 data types}
+\begin{figure}[h]
 \resizebox{\textwidth}{!}{ % Scale to the width of the text
 \begin{tabular}{ r c l }
     \texttt{\_\_m512} & \drawcells{16}{F}{blue} & \texttt{16x 32-bit float} \\
@@ -47,10 +48,12 @@ for (int i = 1; i < n; i++) {
     \texttt{\_\_m512i} & \drawcells{1}{dqqw}{red} & \texttt{1x 512-bit integer} \\
 \end{tabular}
 }
+\caption{Illustration of AVX512 data types. \texttt{\_\_m512i} is not depicted precisely.}
+\end{figure}
 
 \bigskip
 \subsubsection{Intel MMX}
-In the paper \href{https://dl.acm.org/doi/pdf/10.1145/242857.242865}{Intel MMX for Multimedia PCs} the authors introduced the new MMX technology, which they integrated into their new cpus. It allows the cpu to employ vector instructions to increase throuphput and hence optimize running time of common computing tasks, such as rendering pixels for example. They illustrated the use cases in several examples, two of them being:
+In the paper \href{https://dl.acm.org/doi/pdf/10.1145/242857.242865}{Intel MMX for Multimedia PCs} the authors introduced the new MMX technology, which they integrated into their new CPUs. It allows the CPU to employ vector instructions to increase throughput and hence optimize running time of common computing tasks, such as rendering pixels for example. They illustrated the use cases in several examples, two of them being:
 
 \begin{description}
     \item[Vectorizing Branches] Say we want overlay sprite onto a scene, i.e. we have a pixel array representing the sprite, and another one representing the scene (so far). The sprite array consists of color values. However, there is one constant value which represents a \em clear color\em , which represents the sprite not being visible at that point, and hence it should not get rendered onto the scene. The overlaying operation can the be performed by:
