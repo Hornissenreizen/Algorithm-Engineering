@@ -74,10 +74,10 @@ It calculates a random number quite efficiently.
 Another benefit is that we do not need multiple instances of random number generators, and we also don't run the risk of misusing those by calling their methods in different threads.
 The code is shown in the \hyperref[fig:calculate_pi_v2]{figure} below.
 It runs very quickly and calculates $\pi$ very precisely.
-The running time on my particular machine was 0.0313137 s, in comparison to the previous version with a running time of 0.117771 s.
+The running time on my particular machine was 0.105165 s, in comparison to the previous version with a running time of 0.738914 s.
 
-\newpage
-\begin{figure}
+% \newpage
+\begin{figure}[p]
 \label{fig:calculate_pi_v2}
 \begin{lstlisting}
 #include <iostream>

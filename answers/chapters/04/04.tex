@@ -40,7 +40,7 @@ These are the speedups compared to std::sort():
 \includegraphics[width=\linewidth]{./speedup_array.png}
 
 
-~\\
+\bigskip
 \subsubsection{Explaining the results}
 In the first two graphs when measuring the running times and speed ups when varying the threads, we can clearly see that the serial std::sort has a constant running time, whereas both parallel sorting algorithms run quicker with increasing thread number, thus overtaking std::sort already with two threads significantly (almost halving the running time of std::sort).
 With further increasing thread number, the running times of the parallel algorithms further decreases.
@@ -94,7 +94,7 @@ But as executing this increment operation takes multiple clock cycles, thread on
 Now, both threads increment this value and write it back to memory, so thread one does it first, which causes the cache of thread two to now have the updated counter variable in its cache, but the value it is operating on, which lies in its registers, is unchanged, so it will get the same result and write it back to memory.
 In the end, the counter increased by one, even though it got incremented two times, which is (in most cases) undesired and incorrect behavior.
 
-~\\
+\bigskip
 \subsubsection{But what if my ISA doesn't support atomic access to my custom data structure / code section}
 We now learned that we have to use atomic variables to ensure correct parallel code execution.
 But what if the shared variable has no atomic variable data type like bool has with std::atomic\_bool?

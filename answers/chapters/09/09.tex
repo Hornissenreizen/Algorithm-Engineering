@@ -36,7 +36,7 @@ On the slides 15 and 17 we hear about caches being \em N-way associative\em . Le
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\linewidth]{Chapters/09/Set-Associative_Cache_Snehal_Img.png}
+    \includegraphics[width=\linewidth]{chapters/09/Set-Associative_Cache_Snehal_Img.png}
     \caption~{2-way associative cache \footnotemark}
     \label{fig:example}
 \end{figure}
@@ -58,11 +58,11 @@ In this paper the author explains the importance of cache-aware programs, as com
 \begin{description}
     \item[Loop Blocking] This is best understood by an example. Say we have the following code:
     
-    \includegraphics[width=\linewidth]{Chapters/09/loop_blocking.png}
+    \includegraphics[width=\linewidth]{chapters/09/loop_blocking.png}
 
     Both matrices $a$ and $b$ are stored in row-order fashion. Hence, when running the left algorithm, $a$ has good spatial locality, whereas $b$'s is horrendous, as it leads to a cache miss on every access. The idea now is to find a tradeoff between these two. Let us analyze the access pattern of the two algorithms:
 
-    \includegraphics[width=\linewidth]{Chapters/09/access_pattern.png}
+    \includegraphics[width=\linewidth]{chapters/09/access_pattern.png}
 
     Note that walking along the rows is good for spatial locality, and also note that for b the graphic should be flipped along $y=x$.
 
@@ -70,7 +70,7 @@ In this paper the author explains the importance of cache-aware programs, as com
 
     \item[Array Padding] This one is rather specific, but it is quite useful to keep it in the back of one's mind. Imagine for the sake of argument that we have cache which can hold 1024 doubles in total, and has a 1-way associative cache (we will now see why this is maybe a bit too aggressive). Next, consider this algorithm:
     
-    \includegraphics[width=\linewidth]{Chapters/09/array_padding.png}
+    \includegraphics[width=\linewidth]{chapters/09/array_padding.png}
     
     It just so happens that in this instance both array $a$ and $b$ will map to the same cache lines (compare to my previous explanation). But, as there is only one slot in the cache for a specific cache line with a certain index, we will load a cache line of array $a$, right after that we will evict it for $b$, and then again for $a$ and so on. In the end, we will have a cache miss on every access, yikes. If only the cache line indices of $a$ and $b$ wouldn't align. Well, exactly this is the idea behind the algorithm on the right: We simply occupy some padding space in-between the two arrays, which the cache will be grateful for.
 

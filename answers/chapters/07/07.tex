@@ -77,7 +77,7 @@ if A[i] = clear_color then
     ~\\
     To see this in action, the authors provided a graphic for the example discussed earlier:
 
-    \includegraphics[width=\textwidth]{Chapters/07/vectorizing_branches.png}
+    \includegraphics[width=\textwidth]{chapters/07/vectorizing_branches.png}
 
     ~\\
     In \em Phase 1\em , the mask is computed, i.e. the condition evaluated (the condition is that the color value equals the \texttt{clear\_color} constant).
@@ -89,7 +89,7 @@ if A[i] = clear_color then
     \bigskip
     \item[Matrix Transposition] Vector instructions can be fully utilized if the data is stored sequentially in memory. Hence, accessing rows of matrices can vectorized. But I we want to work on the columns of the matrix, it might be beneficial to transpose the matrix. This transposing can be vectorized as well by employing the so called \em unpack \em operation, which interleaves two operands word-wise, as can be seen in the picture:
 
-    \includegraphics[width=\textwidth]{Chapters/07/unpack.png}
+    \includegraphics[width=\textwidth]{chapters/07/unpack.png}
 
     ~\\
     To now transpose an entire matrix we go on like this: Imagine for the sake of simplicity that we have the following matrix $M$:
@@ -101,7 +101,7 @@ if A[i] = clear_color then
     \end{pmatrix}\]
     We now compute the last two rows of the matrix by firstly unpacking the last two entries of two adjacent rows, in this case $d$ and $c$, and $b$ and $a$, like shown in \em Phase 1 \em in the following graphic:
 
-    \includegraphics[width=\textwidth]{Chapters/07/transpose.png}
+    \includegraphics[width=\textwidth]{chapters/07/transpose.png}
 
     We now created two \em column slices \em of length two in every result of the unpack operations. Thus, we now need to unpack those among themselves, to get longer column slices, or in this case entire columns, as demonstrated in \em Phase 2\em .
     Once again, all the operations can be implemented with vector instructions, as hinted by the small assembly program at the bottom.
