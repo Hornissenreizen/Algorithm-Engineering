@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed"
+CMAKE_SOURCE_DIR = "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build"
+CMAKE_BINARY_DIR = "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build"
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -148,14 +148,14 @@ tests/catch/clean:
 src/CMakeFiles/einspeed.dir/all: external/hptt/CMakeFiles/hptt.dir/all
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/einspeed.dir/build.make src/CMakeFiles/einspeed.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/einspeed.dir/build.make src/CMakeFiles/einspeed.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=4,5 "Built target einspeed"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/CMakeFiles" --progress-num=4,5 "Built target einspeed"
 .PHONY : src/CMakeFiles/einspeed.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/einspeed.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" 7
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/CMakeFiles" 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/einspeed.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/CMakeFiles" 0
 .PHONY : src/CMakeFiles/einspeed.dir/rule
 
 # Convenience name for target.
@@ -174,14 +174,14 @@ src/CMakeFiles/einspeed.dir/clean:
 external/hptt/CMakeFiles/hptt.dir/all:
 	$(MAKE) $(MAKESILENT) -f external/hptt/CMakeFiles/hptt.dir/build.make external/hptt/CMakeFiles/hptt.dir/depend
 	$(MAKE) $(MAKESILENT) -f external/hptt/CMakeFiles/hptt.dir/build.make external/hptt/CMakeFiles/hptt.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=6,7,8,9,10 "Built target hptt"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/CMakeFiles" --progress-num=6,7,8,9,10 "Built target hptt"
 .PHONY : external/hptt/CMakeFiles/hptt.dir/all
 
 # Build rule for subdir invocation for target.
 external/hptt/CMakeFiles/hptt.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" 5
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/CMakeFiles" 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 external/hptt/CMakeFiles/hptt.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/CMakeFiles" 0
 .PHONY : external/hptt/CMakeFiles/hptt.dir/rule
 
 # Convenience name for target.
@@ -201,14 +201,14 @@ tests/CMakeFiles/catch2.dir/all: src/CMakeFiles/einspeed.dir/all
 tests/CMakeFiles/catch2.dir/all: external/hptt/CMakeFiles/hptt.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/catch2.dir/build.make tests/CMakeFiles/catch2.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/catch2.dir/build.make tests/CMakeFiles/catch2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=1,2,3 "Built target catch2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/CMakeFiles" --progress-num=1,2,3 "Built target catch2"
 .PHONY : tests/CMakeFiles/catch2.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/catch2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" 10
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/CMakeFiles" 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/catch2.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/catch2.dir/rule
 
 # Convenience name for target.

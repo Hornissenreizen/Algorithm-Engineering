@@ -1,4 +1,4 @@
-# Install script for directory: /home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests/catch
+# Install script for directory: /home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/tests/catch
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

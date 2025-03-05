@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -Deinspeed_EXPORTS
 
-CXX_INCLUDES = -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/main" -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/PUBLIC" -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/include" -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/include" -I/usr/include/python3.12 -I/usr/lib/python3/dist-packages/numpy/core/include
+CXX_INCLUDES = -I"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/main" -I"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/PUBLIC" -I"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/include" -I"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/external/hptt/include" -I/usr/include/python3.12 -I/usr/lib/python3/dist-packages/numpy/core/include
 
 CXX_FLAGS =  -Ofast -march=native -ffast-math -fPIC -fopenmp -march=native -mtune=native -fopenmp
 

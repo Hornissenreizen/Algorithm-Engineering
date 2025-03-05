@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed"
+CMAKE_SOURCE_DIR = "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build"
+CMAKE_BINARY_DIR = "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,14 +132,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/src//CMakeFiles/progress.marks"
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" 0
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/CMakeFiles" "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/src//CMakeFiles/progress.marks"
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/clean
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -148,22 +148,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/CMakeFiles/einspeed.dir/rule:
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/einspeed.dir/rule
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/einspeed.dir/rule
 .PHONY : src/CMakeFiles/einspeed.dir/rule
 
 # Convenience name for target.
@@ -172,7 +172,7 @@ einspeed: src/CMakeFiles/einspeed.dir/rule
 
 # fast build rule for target.
 einspeed/fast:
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/einspeed.dir/build.make src/CMakeFiles/einspeed.dir/build
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/einspeed.dir/build.make src/CMakeFiles/einspeed.dir/build
 .PHONY : einspeed/fast
 
 einspeed.o: einspeed.cpp.o
@@ -180,7 +180,7 @@ einspeed.o: einspeed.cpp.o
 
 # target to build an object file
 einspeed.cpp.o:
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/einspeed.dir/build.make src/CMakeFiles/einspeed.dir/einspeed.cpp.o
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/einspeed.dir/build.make src/CMakeFiles/einspeed.dir/einspeed.cpp.o
 .PHONY : einspeed.cpp.o
 
 einspeed.i: einspeed.cpp.i
@@ -188,7 +188,7 @@ einspeed.i: einspeed.cpp.i
 
 # target to preprocess a source file
 einspeed.cpp.i:
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/einspeed.dir/build.make src/CMakeFiles/einspeed.dir/einspeed.cpp.i
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/einspeed.dir/build.make src/CMakeFiles/einspeed.dir/einspeed.cpp.i
 .PHONY : einspeed.cpp.i
 
 einspeed.s: einspeed.cpp.s
@@ -196,7 +196,7 @@ einspeed.s: einspeed.cpp.s
 
 # target to generate assembly for a file
 einspeed.cpp.s:
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/einspeed.dir/build.make src/CMakeFiles/einspeed.dir/einspeed.cpp.s
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/einspeed.dir/build.make src/CMakeFiles/einspeed.dir/einspeed.cpp.s
 .PHONY : einspeed.cpp.s
 
 # Help Target
@@ -226,6 +226,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
