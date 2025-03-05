@@ -339,13 +339,13 @@ INPUT ./chapters/06/06.tex
 INPUT chapters/06/06.tex
 INPUT ./chapters/06/06.tex
 INPUT chapters/06/06.tex
-INPUT ./chapters/07/07.tex
-INPUT chapters/07/07.tex
-INPUT ./chapters/07/07.tex
-INPUT chapters/07/07.tex
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmtt8.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmtt8.tfm
+INPUT ./chapters/07/07.tex
+INPUT chapters/07/07.tex
+INPUT ./chapters/07/07.tex
+INPUT chapters/07/07.tex
 INPUT ./chapters/07/vectorizing_branches.png
 INPUT ./chapters/07/vectorizing_branches.png
 INPUT chapters/07/vectorizing_branches.png

@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1741087237.27227 "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/answers/main.tex" "main.pdf" "main" 1741087239.50693 0
+["pdflatex"] 1741100028.07776 "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/answers/main.tex" "main.pdf" "main" 1741100030.33761 0
   "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/answers/main.tex" 1741086501.0297 1497 f047e4880bfd2f1a08f4d716891e1cb3 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1734431873.45473 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1734431874.71172 1004 54797486969f23fa377b128694d548df ""
@@ -186,7 +186,7 @@
   "chapters/04/./speedup.png" 1731247495.89718 47564 5eb67af53492d2460359b2c87d8f1c42 ""
   "chapters/04/./speedup_array.png" 1731247603.87257 48712 92ae7d7cba4daad35290060e26c135fb ""
   "chapters/04/04.tex" 1741087230.66467 7560 b50d35241901e72f88a7769cc03f1b04 ""
-  "chapters/06/06.tex" 1732458756.25496 2288 529d732f6829a8e74cf0dd776280f45c ""
+  "chapters/06/06.tex" 1741099918.09236 4427 8d25d8f5fff439b439f7b83be5f612c5 ""
   "chapters/07/07.tex" 1741086636.72951 6813 2c5518c6a1f7ebf411899daa60880b05 ""
   "chapters/07/transpose.png" 1732711457.89018 225494 5c1291d146a51f7a70a4a715210ed0b5 ""
   "chapters/07/unpack.png" 1732710760.34637 53864 12bc16c515319d860b30c7590a8cf446 ""
@@ -200,10 +200,10 @@
   "chapters/10/10.tex" 1741083547.58396 2884 f0d3b6220c61c4597f35de44b61fe3ed ""
   "chapters/11/11.tex" 1741083903.65947 3399 58c108ccc9b2af3dd89fc98eab4d869b ""
   "chapters/12/12.tex" 1741084410.9808 9648 0100e719c8b856a99299e8ee7f632bec ""
-  "main.aux" 1741087239.43461 9455 c7c0aa6378807796457de8d053d89ad1 "pdflatex"
-  "main.out" 1741087239.43561 13502 f009529d385a5b693007f60b4ab87087 "pdflatex"
+  "main.aux" 1741100030.26554 9455 040dee87858c5325b207a59c63edde3e "pdflatex"
+  "main.out" 1741100030.26554 13502 f009529d385a5b693007f60b4ab87087 "pdflatex"
   "main.tex" 1741086501.0297 1497 f047e4880bfd2f1a08f4d716891e1cb3 ""
-  "main.toc" 1741087239.43561 5697 8e5eae1203ef942ee01d2c2c9dd95411 "pdflatex"
+  "main.toc" 1741100030.26654 5697 80bd2e73984b240eda922d337c60ec73 "pdflatex"
   (generated)
   "main.aux"
   "main.log"

@@ -5,6 +5,8 @@
 #include <numpy/arrayobject.h>
 #include <complex>
 
+// This file specifies the conversion from NumPy types to native C++ types.
+
 template <typename T>
 constexpr int numpy_type_of() {throw std::runtime_error("Unsupported data type for NumPy array");}
 

@@ -16,6 +16,9 @@
 #include "func.h"
 #include "hptt.h"
 
+// This class implements the main tensor data structure used by this einsum implementation.
+// Some of the important methods are transpose and reduce.
+
 template <typename T>
 class Tensor {
 public:

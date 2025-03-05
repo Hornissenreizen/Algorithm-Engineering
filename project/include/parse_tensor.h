@@ -6,6 +6,8 @@
 #include "tensor.h"
 #include "func.h"
 
+// Some parsing methods of Python objects and NumPy arrays are implemented here.
+
 const PyArrayObject* PyObject_to_PyArrayObject(const PyObject * const _t) {
     // Ensure the input is a NumPy array
     if (!PyArray_Check(_t)) {

@@ -7,6 +7,8 @@
 #include <cctype>
 #include <locale>
 
+// In this file some basic subroutines are implemented.
+
 template <typename FROM, typename TO>
 TO* cast_all(size_t _n, const FROM* _a) {
     TO *_r = new TO[_n];

@@ -7,6 +7,8 @@
 #include "numpy_types.h"
 #include "unroll_loop.h"
 
+// Entry point for Python to use the einsum function found below.
+
 static PyObject* einsum(PyObject* const self, PyObject* const args) {
     PyObject *lhs_o, *rhs_o;
     const char *s;

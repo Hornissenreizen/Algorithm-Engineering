@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.17)  4 MAR 2025 12:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.17)  4 MAR 2025 15:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -690,30 +690,15 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 40--41
 [19])
 
 [20] (./chapters/06/06.tex
-Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--10
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 10--11
-
- []
-
-)
-
-[21]
+[21])
 
 [22] (./chapters/07/07.tex
 
 [23]
 
 [24]
-<chapters/07/vectorizing_branches.png, id=580, 1586.92876pt x 1393.205pt>
+<chapters/07/vectorizing_branches.png, id=597, 1586.92876pt x 1393.205pt>
 File: chapters/07/vectorizing_branches.png Graphic file (type png)
 <use chapters/07/vectorizing_branches.png>
 Package pdftex.def Info: chapters/07/vectorizing_branches.png  used on input line 80.
@@ -723,7 +708,7 @@ Overfull \hbox (25.00003pt too wide) in paragraph at lines 80--81
 [][] 
  []
 
-<chapters/07/unpack.png, id=581, 1364.09625pt x 419.5675pt>
+<chapters/07/unpack.png, id=598, 1364.09625pt x 419.5675pt>
 File: chapters/07/unpack.png Graphic file (type png)
 <use chapters/07/unpack.png>
 Package pdftex.def Info: chapters/07/unpack.png  used on input line 92.
@@ -736,7 +721,7 @@ Overfull \hbox (25.00003pt too wide) in paragraph at lines 92--93
 
 
 [25 <./chapters/07/vectorizing_branches.png>]
-<chapters/07/transpose.png, id=588, 1510.64375pt x 1034.86626pt>
+<chapters/07/transpose.png, id=605, 1510.64375pt x 1034.86626pt>
 File: chapters/07/transpose.png Graphic file (type png)
 <use chapters/07/transpose.png>
 Package pdftex.def Info: chapters/07/transpose.png  used on input line 104.
@@ -759,7 +744,7 @@ Overfull \hbox (25.00003pt too wide) in paragraph at lines 104--105
 [30] (./chapters/09/09.tex
 
 [31]
-<chapters/09/Set-Associative_Cache_Snehal_Img.png, id=669, 680.5425pt x 411.03563pt>
+<chapters/09/Set-Associative_Cache_Snehal_Img.png, id=686, 680.5425pt x 411.03563pt>
 File: chapters/09/Set-Associative_Cache_Snehal_Img.png Graphic file (type png)
 <use chapters/09/Set-Associative_Cache_Snehal_Img.png>
 Package pdftex.def Info: chapters/09/Set-Associative_Cache_Snehal_Img.png  used on input line 39.
@@ -767,12 +752,12 @@ Package pdftex.def Info: chapters/09/Set-Associative_Cache_Snehal_Img.png  used 
 
 
 [32 <./chapters/09/Set-Associative_Cache_Snehal_Img.png>]
-<chapters/09/loop_blocking.png, id=679, 1505.625pt x 537.00626pt>
+<chapters/09/loop_blocking.png, id=696, 1505.625pt x 537.00626pt>
 File: chapters/09/loop_blocking.png Graphic file (type png)
 <use chapters/09/loop_blocking.png>
 Package pdftex.def Info: chapters/09/loop_blocking.png  used on input line 61.
 (pdftex.def)             Requested size: 319.99997pt x 114.13484pt.
-<chapters/09/access_pattern.png, id=680, 2033.5975pt x 897.3525pt>
+<chapters/09/access_pattern.png, id=697, 2033.5975pt x 897.3525pt>
 File: chapters/09/access_pattern.png Graphic file (type png)
 <use chapters/09/access_pattern.png>
 Package pdftex.def Info: chapters/09/access_pattern.png  used on input line 65.
@@ -780,7 +765,7 @@ Package pdftex.def Info: chapters/09/access_pattern.png  used on input line 65.
 
 
 [33 <./chapters/09/loop_blocking.png>]
-<chapters/09/array_padding.png, id=689, 1180.41pt x 358.33875pt>
+<chapters/09/array_padding.png, id=704, 1180.41pt x 358.33875pt>
 File: chapters/09/array_padding.png Graphic file (type png)
 <use chapters/09/array_padding.png>
 Package pdftex.def Info: chapters/09/array_padding.png  used on input line 73.
@@ -839,18 +824,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: F009529D385A5B693007F60B4AB87087;13502.
  ) 
 Here is how much of TeX's memory you used:
- 23847 strings out of 473330
- 431528 string characters out of 5719768
+ 23856 strings out of 473330
+ 431677 string characters out of 5719768
  1127700 words of memory out of 5000000
  46123 multiletter control sequences out of 15000+600000
  567248 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,16n,93p,1147b,1460s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (43 pages, 1455786 bytes).
+Output written on main.pdf (43 pages, 1461747 bytes).
 PDF statistics:
- 1015 PDF objects out of 1200 (max. 8388607)
- 897 compressed objects within 9 object streams
- 415 named destinations out of 1000 (max. 500000)
+ 1032 PDF objects out of 1200 (max. 8388607)
+ 913 compressed objects within 10 object streams
+ 424 named destinations out of 1000 (max. 500000)
  518 words of extra memory for PDF output out of 10000 (max. 10000000)
 

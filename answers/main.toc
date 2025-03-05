@@ -28,7 +28,7 @@
 \contentsline {section}{\numberline {5}Auto Vectorization}{21}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Characteristics of SSE, AVX(2) and AVX-512}{21}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}Impact of Memory Aliasing on Performance}{21}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Advantages of Unit Stride Memory Access}{21}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.3}Advantages of Unit Stride Memory Access}{22}{subsection.5.3}%
 \contentsline {subsection}{\numberline {5.4}When to Prefer Structure of Arrays}{22}{subsection.5.4}%
 \contentsline {section}{\numberline {6}Guided Vectorization and Data Types for Vector Intrinsics}{23}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Vectorization Clauses}{23}{subsection.6.1}%

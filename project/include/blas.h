@@ -3,6 +3,8 @@
 
 #include "tensor.h"
 
+// Implementation of batch matrix matrix multiplication, where the second batch matrices are treated as being transposed.
+
 template <typename T>
 Tensor<T> batch_matrix_matmul_transpose(const Tensor<T>& lhs, const Tensor<T>& rhs, T* available_memory, size_t available_memory_size) {
     // Check dimensions
