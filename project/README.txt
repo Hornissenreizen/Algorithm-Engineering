@@ -73,7 +73,7 @@
 
         einspeed.einsum(format_string, lhs_tensor, rhs_tensor)
     
-    This is a very basic einsum implementation and works similar to numpy.einsum, though not all features are implemented. The format string and both operand tensors specified by multi-dimensional NumPy arrays must be compatible, this includes their dimensions, the dimension sizes, and their data types must match. The format string can be used to specify batch, contracted, kept, and reduced dimensions of the operand tensors, as well as the shape of the output tensor. This fully describes the functionality of this method.
+    This is a very basic einsum implementation and works similar to numpy.einsum, though not all features are implemented. The format string and both operand tensors specified by multi-dimensional NumPy arrays must be compatible, this includes their dimensions, the dimension sizes, and their data types must match. Supported data types are np.float32, np.float64, np.complex64, and np.complex128. The format string can be used to specify batch, contracted, kept, and reduced dimensions of the operand tensors, as well as the shape of the output tensor. This fully describes the functionality of this method.
 
     It returns a multi-dimensional NumPy array representing the result of the tensor operations specified by the format string on the operand tensors. In case of a scalar output, an actual scalar is returned.
 

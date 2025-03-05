@@ -2,7 +2,7 @@
 #define COMPUTE_EINSUM_H
 
 // uncomment the following lines to show debug information
-#define DEBUG
+// #define DEBUG
 // #define DEBUG_VERBOSE
 
 #include <unordered_map>
