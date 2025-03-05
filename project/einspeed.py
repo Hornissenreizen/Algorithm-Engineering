@@ -3,6 +3,8 @@ import numpy as np
 import time
 import csv
 
+# Top level python program to test the implementation.
+
 def benchmark_einsum(format_string, lhs_shape, rhs_shape, dtype = np.float32, test_case = "Default", epsilon = 1e-4):
     lhs_tensor = (1+np.random.rand(*lhs_shape)).astype(dtype)
     rhs_tensor = (1+np.random.rand(*rhs_shape)).astype(dtype)

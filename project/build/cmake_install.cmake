@@ -1,4 +1,4 @@
-# Install script for directory: /home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed
+# Install script for directory: /home/jonas/Documents/University/5. Semester/Algorithm Engineering/project
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,8 +44,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/src/cmake_install.cmake")
-  include("/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests/cmake_install.cmake")
+  include("/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/src/cmake_install.cmake")
+  include("/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/tests/cmake_install.cmake")
 
 endif()
 
@@ -57,5 +57,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

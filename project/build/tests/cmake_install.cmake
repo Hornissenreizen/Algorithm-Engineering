@@ -1,4 +1,4 @@
-# Install script for directory: /home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests
+# Install script for directory: /home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/tests
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests/catch/cmake_install.cmake")
+  include("/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/tests/catch/cmake_install.cmake")
 
 endif()
 

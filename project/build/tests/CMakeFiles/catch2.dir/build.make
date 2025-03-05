@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed"
+CMAKE_SOURCE_DIR = "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build"
+CMAKE_BINARY_DIR = "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build"
 
 # Include any dependencies generated for this target.
 include tests/CMakeFiles/catch2.dir/depend.make
@@ -70,43 +70,43 @@ include tests/CMakeFiles/catch2.dir/progress.make
 include tests/CMakeFiles/catch2.dir/flags.make
 
 tests/CMakeFiles/catch2.dir/catch_main.cpp.o: tests/CMakeFiles/catch2.dir/flags.make
-tests/CMakeFiles/catch2.dir/catch_main.cpp.o: /home/john/Documents/Uni/Algorithm-Engineering/Exam\ Assignments/Code/einspeed/tests/catch_main.cpp
+tests/CMakeFiles/catch2.dir/catch_main.cpp.o: /home/jonas/Documents/University/5.\ Semester/Algorithm\ Engineering/project/tests/catch_main.cpp
 tests/CMakeFiles/catch2.dir/catch_main.cpp.o: tests/CMakeFiles/catch2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/catch2.dir/catch_main.cpp.o"
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/catch2.dir/catch_main.cpp.o -MF CMakeFiles/catch2.dir/catch_main.cpp.o.d -o CMakeFiles/catch2.dir/catch_main.cpp.o -c "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests/catch_main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/catch2.dir/catch_main.cpp.o"
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/catch2.dir/catch_main.cpp.o -MF CMakeFiles/catch2.dir/catch_main.cpp.o.d -o CMakeFiles/catch2.dir/catch_main.cpp.o -c "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/tests/catch_main.cpp"
 
 tests/CMakeFiles/catch2.dir/catch_main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/catch2.dir/catch_main.cpp.i"
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests/catch_main.cpp" > CMakeFiles/catch2.dir/catch_main.cpp.i
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/tests/catch_main.cpp" > CMakeFiles/catch2.dir/catch_main.cpp.i
 
 tests/CMakeFiles/catch2.dir/catch_main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/catch2.dir/catch_main.cpp.s"
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests/catch_main.cpp" -o CMakeFiles/catch2.dir/catch_main.cpp.s
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/tests/catch_main.cpp" -o CMakeFiles/catch2.dir/catch_main.cpp.s
 
-tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o: tests/CMakeFiles/catch2.dir/flags.make
-tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o: /home/john/Documents/Uni/Algorithm-Engineering/Exam\ Assignments/Code/einspeed/tests/catch_tests_tensor.cpp
-tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o: tests/CMakeFiles/catch2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o"
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o -MF CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o.d -o CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o -c "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests/catch_tests_tensor.cpp"
+tests/CMakeFiles/catch2.dir/catch_tests_tensor_blas.cpp.o: tests/CMakeFiles/catch2.dir/flags.make
+tests/CMakeFiles/catch2.dir/catch_tests_tensor_blas.cpp.o: /home/jonas/Documents/University/5.\ Semester/Algorithm\ Engineering/project/tests/catch_tests_tensor_blas.cpp
+tests/CMakeFiles/catch2.dir/catch_tests_tensor_blas.cpp.o: tests/CMakeFiles/catch2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/catch2.dir/catch_tests_tensor_blas.cpp.o"
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/catch2.dir/catch_tests_tensor_blas.cpp.o -MF CMakeFiles/catch2.dir/catch_tests_tensor_blas.cpp.o.d -o CMakeFiles/catch2.dir/catch_tests_tensor_blas.cpp.o -c "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/tests/catch_tests_tensor_blas.cpp"
 
-tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/catch2.dir/catch_tests_tensor.cpp.i"
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests/catch_tests_tensor.cpp" > CMakeFiles/catch2.dir/catch_tests_tensor.cpp.i
+tests/CMakeFiles/catch2.dir/catch_tests_tensor_blas.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/catch2.dir/catch_tests_tensor_blas.cpp.i"
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/tests/catch_tests_tensor_blas.cpp" > CMakeFiles/catch2.dir/catch_tests_tensor_blas.cpp.i
 
-tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/catch2.dir/catch_tests_tensor.cpp.s"
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests/catch_tests_tensor.cpp" -o CMakeFiles/catch2.dir/catch_tests_tensor.cpp.s
+tests/CMakeFiles/catch2.dir/catch_tests_tensor_blas.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/catch2.dir/catch_tests_tensor_blas.cpp.s"
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/tests" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/tests/catch_tests_tensor_blas.cpp" -o CMakeFiles/catch2.dir/catch_tests_tensor_blas.cpp.s
 
 # Object files for target catch2
 catch2_OBJECTS = \
 "CMakeFiles/catch2.dir/catch_main.cpp.o" \
-"CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o"
+"CMakeFiles/catch2.dir/catch_tests_tensor_blas.cpp.o"
 
 # External object files for target catch2
 catch2_EXTERNAL_OBJECTS =
 
 tests/catch2: tests/CMakeFiles/catch2.dir/catch_main.cpp.o
-tests/catch2: tests/CMakeFiles/catch2.dir/catch_tests_tensor.cpp.o
+tests/catch2: tests/CMakeFiles/catch2.dir/catch_tests_tensor_blas.cpp.o
 tests/catch2: tests/CMakeFiles/catch2.dir/build.make
 tests/catch2: src/einspeed.so
 tests/catch2: /usr/lib/x86_64-linux-gnu/libpython3.12.so
@@ -114,18 +114,18 @@ tests/catch2: external/hptt/libhptt.a
 tests/catch2: /usr/lib/gcc/x86_64-linux-gnu/13/libgomp.so
 tests/catch2: /usr/lib/x86_64-linux-gnu/libpthread.a
 tests/catch2: tests/CMakeFiles/catch2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable catch2"
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/catch2.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable catch2"
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/tests" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/catch2.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 tests/CMakeFiles/catch2.dir/build: tests/catch2
 .PHONY : tests/CMakeFiles/catch2.dir/build
 
 tests/CMakeFiles/catch2.dir/clean:
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests" && $(CMAKE_COMMAND) -P CMakeFiles/catch2.dir/cmake_clean.cmake
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/tests" && $(CMAKE_COMMAND) -P CMakeFiles/catch2.dir/cmake_clean.cmake
 .PHONY : tests/CMakeFiles/catch2.dir/clean
 
 tests/CMakeFiles/catch2.dir/depend:
-	cd "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed" "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests" "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build" "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests" "/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/build/tests/CMakeFiles/catch2.dir/DependInfo.cmake" "--color=$(COLOR)"
+	cd "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project" "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/tests" "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build" "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/tests" "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/build/tests/CMakeFiles/catch2.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : tests/CMakeFiles/catch2.dir/depend
 

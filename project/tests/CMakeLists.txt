@@ -8,11 +8,11 @@ add_subdirectory(catch)
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 
 # Add the executable
-add_executable(catch2 catch_main.cpp catch_tests_tensor.cpp)
+add_executable(catch2 catch_main.cpp catch_tests_tensor_blas.cpp)
 
 # Link libraries
 target_link_libraries(catch2 
-    PRIVATE catch       # Link Catch2
-    PRIVATE einspeed    # Link your einspeed library
+    PRIVATE catch           # Link Catch2
+    PRIVATE einspeed        # Link einspeed library
     PRIVATE Python3::Python # Link Python library
 )

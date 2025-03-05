@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/main" -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/PUBLIC" -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/include" -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/external/hptt/include" -I"/home/john/Documents/Uni/Algorithm-Engineering/Exam Assignments/Code/einspeed/tests/catch/include" -I/usr/lib/python3/dist-packages/numpy/core/include -isystem /usr/include/python3.12
+CXX_INCLUDES = -I"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/main" -I"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/PUBLIC" -I"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/include" -I"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/external/hptt/include" -I"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/project/tests/catch/include" -I/usr/lib/python3/dist-packages/numpy/core/include -isystem /usr/include/python3.12
 
 CXX_FLAGS = -fopenmp -march=native -mtune=native -fopenmp
 
