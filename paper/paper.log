@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.17)  7 JAN 2025 07:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.17)  5 MAR 2025 14:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/paper/paper.tex"
-(/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/paper/paper.tex
+**"/home/jonas/Documents/University/5. Semester/Algorithm Engineering/paper/paper.tex"
+(/home/jonas/Documents/University/5. Semester/Algorithm Engineering/paper/paper.tex
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-11-02>
 (/usr/local/texlive/2024/texmf-dist/tex/latex/acmart/acmart.cls
@@ -1225,11 +1225,11 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
 (Font)              scaled to size 5.5pt on input line 381.
 PGFPlots: reading {src/scaling_study.csv}
- (./paper.bbl
+
+
+(./paper.bbl
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 7.0pt on input line 43.
-
-
 )
 
 Class acmart Warning: ACM reference format is mandatory 
@@ -1260,14 +1260,14 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  44142 strings out of 473330
- 956772 string characters out of 5719768
- 1869442 words of memory out of 5000000
+ 956737 string characters out of 5719768
+ 1869444 words of memory out of 5000000
  65890 multiletter control sequences out of 15000+600000
  717163 words of font info for 335 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 114i,12n,131p,1213b,1585s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 114i,12n,131p,1196b,1585s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/LibertineMathMI.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/LibertineMathMI5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/LibertineMathMI7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/libertine/LinBiolinumT.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/libertine/LinBiolinumTI.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on paper.pdf (6 pages, 491937 bytes).
+Output written on paper.pdf (6 pages, 491946 bytes).
 PDF statistics:
  325 PDF objects out of 1000 (max. 8388607)
  283 compressed objects within 3 object streams

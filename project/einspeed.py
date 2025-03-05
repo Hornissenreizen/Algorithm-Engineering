@@ -5,6 +5,7 @@ import csv
 
 # Top level python program to test the implementation.
 
+# This helper method creates randomized tensors of the specified shape and compares the running time of my einsum implementation with NumPy's.
 def benchmark_einsum(format_string, lhs_shape, rhs_shape, dtype = np.float32, test_case = "Default", epsilon = 1e-4):
     lhs_tensor = (1+np.random.rand(*lhs_shape)).astype(dtype)
     rhs_tensor = (1+np.random.rand(*rhs_shape)).astype(dtype)
@@ -23,6 +24,7 @@ def benchmark_einsum(format_string, lhs_shape, rhs_shape, dtype = np.float32, te
     maximum_relative_discrepancy = np.max(np.abs((result - correct) / correct))
 
     print(f"Test Case: {test_case} {str(dtype)}")
+    # There will be an error, and it might grow big due to numerical issues. It should just be numerical issues though.
     print("Correct: ", (maximum_relative_discrepancy < epsilon) and (lhs_tensor==lhs_copy).all() and (rhs_tensor==rhs_copy).all())
     print(f"Maximum relative discrepancy: {maximum_relative_discrepancy}")
     print(f"NumPy: {numpy_time} s\neinspeed: {einspeed_time} s")
@@ -32,6 +34,7 @@ def benchmark_einsum(format_string, lhs_shape, rhs_shape, dtype = np.float32, te
     return (numpy_time, einspeed_time, maximum_relative_discrepancy)
 
 
+# Simple utility method to create .csv files.
 def create_csv(file_name, *args):
     """
     Creates a CSV file from column data provided as tuples.
@@ -61,6 +64,7 @@ def create_csv(file_name, *args):
             writer.writerow(row)
 
 
+# Testing various einsum expression for correctness and speed.
 def run_test_cases():
     DTYPES = [np.float32, np.float64, np.complex128]
     for dtype in DTYPES:
@@ -70,41 +74,28 @@ def run_test_cases():
         benchmark_einsum("abc,def->", [50, 42, 55], [63, 69, 127], dtype, "Multidimensional Reduction")
 
         # Contraction
-        benchmark_einsum("i,i->", [600000000], [600000000], dtype, "Vector Dot Product")
-        benchmark_einsum("ij,ij->", [9000, 80000], [9000, 80000], dtype, "Element-wise Contraction")
-        benchmark_einsum("ij,ji->", [9000, 80000], [80000, 9000], dtype, "Element-wise Contraction with Transpose")
-        benchmark_einsum("ijk,ijk->", [1000, 2000, 300], [1000, 2000, 300], dtype, "High-Dimensional Contraction")
+        benchmark_einsum("i,i->", [60000000], [60000000], dtype, "Vector Dot Product")
+        benchmark_einsum("ij,jk->ik", [30, 400], [400, 50], dtype, "Matrix Multiplication")
+        benchmark_einsum("ij,ij->", [9000, 8000], [9000, 8000], dtype, "Element-wise Contraction")
+        benchmark_einsum("ij,ji->", [9000, 8000], [8000, 9000], dtype, "Element-wise Contraction with Transpose")
+        benchmark_einsum("ijk,ijk->", [1000, 200, 300], [1000, 200, 300], dtype, "High-Dimensional Contraction")
+        benchmark_einsum("abc,ab->c", [200, 300, 400], [200, 300], dtype, "Contraction along first two axes")
 
         # Outer product
-        benchmark_einsum("i,j->ij", [100000], [20000], dtype, "Outer Product")
-        benchmark_einsum("ij,k->ijk", [300, 2000], [500], dtype, "Outer Product 3D")
+        benchmark_einsum("i,j->ij", [10000], [2000], dtype, "Outer Product")
+        benchmark_einsum("ij,k->ijk", [300, 200], [500], dtype, "Outer Product 3D")
+        benchmark_einsum("ijk,jl->ikjl", [10, 300, 30], [300, 40], dtype, "Tensor Contraction")
         
-        # Transpose-like operations
-        benchmark_einsum("ij,jk->ik", [300, 400], [400, 500], dtype, "Matrix Multiplication")
-        benchmark_einsum("ijk,jl->ikjl", [100, 300, 30], [300, 40], dtype, "Tensor Contraction")
-        
-        # Broadcasting
-        benchmark_einsum("ij,j->ij", [300, 400], [400], dtype, "Broadcasting along one axis")
-        benchmark_einsum("ij,kl->ijkl", [100, 200], [300, 40], dtype, "Full Tensor Broadcasting")
-
         # Permutations
         benchmark_einsum("ij,k->ji", [3000, 4000], [1], dtype, "Transpose Simulation")
-        benchmark_einsum("ijk,l->ikj", [100, 200, 300], [1], dtype, "3D Permutation")
-
-        # Mixed operations
-        benchmark_einsum("ijk,il->jkl", [100, 200, 300], [100, 150], dtype, "Mixed Contraction")
-        # benchmark_einsum("ij,jk,kl->il", [30, 40], [40, 50], [50, 60], dtype, "Chained Multiplication")
+        benchmark_einsum("ijk,l->kij", [100, 200, 300], [1], dtype, "3D Permutation")
         
-        # Single-dimension cases (simulating single operand)
+        # Single-dimension cases
         benchmark_einsum("i,i->i", [1000], [1000], dtype, "Element-wise Multiplication")
-        benchmark_einsum("i,j->", [100000], [1], dtype, "Sum Reduction")
-        
-        # Miscellaneous
-        benchmark_einsum("abc,ab->c", [200, 300, 400], [200, 300], dtype, "Reduction along last axis")
-        # benchmark_einsum("a,b,c->abc", [10], [20], [30], dtype, "Tensor Construction")
-        # benchmark_einsum("ij,jk,kl->il", [20, 30], [30, 40], [40, 50], dtype, "Complex Chain Contraction")
+        benchmark_einsum("i,j->i", [100000], [1], dtype, "Scaling")
 
 
+# Scaling study for the reduction operation.
 def scaling_study(format_string, lhs_shape, rhs_shape, dtype = np.float32, test_case = "Default", epsilon = 1e-4):
     lhs_shape = np.array(lhs_shape, np.int32)
     rhs_shape = np.array(rhs_shape, np.int32)
@@ -120,18 +111,27 @@ def scaling_study(format_string, lhs_shape, rhs_shape, dtype = np.float32, test_
         einspeed_times.append(einspeed_time)
         speedups.append(numpy_time / einspeed_time)
         alpha = alpha * 2
-    create_csv("scaling_study.csv", ("Problem size", problem_sizes), ("Numpy time (s)", numpy_times), ("Einspeed time (s)", einspeed_times), ("Speedup", speedups))
+    create_csv("scaling_study.csv", ("Problem size", problem_sizes), ("NumPy time (s)", numpy_times), ("Einspeed time (s)", einspeed_times), ("Speedup", speedups))
 
 
-run_test_cases()
-# scaling_study("abc,def->", [1, 2, 3], [3, 2, 1], np.float32, "Multidimensional Reduction")
-# benchmark_einsum("i,i->", [100000000], [100000000], np.complex128, "Test")
-# benchmark_einsum("i,i->", [100000000], [100000000], np.float64, "Test")
-# benchmark_einsum("i,i->", [10], [10], np.float64, "Test")
+if __name__ == '__main__':
 
-# Test Correctness
-# lhs_vector = np.random.rand(100)
-# rhs_vector = np.random.rand(100)
-# print(np.einsum("i,i->", lhs_vector, rhs_vector))
-# print(einspeed.einsum("i,i->", lhs_vector, rhs_vector))
-# print(lhs_vector @ rhs_vector)
+# Uncomment the lines you want to execute:
+
+# runs the test cases specified above
+    run_test_cases()
+
+# runs the scaling study. This command was used to create the data in the paper.
+    # scaling_study("abc,def->", [1, 2, 3], [3, 2, 1], np.float32, "Multidimensional Reduction")
+
+# here are just some basic tests one might play around with
+    # benchmark_einsum("i,i->", [100000000], [100000000], np.complex128, "Test")
+    # benchmark_einsum("i,i->", [100000000], [100000000], np.float64, "Test")
+    # benchmark_einsum("i,i->", [10], [10], np.float64, "Test")
+
+# here is the code to compare the correctness of both my and NumPy's einsum implementation
+    # lhs_vector = np.random.rand(100)
+    # rhs_vector = np.random.rand(100)
+    # print(np.einsum("i,i->", lhs_vector, rhs_vector))
+    # print(einspeed.einsum("i,i->", lhs_vector, rhs_vector))
+    # print(lhs_vector @ rhs_vector)

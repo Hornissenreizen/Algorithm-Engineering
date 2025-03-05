@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex paper"] 1735401686.57956 "paper.aux" "paper.bbl" "paper" 1736233028.49581 0
+["bibtex paper"] 1741182215.16135 "paper.aux" "paper.bbl" "paper" 1741182390.23465 0
   "./literature.bib" 1734451903.1368 783 76d3f2609cdf4ab2a163cfe0e4661540 ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/acmart/ACM-Reference-Format.bst" 1734431889.04161 90302 853ee4b223ed1a0e896f3ab1ff980426 ""
-  "paper.aux" 1736233028.18566 5267 64ac934da75ac96cae47bb865531fe56 "pdflatex"
+  "paper.aux" 1741182389.93603 5267 c20748aca92dd2a7052546f51fd28d86 "pdflatex"
   (generated)
   "paper.bbl"
   "paper.blg"
   (rewritten before read)
-["pdflatex"] 1736233027.2061 "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/paper/paper.tex" "paper.pdf" "paper" 1736233028.49598 0
-  "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/Exam Assignments/paper/paper.tex" 1736233026.76167 34354 0702507a86f200c1e72fa1f0c36854e8 ""
+["pdflatex"] 1741182388.95823 "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/paper/paper.tex" "paper.pdf" "paper" 1741182390.23481 0
+  "/home/jonas/Documents/University/5. Semester/Algorithm Engineering/paper/paper.tex" 1736233026.76167 34354 0702507a86f200c1e72fa1f0c36854e8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-4.enc" 1734431872.51973 7693 0f2dce6d313c82989ec3a67fc24df2a0 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1734431872.55673 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1734431872.55873 2933 9ad527ce78d7c5fa0a642dead095f172 ""
@@ -329,11 +329,11 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1734431864.2608 5485709 8129e419010b46b234085a26866cdb87 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1734431864.3988 3343776 2b14423543ae36c58e6a97232fe20f3b ""
   "/usr/local/texlive/2024/texmf.cnf" 1734431864.4218 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
-  "paper.aux" 1736233028.18566 5267 64ac934da75ac96cae47bb865531fe56 "pdflatex"
-  "paper.bbl" 1734456294.89587 2523 ce2875fbfdef9b685fc8772213975014 "bibtex paper"
-  "paper.out" 1736233028.18566 3068 23b3acbb28311d3dcbe442967772fe48 "pdflatex"
+  "paper.aux" 1741182389.93603 5267 c20748aca92dd2a7052546f51fd28d86 "pdflatex"
+  "paper.bbl" 1741182215.24762 2523 ce2875fbfdef9b685fc8772213975014 "bibtex paper"
+  "paper.out" 1741182389.93603 3068 23b3acbb28311d3dcbe442967772fe48 "pdflatex"
   "paper.tex" 1736233026.76167 34354 0702507a86f200c1e72fa1f0c36854e8 ""
-  "src/scaling_study.csv" 1736233026.76167 523 cfb6179c970fe71293a0850338355c9a ""
+  "src/scaling_study.csv" 1741182388.49702 520 bbabd9c068eb7d76285a23f1bc9883c3 ""
   (generated)
   "paper.aux"
   "paper.log"
