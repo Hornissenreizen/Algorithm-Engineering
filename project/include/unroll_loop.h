@@ -3,7 +3,9 @@
 
 #include <utility>
 
+// This is used in scr/einspeed.cpp to loop over the supported data types.
 // Source: https://stackoverflow.com/questions/37602057/why-isnt-a-for-loop-a-compile-time-expression
+
 template<std::size_t N>
 struct num { static const constexpr auto value = N; };
 
