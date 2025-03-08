@@ -6,6 +6,10 @@
         - make
         - cmake
 
+    Download the external C++ library for tensor transposition with:
+
+        $ make init
+
 
 ** Synopsis **
 
