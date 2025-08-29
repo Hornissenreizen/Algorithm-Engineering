@@ -1,0 +1,88 @@
+
+
+Hallo Herr Peters,
+
+Sie haben für Ihre Leistungen im Kurs Algorithm Engineering die Note 1,0 bekommen.
+
+
+Anmerkungen aus dem Prüfungsprotokoll:
+
+Prüfungsfragen: 1,0 (40%)
+-----------------------------------
+- Sehr schön, dass eine PDF mit komplettem Inhalt vorhanden ist. Macht das Ganze besonders angenehm
+  zu lesen und zu kontrollieren.
+- In den Antworten ist deutlich zu merken, dass Herr Peters den Inhalt der Vorlesung mehr als
+  verstanden hat. Die Antworten sind korrekt, spannend zu lesen, klar formuliert und gehen teilweise über die behandelten
+  Themen hinaus oder es werden herausfordernde Wahlaufgaben beantwortet.
+  Bravo! Sehr gute Leistung bei den Prüfungsfragen.
+- 2.1 False Sharing: Kreative Erklärung mit zwei Lehrern und einem Blatt Papier.
+- Vorlesung 5 quantpng: Im originalen Make-Skript wird OpenMP verwendet, sollte dann auch in CMakeListings.txt
+  verwendet werden.
+- Vorlesung 5 FizzBuzz: Beim Header fizzbuzz.h noch einen Include-Guard einfügen.
+- 6.1.1 AVX512 Data Types: Es sind keine 64 Kästchen eingezeichnet bei 64 × 8-bit Byte.
+- 6.1.2 Intel MMX und 7.1 Analyzing Slide 14: Sehr schön, dass man sich an die herausfordernde vektorisierte
+  Transponierung rangetraut hat!
+
+
+Projekt: 1,0 - 1,3 (40%)
+-----------------------------------
+
+- README.txt ist aussagekräftig genug, um Projekt, Projektaufbau und die Benutzung
+  des Codes insgesamt sehr gut zu verstehen.
+- Projekt ist sinnvoll modularisiert in einzelnen Header-Dateien.
+- Schön, dass man sich an die AVX Intrinsics rangetraut hat. Nur so lernt man diese.
+- hptt ist wirklich eine sehr performante Transponierungsbibliothek. Super, dass sie
+  eingebaut wurde.
+- Projekt zeigt deutlich, dass Herr Peters fähig ist, herausfordernde Algorithmen zu entwerfen,
+  zu implementieren und diese auch aus einer höheren Sprache wie Python
+  aufzurufen.
+- Schön, dass Implementierung sowohl in C++ als auch in Python getestet wird.
+- Es besteht jedoch noch genug Potenzial, um die Performanz weiter zu steigern.
+
+Empfehlungen:
+- Noch Blocking bei der BMM implementieren, dann gibt es nochmal eine Verbesserung der
+  Laufzeit.
+- Ist auch tatsächlich schneller (vor allem mit Blocking), bik,bkj->bij als BMM-Kernel
+  zu machen, statt – wie man intuitiv meinen könnte – bik,bjk->bij, wo immer unit stride ist …
+  (hat etwas mit der Aggregation von Werten in die "sum"-Variable zu tun).
+- Kein OpenMP-Kompilierflag in den CMake-Dateien für die BMM gefunden. Sollte ergänzt werden.
+- Beim finalen CMake-Aufruf im Make-Skript nicht vergessen, den Build-Typ zu spezifizieren, sonst wird -g immer gesetzt,
+  was das Programm verlangsamen kann. --> cmake -DCMAKE_BUILD_TYPE=Release
+
+
+Paper: 1,3 (20%)
+-----------------------------------
+
+- Paper beschreibt noch sehr gut das realisierte Projekt, die Designentscheidungen und
+  Optimierungsstrategien dahinter.
+- Lazy Transponierung beim Ausgabetensor macht Sinn und sollte immer gemacht werden. (Schön, dass es auch gemacht wird.)
+  Man stelle sich vor, der Ausgabetensor wäre im nächsten Schritt der Eingabetensor der nächsten Einsum-Berechnung,
+  dann müsste man doppelt transponieren, wenn man es nicht lazy macht.
+
+Empfehlungen:
+- Es ist eher ungewöhnlich, im Abstract explizit Untertitel wie "Topic and background" etc. zu haben.
+  Sie sind meist implizit durch die Struktur des Textes gegeben. Beim richtigen Paper besser keine
+  Untertitel im Abstract. Aber hier passt das ganz gut!
+- "Table 1: Column Identifiers of Einsum Expression" wäre einfacher, wenn explizit alle drei Index-Strings
+  enthalten wären (lhs_string, rhs_string, target_string) und dann einfach mit true und false darin die
+  möglichen Dimensionstypen gekennzeichnet würden.
+- Zu 1.2 Related Work: Man könnte noch erwähnen, dass PyTorch sein Einsum auch auf die BMM mapped oder dass
+  das auch in dieser Repo gemacht wird: https://github.com/jcmgray/einsum_bmm
+- Nicht zwischen "I" und "we" im Paper wechseln, sondern sich für eins der beiden entscheiden.
+- "we we look" --> we look; "the the batch" --> the batch; "is is apparent" --> is apparent;
+  "of of libraries" --> of libraries usw. (Am besten nochmal Proof lesen.)
+- Ein paar Skalierungsgraphen, die zeigen, wie die Performance mit der Anzahl an Threads bzw. mit der
+  Größe des Problems für einen festen BMM-Ausdruck variiert, wären noch spannend im Paper zu haben.
+
+
+
+Herr Peters hat sowohl bei der Beantwortung der Prüfungsfragen als auch beim Projekt und beim
+Verfassen des zum Projekt zugehörigen Papers sehr gute Leistungen erbracht.
+Die Gesamtleistung für den Kurs Algorithm Engineering ist somit eine 1,0.
+
+
+
+Mit vielen Grüßen und weiterhin viel Erfolg bei Ihrem Studium!
+
+Mark Blacher
+
