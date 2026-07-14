@@ -1,9 +1,14 @@
 /*
-!/answers
-!/answers**
 !/project
 !/project**
 !/paper
 !/paper**
 !.gitignore
-!Blacher_Anmerkungen.txt
+
+# generated/build artifacts and machine-fetched external code
+/project/build
+/project/einspeed.so
+/project/external/hptt
+/project/tests/catch/CMakeFiles
+/project/tests/catch/Makefile
+/project/tests/catch/cmake_install.cmake
