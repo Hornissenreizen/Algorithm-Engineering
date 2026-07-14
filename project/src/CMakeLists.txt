@@ -9,6 +9,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Ofast -march=native -ffast-math")
 # Find Python
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 
+# Find OpenMP (required for the #pragma omp parallel for used in blas.h / compute_einsum.h)
+find_package(OpenMP REQUIRED)
+
 # Glob all the files in src/
 file(GLOB SOURCES "./**.cpp")
 
@@ -18,7 +21,7 @@ add_library(einspeed SHARED ${SOURCES})
 
 # Add the external library hptt
 add_subdirectory(${CMAKE_SOURCE_DIR}/external/hptt ${CMAKE_BINARY_DIR}/external/hptt)
-target_link_libraries(einspeed PUBLIC hptt)
+target_link_libraries(einspeed PUBLIC hptt OpenMP::OpenMP_CXX)
 
 
 
